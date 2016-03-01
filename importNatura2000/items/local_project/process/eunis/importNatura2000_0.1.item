@@ -383,7 +383,7 @@
       <elementValue elementRef="VALUE" value="&quot;-jar&quot;"/>
       <elementValue elementRef="VALUE" value="&quot;/usr/local/bin/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar&quot;"/>
       <elementValue elementRef="VALUE" value="&quot;deletesites&quot;"/>
-      <elementValue elementRef="VALUE" value="((String)globalMap.get(&quot;site_code&quot;))"/>
+      <elementValue elementRef="VALUE" value="((String)globalMap.get(&quot;ID_SITE&quot;))"/>
     </elementParameter>
     <elementParameter field="CLOSED_LIST" name="OUTPUT" value="OUTPUT_TO_CONSOLE"/>
     <elementParameter field="CLOSED_LIST" name="ERROROUTPUT" value="OUTPUT_TO_CONSOLE"/>
