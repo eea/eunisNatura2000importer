@@ -130,7 +130,7 @@
       <elementValue elementRef="QUERY" value="&quot;release_id&quot;"/>
       <elementValue elementRef="NODECHECK" value=""/>
     </elementParameter>
-    <elementParameter field="TEXT" name="LIMIT" value="10"/>
+    <elementParameter field="TEXT" name="LIMIT" value=""/>
     <elementParameter field="CHECK" name="DIE_ON_ERROR" value="false"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:SCHEMA_TYPE" value="REPOSITORY" show="false"/>
     <elementParameter field="TECHNICAL" name="SCHEMA_REJECT:REPOSITORY_SCHEMA_TYPE" value="_dku0kNuzEeWNMOJLEjwk5w - metadata" show="false"/>
