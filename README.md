@@ -10,4 +10,4 @@ sh ./importNatura2000_run.sh
 No input is needed as database credentials are read from "/var/local/build/eea.eunis/local.properties" file
 Temporary files are written in System.getProperty("java.io.tmpdir")/natura2000import directory (/tmp//natura2000import in linux)
 
-TODO: logging compatible with greylog
+TODO: logging compatible with graylog
