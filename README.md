@@ -7,7 +7,15 @@ usage:
 
 sh ./importNatura2000_run.sh
 
-No input is needed as database credentials are read from "/var/local/build/eea.eunis/local.properties" file
-Temporary files are written in System.getProperty("java.io.tmpdir")/natura2000import directory (/tmp//natura2000import in linux)
+you can override the default values by passing the parameters:
+
+sh ./importNatura2000_run.sh -localProperties "/build/local.properties" -eunisctl "/build/tools/eunisctl/target/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar" -natura2000importer "/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar"
+
+If not set, default is:
+-localProperties /var/local/build/eea.eunis/local.properties
+-eunisctl "/build/tools/eunisctl/target/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar"
+-natura2000importer "/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar"
+
+Temporary files are written in System.getProperty("java.io.tmpdir")/natura2000import directory (/tmp/natura2000import in linux)
 
 TODO: logging compatible with graylog
