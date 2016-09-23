@@ -8,6 +8,7 @@
     <contextParameter comment="" name="localProperties" prompt="localProperties?" promptNeeded="false" type="id_String" value="&quot;/var/local/build/eea.eunis/local.properties&quot;"/>
     <contextParameter comment="" name="eunisctl" prompt="eunisctl?" promptNeeded="false" type="id_String" value="&quot;/usr/local/bin/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar&quot;"/>
     <contextParameter comment="" name="natura2000importer" prompt="natura2000importer?" promptNeeded="false" type="id_String" value="&quot;/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar&quot;"/>
+    <contextParameter comment="" name="skipService" prompt="skipService?" promptNeeded="false" type="id_Integer" value="0"/>
   </context>
   <parameters>
     <elementParameter field="TEXT" name="SCREEN_OFFSET_X" value="0" show="false"/>
@@ -593,8 +594,9 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
   </connection>
-  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" source="tContextLoad_2" target="tRunJob_1">
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk2" show="false"/>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" source="tContextLoad_2" target="tRunJob_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.skipService == 0"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If1" show="false"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk3" show="false"/>
