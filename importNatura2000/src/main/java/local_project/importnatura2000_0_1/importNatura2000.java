@@ -356,17 +356,6 @@ public class importNatura2000 implements TalendJob {
 		tContextDump_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tFileDelete_1_error(Exception exception, String errorComponent,
-			final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tContextDump_1_onSubJobError(exception, errorComponent, globalMap);
-	}
-
 	public void tFileInputDelimited_2_error(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -413,6 +402,17 @@ public class importNatura2000 implements TalendJob {
 
 		tFileInputDelimited_2_onSubJobError(exception, errorComponent,
 				globalMap);
+	}
+
+	public void tFileDelete_1_error(Exception exception, String errorComponent,
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tFileDelete_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
 	public void tRunJob_1_error(Exception exception, String errorComponent,
@@ -533,6 +533,17 @@ public class importNatura2000 implements TalendJob {
 
 	}
 
+	public void tFileDelete_1_onSubJobError(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread
+				.currentThread().getId() + "", "FATAL", "",
+				exception.getMessage(),
+				ResumeUtil.getExceptionStackTrace(exception), "");
+
+	}
+
 	public void tRunJob_1_onSubJobError(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -574,142 +585,6 @@ public class importNatura2000 implements TalendJob {
 				.currentThread().getId() + "", "FATAL", "",
 				exception.getMessage(),
 				ResumeUtil.getExceptionStackTrace(exception), "");
-
-	}
-
-	public static class row5Struct implements
-			routines.system.IPersistableRow<row5Struct> {
-		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
-		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
-
-		public String key;
-
-		public String getKey() {
-			return this.key;
-		}
-
-		public String value;
-
-		public String getValue() {
-			return this.value;
-		}
-
-		private String readString(ObjectInputStream dis) throws IOException {
-			String strReturn = null;
-			int length = 0;
-			length = dis.readInt();
-			if (length == -1) {
-				strReturn = null;
-			} else {
-				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
-					if (length < 1024
-							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
-					} else {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
-					}
-				}
-				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
-						0, length);
-				strReturn = new String(
-						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
-						length, utf8Charset);
-			}
-			return strReturn;
-		}
-
-		private void writeString(String str, ObjectOutputStream dos)
-				throws IOException {
-			if (str == null) {
-				dos.writeInt(-1);
-			} else {
-				byte[] byteArray = str.getBytes(utf8Charset);
-				dos.writeInt(byteArray.length);
-				dos.write(byteArray);
-			}
-		}
-
-		public void readData(ObjectInputStream dis) {
-
-			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
-
-				try {
-
-					int length = 0;
-
-					this.key = readString(dis);
-
-					this.value = readString(dis);
-
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-
-				}
-
-			}
-
-		}
-
-		public void writeData(ObjectOutputStream dos) {
-			try {
-
-				// String
-
-				writeString(this.key, dos);
-
-				// String
-
-				writeString(this.value, dos);
-
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-		}
-
-		public String toString() {
-
-			StringBuilder sb = new StringBuilder();
-			sb.append(super.toString());
-			sb.append("[");
-			sb.append("key=" + key);
-			sb.append(",value=" + value);
-			sb.append("]");
-
-			return sb.toString();
-		}
-
-		/**
-		 * Compare keys
-		 */
-		public int compareTo(row5Struct other) {
-
-			int returnValue = -1;
-
-			return returnValue;
-		}
-
-		private int checkNullsAndCompare(Object object1, Object object2) {
-			int returnValue = 0;
-			if (object1 instanceof Comparable && object2 instanceof Comparable) {
-				returnValue = ((Comparable) object1).compareTo(object2);
-			} else if (object1 != null && object2 != null) {
-				returnValue = compareStrings(object1.toString(),
-						object2.toString());
-			} else if (object1 == null && object2 != null) {
-				returnValue = 1;
-			} else if (object1 != null && object2 == null) {
-				returnValue = -1;
-			} else {
-				returnValue = 0;
-			}
-
-			return returnValue;
-		}
-
-		private int compareStrings(String string1, String string2) {
-			return string1.compareTo(string2);
-		}
 
 	}
 
@@ -872,22 +747,6 @@ public class importNatura2000 implements TalendJob {
 				globalResumeTicket = true;
 
 				row4Struct row4 = new row4Struct();
-				row4Struct row5 = row4;
-
-				/**
-				 * [tFileDelete_1 begin ] start
-				 */
-
-				ok_Hash.put("tFileDelete_1", false);
-				start_Hash.put("tFileDelete_1", System.currentTimeMillis());
-
-				currentComponent = "tFileDelete_1";
-
-				int tos_count_tFileDelete_1 = 0;
-
-				/**
-				 * [tFileDelete_1 begin ] stop
-				 */
 
 				/**
 				 * [tLogRow_1 begin ] start
@@ -993,91 +852,10 @@ public class importNatura2000 implements TalendJob {
 
 					// /////////////////////
 
-					row5 = row4;
-
 					tos_count_tLogRow_1++;
 
 					/**
 					 * [tLogRow_1 main ] stop
-					 */
-
-					/**
-					 * [tFileDelete_1 main ] start
-					 */
-
-					currentComponent = "tFileDelete_1";
-
-					class DeleteFoldertFileDelete_1 {
-						/**
-						 * delete all the sub-files in 'file'
-						 * 
-						 * @param file
-						 */
-						public boolean delete(java.io.File file) {
-							java.io.File[] files = file.listFiles();
-							for (int i = 0; i < files.length; i++) {
-								if (files[i].isFile()) {
-									files[i].delete();
-								} else if (files[i].isDirectory()) {
-									if (!files[i].delete()) {
-										delete(files[i]);
-									}
-								}
-							}
-							deleteDirectory(file);
-							return file.delete();
-						}
-
-						/**
-						 * delete all the sub-folders in 'file'
-						 * 
-						 * @param file
-						 */
-						private void deleteDirectory(java.io.File file) {
-							java.io.File[] filed = file.listFiles();
-							for (int i = 0; i < filed.length; i++) {
-								if (filed[i].isDirectory()) {
-									deleteDirectory(filed[i]);
-								}
-								filed[i].delete();
-							}
-						}
-
-					}
-					java.io.File path_tFileDelete_1 = new java.io.File(
-							System.getProperty("java.io.tmpdir")
-									+ "/natura2000import/xml/");
-					if (path_tFileDelete_1.exists()) {
-						if (path_tFileDelete_1.isFile()) {
-							if (path_tFileDelete_1.delete()) {
-								globalMap.put("tFileDelete_1_CURRENT_STATUS",
-										"File deleted.");
-							} else {
-								globalMap.put("tFileDelete_1_CURRENT_STATUS",
-										"No file deleted.");
-							}
-						} else if (path_tFileDelete_1.isDirectory()) {
-							DeleteFoldertFileDelete_1 dftFileDelete_1 = new DeleteFoldertFileDelete_1();
-							if (dftFileDelete_1.delete(path_tFileDelete_1)) {
-								globalMap.put("tFileDelete_1_CURRENT_STATUS",
-										"Path deleted.");
-							} else {
-								globalMap.put("tFileDelete_1_CURRENT_STATUS",
-										"No path deleted.");
-							}
-						}
-					} else {
-						globalMap.put("tFileDelete_1_CURRENT_STATUS",
-								"File or path does not exist or is invalid.");
-					}
-					globalMap.put("tFileDelete_1_DELETE_PATH",
-							System.getProperty("java.io.tmpdir")
-									+ "/natura2000import/xml/");
-
-					tos_count_tFileDelete_1++;
-
-					/**
-					 * [tFileDelete_1 main ] stop
 					 */
 
 					/**
@@ -1111,23 +889,10 @@ public class importNatura2000 implements TalendJob {
 				ok_Hash.put("tLogRow_1", true);
 				end_Hash.put("tLogRow_1", System.currentTimeMillis());
 
-				/**
-				 * [tLogRow_1 end ] stop
-				 */
-
-				/**
-				 * [tFileDelete_1 end ] start
-				 */
-
-				currentComponent = "tFileDelete_1";
-
-				ok_Hash.put("tFileDelete_1", true);
-				end_Hash.put("tFileDelete_1", System.currentTimeMillis());
-
 				tFileInputDelimited_2Process(globalMap);
 
 				/**
-				 * [tFileDelete_1 end ] stop
+				 * [tLogRow_1 end ] stop
 				 */
 
 			}// end the resume
@@ -1163,16 +928,6 @@ public class importNatura2000 implements TalendJob {
 
 				/**
 				 * [tLogRow_1 finally ] stop
-				 */
-
-				/**
-				 * [tFileDelete_1 finally ] start
-				 */
-
-				currentComponent = "tFileDelete_1";
-
-				/**
-				 * [tFileDelete_1 finally ] stop
 				 */
 
 			} catch (java.lang.Exception e) {
@@ -2148,7 +1903,7 @@ public class importNatura2000 implements TalendJob {
 
 				if (context.skipService == 0) {
 
-					tRunJob_1Process(globalMap);
+					tFileDelete_1Process(globalMap);
 				}
 
 				/**
@@ -2219,6 +1974,174 @@ public class importNatura2000 implements TalendJob {
 		}
 
 		globalMap.put("tFileInputDelimited_2_SUBPROCESS_STATE", 1);
+	}
+
+	public void tFileDelete_1Process(
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 0);
+
+		final boolean execStat = this.execStat;
+
+		String iterateId = "";
+
+		String currentComponent = "";
+		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+		try {
+
+			String currentMethodName = new java.lang.Exception()
+					.getStackTrace()[0].getMethodName();
+			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
+			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
+																					// the
+																					// resume
+				globalResumeTicket = true;
+
+				/**
+				 * [tFileDelete_1 begin ] start
+				 */
+
+				ok_Hash.put("tFileDelete_1", false);
+				start_Hash.put("tFileDelete_1", System.currentTimeMillis());
+
+				currentComponent = "tFileDelete_1";
+
+				int tos_count_tFileDelete_1 = 0;
+
+				/**
+				 * [tFileDelete_1 begin ] stop
+				 */
+
+				/**
+				 * [tFileDelete_1 main ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				class DeleteFoldertFileDelete_1 {
+					/**
+					 * delete all the sub-files in 'file'
+					 * 
+					 * @param file
+					 */
+					public boolean delete(java.io.File file) {
+						java.io.File[] files = file.listFiles();
+						for (int i = 0; i < files.length; i++) {
+							if (files[i].isFile()) {
+								files[i].delete();
+							} else if (files[i].isDirectory()) {
+								if (!files[i].delete()) {
+									delete(files[i]);
+								}
+							}
+						}
+						deleteDirectory(file);
+						return file.delete();
+					}
+
+					/**
+					 * delete all the sub-folders in 'file'
+					 * 
+					 * @param file
+					 */
+					private void deleteDirectory(java.io.File file) {
+						java.io.File[] filed = file.listFiles();
+						for (int i = 0; i < filed.length; i++) {
+							if (filed[i].isDirectory()) {
+								deleteDirectory(filed[i]);
+							}
+							filed[i].delete();
+						}
+					}
+
+				}
+				java.io.File path_tFileDelete_1 = new java.io.File(
+						System.getProperty("java.io.tmpdir")
+								+ "/natura2000import/xml/");
+				if (path_tFileDelete_1.exists()) {
+					if (path_tFileDelete_1.isFile()) {
+						if (path_tFileDelete_1.delete()) {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"File deleted.");
+						} else {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"No file deleted.");
+						}
+					} else if (path_tFileDelete_1.isDirectory()) {
+						DeleteFoldertFileDelete_1 dftFileDelete_1 = new DeleteFoldertFileDelete_1();
+						if (dftFileDelete_1.delete(path_tFileDelete_1)) {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"Path deleted.");
+						} else {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"No path deleted.");
+						}
+					}
+				} else {
+					globalMap.put("tFileDelete_1_CURRENT_STATUS",
+							"File or path does not exist or is invalid.");
+				}
+				globalMap.put("tFileDelete_1_DELETE_PATH",
+						System.getProperty("java.io.tmpdir")
+								+ "/natura2000import/xml/");
+
+				tos_count_tFileDelete_1++;
+
+				/**
+				 * [tFileDelete_1 main ] stop
+				 */
+
+				/**
+				 * [tFileDelete_1 end ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				ok_Hash.put("tFileDelete_1", true);
+				end_Hash.put("tFileDelete_1", System.currentTimeMillis());
+
+				if (context.skipService == 0) {
+
+					tRunJob_1Process(globalMap);
+				}
+
+				/**
+				 * [tFileDelete_1 end ] stop
+				 */
+			}// end the resume
+
+		} catch (java.lang.Exception e) {
+
+			TalendException te = new TalendException(e, currentComponent,
+					globalMap);
+
+			throw te;
+		} catch (java.lang.Error error) {
+
+			throw error;
+		} finally {
+
+			try {
+
+				/**
+				 * [tFileDelete_1 finally ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				/**
+				 * [tFileDelete_1 finally ] stop
+				 */
+			} catch (java.lang.Exception e) {
+				// ignore
+			} catch (java.lang.Error error) {
+				// ignore
+			}
+			resourceMap = null;
+		}
+
+		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 1);
 	}
 
 	public void tRunJob_1Process(final java.util.Map<String, Object> globalMap)
@@ -4808,6 +4731,6 @@ public class importNatura2000 implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 127711 characters generated by Talend Open Studio for Big Data on the
- * September 23, 2016 2:39:47 PM CEST
+ * 125945 characters generated by Talend Open Studio for Big Data on the
+ * September 27, 2016 9:27:58 AM CEST
  ************************************************************************************************/
