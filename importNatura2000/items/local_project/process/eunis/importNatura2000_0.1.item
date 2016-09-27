@@ -524,7 +524,7 @@
       <column key="false" length="255" name="value" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
     </metadata>
   </node>
-  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="704" posY="64">
+  <node componentName="tFileList" componentVersion="0.102" offsetLabelX="0" offsetLabelY="0" posX="448" posY="160">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tFileList_1" show="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="System.getProperty(&quot;java.io.tmpdir&quot;) + &quot;/natura2000import/xml&quot;"/>
     <elementParameter field="CLOSED_LIST" name="LIST_MODE" value="DIRECTORIES"/>
@@ -544,7 +544,7 @@
     <elementParameter field="CHECK" name="FORMAT_FILEPATH_TO_SLASH" value="false"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
   </node>
-  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="896" posY="96">
+  <node componentName="tSystem" componentVersion="0.101" offsetLabelX="0" offsetLabelY="0" posX="768" posY="96">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="tSystem_1" show="false"/>
     <elementParameter field="CHECK" name="ROOTDIR" value="false"/>
     <elementParameter field="DIRECTORY" name="DIRECTORY" value="&quot;C:/talend6/TOS_DI-20151214_1327-V6.1.1/workspace&quot;" show="false"/>
@@ -594,9 +594,13 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" source="tContextLoad_2" target="tFileDelete_1">
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tContextLoad_2" target="tFileDelete_1">
     <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.skipService == 0"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="If2" show="false"/>
+  </connection>
+  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tContextLoad_2" target="tFileList_1">
+    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.skipService == 1"/>
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If3" show="false"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk3" show="false"/>
