@@ -16,7 +16,7 @@ If not set, default is:
 -eunisctl "/build/tools/eunisctl/target/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar"
 -natura2000importer "/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar"
 -skipService 0
--delete 0 (*delete = 0 will automatically enable skipService)
+-delete 0 (*delete = 1 will automatically enable skipService)
 
 Temporary files are written in System.getProperty("java.io.tmpdir")/natura2000import directory (/tmp/natura2000import in linux)
 
