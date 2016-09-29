@@ -138,6 +138,12 @@ public class importNatura2000 implements TalendJob {
 
 			}
 
+			if (delete != null) {
+
+				this.setProperty("delete", delete.toString());
+
+			}
+
 		}
 
 		public String dbHost;
@@ -186,6 +192,12 @@ public class importNatura2000 implements TalendJob {
 
 		public Integer getSkipService() {
 			return this.skipService;
+		}
+
+		public Integer delete;
+
+		public Integer getDelete() {
+			return this.delete;
 		}
 	}
 
@@ -356,6 +368,61 @@ public class importNatura2000 implements TalendJob {
 		tContextDump_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
+	public void tFileInputXML_1_error(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tFileInputXML_1_onSubJobError(exception, errorComponent, globalMap);
+	}
+
+	public void tMysqlOutput_1_error(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tFileInputXML_1_onSubJobError(exception, errorComponent, globalMap);
+	}
+
+	public void tMysqlInput_2_error(Exception exception, String errorComponent,
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
+	public void tFlowToIterate_1_error(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
+	public void tSystem_2_error(Exception exception, String errorComponent,
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
 	public void tFileInputDelimited_2_error(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -448,50 +515,6 @@ public class importNatura2000 implements TalendJob {
 		tFileList_1_onSubJobError(exception, errorComponent, globalMap);
 	}
 
-	public void tFileInputXML_1_error(Exception exception,
-			String errorComponent, final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tFileInputXML_1_onSubJobError(exception, errorComponent, globalMap);
-	}
-
-	public void tMysqlOutput_1_error(Exception exception,
-			String errorComponent, final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tFileInputXML_1_onSubJobError(exception, errorComponent, globalMap);
-	}
-
-	public void tMysqlInput_2_error(Exception exception, String errorComponent,
-			final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
-	}
-
-	public void tSystem_2_error(Exception exception, String errorComponent,
-			final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		end_Hash.put(errorComponent, System.currentTimeMillis());
-
-		status = "failure";
-
-		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
-	}
-
 	public void tAggregateRow_1_AGGOUT_error(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -512,6 +535,28 @@ public class importNatura2000 implements TalendJob {
 	}
 
 	public void tContextDump_1_onSubJobError(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread
+				.currentThread().getId() + "", "FATAL", "",
+				exception.getMessage(),
+				ResumeUtil.getExceptionStackTrace(exception), "");
+
+	}
+
+	public void tFileInputXML_1_onSubJobError(Exception exception,
+			String errorComponent, final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread
+				.currentThread().getId() + "", "FATAL", "",
+				exception.getMessage(),
+				ResumeUtil.getExceptionStackTrace(exception), "");
+
+	}
+
+	public void tMysqlInput_2_onSubJobError(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
 
@@ -556,28 +601,6 @@ public class importNatura2000 implements TalendJob {
 	}
 
 	public void tFileList_1_onSubJobError(Exception exception,
-			String errorComponent, final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread
-				.currentThread().getId() + "", "FATAL", "",
-				exception.getMessage(),
-				ResumeUtil.getExceptionStackTrace(exception), "");
-
-	}
-
-	public void tFileInputXML_1_onSubJobError(Exception exception,
-			String errorComponent, final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-
-		resumeUtil.addLog("SYSTEM_LOG", "NODE:" + errorComponent, "", Thread
-				.currentThread().getId() + "", "FATAL", "",
-				exception.getMessage(),
-				ResumeUtil.getExceptionStackTrace(exception), "");
-
-	}
-
-	public void tMysqlInput_2_onSubJobError(Exception exception,
 			String errorComponent, final java.util.Map<String, Object> globalMap)
 			throws TalendException {
 
@@ -889,7 +912,15 @@ public class importNatura2000 implements TalendJob {
 				ok_Hash.put("tLogRow_1", true);
 				end_Hash.put("tLogRow_1", System.currentTimeMillis());
 
-				tFileInputDelimited_2Process(globalMap);
+				if (context.delete == 1) {
+
+					tFileInputXML_1Process(globalMap);
+				}
+
+				if (context.delete == 0) {
+
+					tFileInputDelimited_2Process(globalMap);
+				}
 
 				/**
 				 * [tLogRow_1 end ] stop
@@ -939,1714 +970,6 @@ public class importNatura2000 implements TalendJob {
 		}
 
 		globalMap.put("tContextDump_1_SUBPROCESS_STATE", 1);
-	}
-
-	public static class row3Struct implements
-			routines.system.IPersistableRow<row3Struct> {
-		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
-		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
-
-		public String key;
-
-		public String getKey() {
-			return this.key;
-		}
-
-		public String value;
-
-		public String getValue() {
-			return this.value;
-		}
-
-		private String readString(ObjectInputStream dis) throws IOException {
-			String strReturn = null;
-			int length = 0;
-			length = dis.readInt();
-			if (length == -1) {
-				strReturn = null;
-			} else {
-				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
-					if (length < 1024
-							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
-					} else {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
-					}
-				}
-				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
-						0, length);
-				strReturn = new String(
-						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
-						length, utf8Charset);
-			}
-			return strReturn;
-		}
-
-		private void writeString(String str, ObjectOutputStream dos)
-				throws IOException {
-			if (str == null) {
-				dos.writeInt(-1);
-			} else {
-				byte[] byteArray = str.getBytes(utf8Charset);
-				dos.writeInt(byteArray.length);
-				dos.write(byteArray);
-			}
-		}
-
-		public void readData(ObjectInputStream dis) {
-
-			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
-
-				try {
-
-					int length = 0;
-
-					this.key = readString(dis);
-
-					this.value = readString(dis);
-
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-
-				}
-
-			}
-
-		}
-
-		public void writeData(ObjectOutputStream dos) {
-			try {
-
-				// String
-
-				writeString(this.key, dos);
-
-				// String
-
-				writeString(this.value, dos);
-
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-		}
-
-		public String toString() {
-
-			StringBuilder sb = new StringBuilder();
-			sb.append(super.toString());
-			sb.append("[");
-			sb.append("key=" + key);
-			sb.append(",value=" + value);
-			sb.append("]");
-
-			return sb.toString();
-		}
-
-		/**
-		 * Compare keys
-		 */
-		public int compareTo(row3Struct other) {
-
-			int returnValue = -1;
-
-			return returnValue;
-		}
-
-		private int checkNullsAndCompare(Object object1, Object object2) {
-			int returnValue = 0;
-			if (object1 instanceof Comparable && object2 instanceof Comparable) {
-				returnValue = ((Comparable) object1).compareTo(object2);
-			} else if (object1 != null && object2 != null) {
-				returnValue = compareStrings(object1.toString(),
-						object2.toString());
-			} else if (object1 == null && object2 != null) {
-				returnValue = 1;
-			} else if (object1 != null && object2 == null) {
-				returnValue = -1;
-			} else {
-				returnValue = 0;
-			}
-
-			return returnValue;
-		}
-
-		private int compareStrings(String string1, String string2) {
-			return string1.compareTo(string2);
-		}
-
-	}
-
-	public static class row8Struct implements
-			routines.system.IPersistableRow<row8Struct> {
-		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
-		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
-
-		public String key;
-
-		public String getKey() {
-			return this.key;
-		}
-
-		public String value;
-
-		public String getValue() {
-			return this.value;
-		}
-
-		private String readString(ObjectInputStream dis) throws IOException {
-			String strReturn = null;
-			int length = 0;
-			length = dis.readInt();
-			if (length == -1) {
-				strReturn = null;
-			} else {
-				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
-					if (length < 1024
-							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
-					} else {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
-					}
-				}
-				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
-						0, length);
-				strReturn = new String(
-						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
-						length, utf8Charset);
-			}
-			return strReturn;
-		}
-
-		private void writeString(String str, ObjectOutputStream dos)
-				throws IOException {
-			if (str == null) {
-				dos.writeInt(-1);
-			} else {
-				byte[] byteArray = str.getBytes(utf8Charset);
-				dos.writeInt(byteArray.length);
-				dos.write(byteArray);
-			}
-		}
-
-		public void readData(ObjectInputStream dis) {
-
-			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
-
-				try {
-
-					int length = 0;
-
-					this.key = readString(dis);
-
-					this.value = readString(dis);
-
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-
-				}
-
-			}
-
-		}
-
-		public void writeData(ObjectOutputStream dos) {
-			try {
-
-				// String
-
-				writeString(this.key, dos);
-
-				// String
-
-				writeString(this.value, dos);
-
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-		}
-
-		public String toString() {
-
-			StringBuilder sb = new StringBuilder();
-			sb.append(super.toString());
-			sb.append("[");
-			sb.append("key=" + key);
-			sb.append(",value=" + value);
-			sb.append("]");
-
-			return sb.toString();
-		}
-
-		/**
-		 * Compare keys
-		 */
-		public int compareTo(row8Struct other) {
-
-			int returnValue = -1;
-
-			return returnValue;
-		}
-
-		private int checkNullsAndCompare(Object object1, Object object2) {
-			int returnValue = 0;
-			if (object1 instanceof Comparable && object2 instanceof Comparable) {
-				returnValue = ((Comparable) object1).compareTo(object2);
-			} else if (object1 != null && object2 != null) {
-				returnValue = compareStrings(object1.toString(),
-						object2.toString());
-			} else if (object1 == null && object2 != null) {
-				returnValue = 1;
-			} else if (object1 != null && object2 == null) {
-				returnValue = -1;
-			} else {
-				returnValue = 0;
-			}
-
-			return returnValue;
-		}
-
-		private int compareStrings(String string1, String string2) {
-			return string1.compareTo(string2);
-		}
-
-	}
-
-	public static class row7Struct implements
-			routines.system.IPersistableRow<row7Struct> {
-		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
-		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
-
-		public String key;
-
-		public String getKey() {
-			return this.key;
-		}
-
-		public String value;
-
-		public String getValue() {
-			return this.value;
-		}
-
-		private String readString(ObjectInputStream dis) throws IOException {
-			String strReturn = null;
-			int length = 0;
-			length = dis.readInt();
-			if (length == -1) {
-				strReturn = null;
-			} else {
-				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
-					if (length < 1024
-							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
-					} else {
-						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
-					}
-				}
-				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
-						0, length);
-				strReturn = new String(
-						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
-						length, utf8Charset);
-			}
-			return strReturn;
-		}
-
-		private void writeString(String str, ObjectOutputStream dos)
-				throws IOException {
-			if (str == null) {
-				dos.writeInt(-1);
-			} else {
-				byte[] byteArray = str.getBytes(utf8Charset);
-				dos.writeInt(byteArray.length);
-				dos.write(byteArray);
-			}
-		}
-
-		public void readData(ObjectInputStream dis) {
-
-			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
-
-				try {
-
-					int length = 0;
-
-					this.key = readString(dis);
-
-					this.value = readString(dis);
-
-				} catch (IOException e) {
-					throw new RuntimeException(e);
-
-				}
-
-			}
-
-		}
-
-		public void writeData(ObjectOutputStream dos) {
-			try {
-
-				// String
-
-				writeString(this.key, dos);
-
-				// String
-
-				writeString(this.value, dos);
-
-			} catch (IOException e) {
-				throw new RuntimeException(e);
-			}
-
-		}
-
-		public String toString() {
-
-			StringBuilder sb = new StringBuilder();
-			sb.append(super.toString());
-			sb.append("[");
-			sb.append("key=" + key);
-			sb.append(",value=" + value);
-			sb.append("]");
-
-			return sb.toString();
-		}
-
-		/**
-		 * Compare keys
-		 */
-		public int compareTo(row7Struct other) {
-
-			int returnValue = -1;
-
-			return returnValue;
-		}
-
-		private int checkNullsAndCompare(Object object1, Object object2) {
-			int returnValue = 0;
-			if (object1 instanceof Comparable && object2 instanceof Comparable) {
-				returnValue = ((Comparable) object1).compareTo(object2);
-			} else if (object1 != null && object2 != null) {
-				returnValue = compareStrings(object1.toString(),
-						object2.toString());
-			} else if (object1 == null && object2 != null) {
-				returnValue = 1;
-			} else if (object1 != null && object2 == null) {
-				returnValue = -1;
-			} else {
-				returnValue = 0;
-			}
-
-			return returnValue;
-		}
-
-		private int compareStrings(String string1, String string2) {
-			return string1.compareTo(string2);
-		}
-
-	}
-
-	public void tFileInputDelimited_2Process(
-			final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-		globalMap.put("tFileInputDelimited_2_SUBPROCESS_STATE", 0);
-
-		final boolean execStat = this.execStat;
-
-		String iterateId = "";
-
-		String currentComponent = "";
-		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-		try {
-
-			String currentMethodName = new java.lang.Exception()
-					.getStackTrace()[0].getMethodName();
-			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
-			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
-																					// the
-																					// resume
-				globalResumeTicket = true;
-
-				row7Struct row7 = new row7Struct();
-				row8Struct row8 = new row8Struct();
-				row3Struct row3 = new row3Struct();
-
-				/**
-				 * [tContextLoad_2 begin ] start
-				 */
-
-				ok_Hash.put("tContextLoad_2", false);
-				start_Hash.put("tContextLoad_2", System.currentTimeMillis());
-
-				currentComponent = "tContextLoad_2";
-
-				int tos_count_tContextLoad_2 = 0;
-
-				java.util.List<String> assignList_tContextLoad_2 = new java.util.ArrayList<String>();
-				java.util.List<String> newPropertyList_tContextLoad_2 = new java.util.ArrayList<String>();
-				java.util.List<String> noAssignList_tContextLoad_2 = new java.util.ArrayList<String>();
-				int nb_line_tContextLoad_2 = 0;
-
-				/**
-				 * [tContextLoad_2 begin ] stop
-				 */
-
-				/**
-				 * [tReplace_2 begin ] start
-				 */
-
-				ok_Hash.put("tReplace_2", false);
-				start_Hash.put("tReplace_2", System.currentTimeMillis());
-
-				currentComponent = "tReplace_2";
-
-				int tos_count_tReplace_2 = 0;
-
-				int nb_line_tReplace_2 = 0;
-
-				/**
-				 * [tReplace_2 begin ] stop
-				 */
-
-				/**
-				 * [tFilterRow_2 begin ] start
-				 */
-
-				ok_Hash.put("tFilterRow_2", false);
-				start_Hash.put("tFilterRow_2", System.currentTimeMillis());
-
-				currentComponent = "tFilterRow_2";
-
-				int tos_count_tFilterRow_2 = 0;
-
-				int nb_line_tFilterRow_2 = 0;
-				int nb_line_ok_tFilterRow_2 = 0;
-				int nb_line_reject_tFilterRow_2 = 0;
-
-				class Operator_tFilterRow_2 {
-					private String sErrorMsg = "";
-					private boolean bMatchFlag = true;
-					private String sUnionFlag = "&&";
-
-					public Operator_tFilterRow_2(String unionFlag) {
-						sUnionFlag = unionFlag;
-						bMatchFlag = "||".equals(unionFlag) ? false : true;
-					}
-
-					public String getErrorMsg() {
-						if (sErrorMsg != null && sErrorMsg.length() > 1)
-							return sErrorMsg.substring(1);
-						else
-							return null;
-					}
-
-					public boolean getMatchFlag() {
-						return bMatchFlag;
-					}
-
-					public void matches(boolean partMatched, String reason) {
-						// no need to care about the next judgement
-						if ("||".equals(sUnionFlag) && bMatchFlag) {
-							return;
-						}
-
-						if (!partMatched) {
-							sErrorMsg += "|" + reason;
-						}
-
-						if ("||".equals(sUnionFlag))
-							bMatchFlag = bMatchFlag || partMatched;
-						else
-							bMatchFlag = bMatchFlag && partMatched;
-					}
-				}
-
-				/**
-				 * [tFilterRow_2 begin ] stop
-				 */
-
-				/**
-				 * [tFileInputDelimited_2 begin ] start
-				 */
-
-				ok_Hash.put("tFileInputDelimited_2", false);
-				start_Hash.put("tFileInputDelimited_2",
-						System.currentTimeMillis());
-
-				currentComponent = "tFileInputDelimited_2";
-
-				int tos_count_tFileInputDelimited_2 = 0;
-
-				final routines.system.RowState rowstate_tFileInputDelimited_2 = new routines.system.RowState();
-
-				int nb_line_tFileInputDelimited_2 = 0;
-				org.talend.fileprocess.FileInputDelimited fid_tFileInputDelimited_2 = null;
-				try {
-
-					Object filename_tFileInputDelimited_2 = context.localProperties;
-					if (filename_tFileInputDelimited_2 instanceof java.io.InputStream) {
-
-						int footer_value_tFileInputDelimited_2 = 0, random_value_tFileInputDelimited_2 = -1;
-						if (footer_value_tFileInputDelimited_2 > 0
-								|| random_value_tFileInputDelimited_2 > 0) {
-							throw new java.lang.Exception(
-									"When the input source is a stream,footer and random shouldn't be bigger than 0.");
-						}
-
-					}
-					try {
-						fid_tFileInputDelimited_2 = new org.talend.fileprocess.FileInputDelimited(
-								context.localProperties, "ISO-8859-15", "=",
-								"\n", true, 0, 0, -1, -1, false);
-					} catch (java.lang.Exception e) {
-
-						throw e;
-
-					}
-
-					while (fid_tFileInputDelimited_2 != null
-							&& fid_tFileInputDelimited_2.nextRecord()) {
-						rowstate_tFileInputDelimited_2.reset();
-
-						row7 = null;
-
-						boolean whetherReject_tFileInputDelimited_2 = false;
-						row7 = new row7Struct();
-						try {
-
-							int columnIndexWithD_tFileInputDelimited_2 = 0;
-
-							columnIndexWithD_tFileInputDelimited_2 = 0;
-
-							row7.key = fid_tFileInputDelimited_2
-									.get(columnIndexWithD_tFileInputDelimited_2);
-
-							columnIndexWithD_tFileInputDelimited_2 = 1;
-
-							row7.value = fid_tFileInputDelimited_2
-									.get(columnIndexWithD_tFileInputDelimited_2);
-
-							if (rowstate_tFileInputDelimited_2.getException() != null) {
-								throw rowstate_tFileInputDelimited_2
-										.getException();
-							}
-
-						} catch (java.lang.Exception e) {
-							whetherReject_tFileInputDelimited_2 = true;
-
-							throw (e);
-
-						}
-
-						/**
-						 * [tFileInputDelimited_2 begin ] stop
-						 */
-
-						/**
-						 * [tFileInputDelimited_2 main ] start
-						 */
-
-						currentComponent = "tFileInputDelimited_2";
-
-						tos_count_tFileInputDelimited_2++;
-
-						/**
-						 * [tFileInputDelimited_2 main ] stop
-						 */
-						// Start of branch "row7"
-						if (row7 != null) {
-
-							/**
-							 * [tFilterRow_2 main ] start
-							 */
-
-							currentComponent = "tFilterRow_2";
-
-							row8 = null;
-							Operator_tFilterRow_2 ope_tFilterRow_2 = new Operator_tFilterRow_2(
-									"&&");
-							ope_tFilterRow_2
-									.matches(
-											(// code sample : use row7 to define
-												// the condition.
-											// row7.columnName1.equals("foo")
-											// ||!(row7.columnName2.equals("bar"))
-											// replace the following expression
-											// by your own filter condition
-
-											row7.key.contains("mysql.dbname")
-													|| row7.key
-															.contains("mysql.url")
-													|| row7.key
-															.contains("mysql.user") || row7.key
-													.contains("mysql.password")),
-											"advanced condition failed");
-
-							if (ope_tFilterRow_2.getMatchFlag()) {
-								if (row8 == null) {
-									row8 = new row8Struct();
-								}
-								row8.key = row7.key;
-								row8.value = row7.value;
-								nb_line_ok_tFilterRow_2++;
-							} else {
-								nb_line_reject_tFilterRow_2++;
-							}
-
-							nb_line_tFilterRow_2++;
-
-							tos_count_tFilterRow_2++;
-
-							/**
-							 * [tFilterRow_2 main ] stop
-							 */
-							// Start of branch "row8"
-							if (row8 != null) {
-
-								/**
-								 * [tReplace_2 main ] start
-								 */
-
-								currentComponent = "tReplace_2";
-
-								String searchStr_tReplace_2_1 = "mysql.dbname"
-										+ "";
-								row8.key = StringUtils.replaceAllStrictly(
-										row8.key, searchStr_tReplace_2_1,
-										"dbDatabase" + "", false, false);
-								String searchStr_tReplace_2_2 = "jdbc:mysql://"
-										+ "";
-								row8.value = StringUtils.replaceAllStrictly(
-										row8.value, searchStr_tReplace_2_2, ""
-												+ "", false, false);
-								String searchStr_tReplace_2_3 = ":3306/eunis2014"
-										+ "";
-								row8.value = StringUtils.replaceAllStrictly(
-										row8.value, searchStr_tReplace_2_3, ""
-												+ "", false, false);
-								String searchStr_tReplace_2_4 = ":3306/eunis2016"
-										+ "";
-								row8.value = StringUtils.replaceAllStrictly(
-										row8.value, searchStr_tReplace_2_4, ""
-												+ "", false, false);
-								String searchStr_tReplace_2_5 = "mysql.user"
-										+ "";
-								row8.key = StringUtils.replaceAllStrictly(
-										row8.key, searchStr_tReplace_2_5,
-										"dbUsername" + "", false, false);
-								String searchStr_tReplace_2_6 = "mysql.password"
-										+ "";
-								row8.key = StringUtils.replaceAllStrictly(
-										row8.key, searchStr_tReplace_2_6,
-										"dbPassword" + "", false, false);
-								String searchStr_tReplace_2_7 = "mysql.url"
-										+ "";
-								row8.key = StringUtils.replaceAllStrictly(
-										row8.key, searchStr_tReplace_2_7,
-										"dbHost" + "", false, false);
-								row3.key = row8.key;
-
-								row3.value = row8.value;
-
-								nb_line_tReplace_2++;
-
-								tos_count_tReplace_2++;
-
-								/**
-								 * [tReplace_2 main ] stop
-								 */
-
-								/**
-								 * [tContextLoad_2 main ] start
-								 */
-
-								currentComponent = "tContextLoad_2";
-
-								// ////////////////////////
-								String tmp_key_tContextLoad_2 = null;
-								String key_tContextLoad_2 = null;
-								if (row3.key != null) {
-									tmp_key_tContextLoad_2 = row3.key.trim();
-									if ((tmp_key_tContextLoad_2.startsWith("#") || tmp_key_tContextLoad_2
-											.startsWith("!"))) {
-										tmp_key_tContextLoad_2 = null;
-									} else {
-										row3.key = tmp_key_tContextLoad_2;
-									}
-								}
-								if (row3.key != null) {
-									key_tContextLoad_2 = row3.key;
-								}
-								String value_tContextLoad_2 = null;
-								if (row3.value != null) {
-									value_tContextLoad_2 = row3.value;
-								}
-
-								System.out.println("tContextLoad_2 set key \""
-										+ key_tContextLoad_2
-										+ "\" with value \""
-										+ value_tContextLoad_2 + "\"");
-								if (tmp_key_tContextLoad_2 != null) {
-									try {
-										if (key_tContextLoad_2 != null
-												&& "dbHost"
-														.equals(key_tContextLoad_2)) {
-											context.dbHost = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "dbDatabase"
-														.equals(key_tContextLoad_2)) {
-											context.dbDatabase = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "dbUsername"
-														.equals(key_tContextLoad_2)) {
-											context.dbUsername = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "dbPassword"
-														.equals(key_tContextLoad_2)) {
-											context.dbPassword = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "localProperties"
-														.equals(key_tContextLoad_2)) {
-											context.localProperties = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "eunisctl"
-														.equals(key_tContextLoad_2)) {
-											context.eunisctl = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "natura2000importer"
-														.equals(key_tContextLoad_2)) {
-											context.natura2000importer = value_tContextLoad_2;
-										}
-
-										if (key_tContextLoad_2 != null
-												&& "skipService"
-														.equals(key_tContextLoad_2)) {
-
-											context.skipService = Integer
-													.parseInt(value_tContextLoad_2);
-
-										}
-
-										if (context
-												.getProperty(key_tContextLoad_2) != null) {
-											assignList_tContextLoad_2
-													.add(key_tContextLoad_2);
-										} else {
-											newPropertyList_tContextLoad_2
-													.add(key_tContextLoad_2);
-										}
-										if (value_tContextLoad_2 == null) {
-											context.setProperty(
-													key_tContextLoad_2, "");
-										} else {
-											context.setProperty(
-													key_tContextLoad_2,
-													value_tContextLoad_2);
-										}
-									} catch (java.lang.Exception e) {
-										System.err
-												.println("Setting a value for the key \""
-														+ key_tContextLoad_2
-														+ "\" has failed. Error message: "
-														+ e.getMessage());
-									}
-									nb_line_tContextLoad_2++;
-								}
-								// ////////////////////////
-
-								tos_count_tContextLoad_2++;
-
-								/**
-								 * [tContextLoad_2 main ] stop
-								 */
-
-							} // End of branch "row8"
-
-						} // End of branch "row7"
-
-						/**
-						 * [tFileInputDelimited_2 end ] start
-						 */
-
-						currentComponent = "tFileInputDelimited_2";
-
-					}
-				} finally {
-					if (!((Object) (context.localProperties) instanceof java.io.InputStream)) {
-						if (fid_tFileInputDelimited_2 != null) {
-							fid_tFileInputDelimited_2.close();
-						}
-					}
-					if (fid_tFileInputDelimited_2 != null) {
-						globalMap.put("tFileInputDelimited_2_NB_LINE",
-								fid_tFileInputDelimited_2.getRowNumber());
-
-					}
-				}
-
-				ok_Hash.put("tFileInputDelimited_2", true);
-				end_Hash.put("tFileInputDelimited_2",
-						System.currentTimeMillis());
-
-				/**
-				 * [tFileInputDelimited_2 end ] stop
-				 */
-
-				/**
-				 * [tFilterRow_2 end ] start
-				 */
-
-				currentComponent = "tFilterRow_2";
-
-				globalMap.put("tFilterRow_2_NB_LINE", nb_line_tFilterRow_2);
-				globalMap.put("tFilterRow_2_NB_LINE_OK",
-						nb_line_ok_tFilterRow_2);
-				globalMap.put("tFilterRow_2_NB_LINE_REJECT",
-						nb_line_reject_tFilterRow_2);
-
-				ok_Hash.put("tFilterRow_2", true);
-				end_Hash.put("tFilterRow_2", System.currentTimeMillis());
-
-				/**
-				 * [tFilterRow_2 end ] stop
-				 */
-
-				/**
-				 * [tReplace_2 end ] start
-				 */
-
-				currentComponent = "tReplace_2";
-
-				globalMap.put("tReplace_2_NB_LINE", nb_line_tReplace_2);
-
-				ok_Hash.put("tReplace_2", true);
-				end_Hash.put("tReplace_2", System.currentTimeMillis());
-
-				/**
-				 * [tReplace_2 end ] stop
-				 */
-
-				/**
-				 * [tContextLoad_2 end ] start
-				 */
-
-				currentComponent = "tContextLoad_2";
-
-				java.util.Enumeration<?> enu_tContextLoad_2 = context
-						.propertyNames();
-				while (enu_tContextLoad_2.hasMoreElements()) {
-					String key_tContextLoad_2 = (String) enu_tContextLoad_2
-							.nextElement();
-					if (!assignList_tContextLoad_2.contains(key_tContextLoad_2)
-							&& !newPropertyList_tContextLoad_2
-									.contains(key_tContextLoad_2)) {
-						noAssignList_tContextLoad_2.add(key_tContextLoad_2);
-					}
-				}
-				for (Object obj_tContextLoad_2 : newPropertyList_tContextLoad_2) {
-
-					System.out.println("Warning: Parameter \""
-							+ obj_tContextLoad_2
-							+ "\" is a new parameter of tContextLoad_2");
-				}
-				for (Object obj_tContextLoad_2 : noAssignList_tContextLoad_2) {
-
-					System.out.println("Warning: Parameter \""
-							+ obj_tContextLoad_2
-							+ "\" has not been set by tContextLoad_2");
-
-				}
-
-				String newPropertyStr_tContextLoad_2 = newPropertyList_tContextLoad_2
-						.toString();
-				String newProperty_tContextLoad_2 = newPropertyStr_tContextLoad_2
-						.substring(1,
-								newPropertyStr_tContextLoad_2.length() - 1);
-
-				String noAssignStr_tContextLoad_2 = noAssignList_tContextLoad_2
-						.toString();
-				String noAssign_tContextLoad_2 = noAssignStr_tContextLoad_2
-						.substring(1, noAssignStr_tContextLoad_2.length() - 1);
-
-				globalMap.put("tContextLoad_2_KEY_NOT_INCONTEXT",
-						newProperty_tContextLoad_2);
-				globalMap.put("tContextLoad_2_KEY_NOT_LOADED",
-						noAssign_tContextLoad_2);
-
-				globalMap.put("tContextLoad_2_NB_LINE", nb_line_tContextLoad_2);
-
-				List<String> parametersToEncrypt_tContextLoad_2 = new java.util.ArrayList<String>();
-
-				resumeUtil.addLog("NODE", "NODE:tContextLoad_2", "", Thread
-						.currentThread().getId() + "", "", "", "", "",
-						resumeUtil.convertToJsonText(context,
-								parametersToEncrypt_tContextLoad_2));
-
-				ok_Hash.put("tContextLoad_2", true);
-				end_Hash.put("tContextLoad_2", System.currentTimeMillis());
-
-				if (context.skipService == 0) {
-
-					tFileDelete_1Process(globalMap);
-				}
-
-				if (context.skipService == 1) {
-
-					tFileList_1Process(globalMap);
-				}
-
-				/**
-				 * [tContextLoad_2 end ] stop
-				 */
-
-			}// end the resume
-
-		} catch (java.lang.Exception e) {
-
-			TalendException te = new TalendException(e, currentComponent,
-					globalMap);
-
-			throw te;
-		} catch (java.lang.Error error) {
-
-			throw error;
-		} finally {
-
-			try {
-
-				/**
-				 * [tFileInputDelimited_2 finally ] start
-				 */
-
-				currentComponent = "tFileInputDelimited_2";
-
-				/**
-				 * [tFileInputDelimited_2 finally ] stop
-				 */
-
-				/**
-				 * [tFilterRow_2 finally ] start
-				 */
-
-				currentComponent = "tFilterRow_2";
-
-				/**
-				 * [tFilterRow_2 finally ] stop
-				 */
-
-				/**
-				 * [tReplace_2 finally ] start
-				 */
-
-				currentComponent = "tReplace_2";
-
-				/**
-				 * [tReplace_2 finally ] stop
-				 */
-
-				/**
-				 * [tContextLoad_2 finally ] start
-				 */
-
-				currentComponent = "tContextLoad_2";
-
-				/**
-				 * [tContextLoad_2 finally ] stop
-				 */
-
-			} catch (java.lang.Exception e) {
-				// ignore
-			} catch (java.lang.Error error) {
-				// ignore
-			}
-			resourceMap = null;
-		}
-
-		globalMap.put("tFileInputDelimited_2_SUBPROCESS_STATE", 1);
-	}
-
-	public void tFileDelete_1Process(
-			final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 0);
-
-		final boolean execStat = this.execStat;
-
-		String iterateId = "";
-
-		String currentComponent = "";
-		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-		try {
-
-			String currentMethodName = new java.lang.Exception()
-					.getStackTrace()[0].getMethodName();
-			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
-			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
-																					// the
-																					// resume
-				globalResumeTicket = true;
-
-				/**
-				 * [tFileDelete_1 begin ] start
-				 */
-
-				ok_Hash.put("tFileDelete_1", false);
-				start_Hash.put("tFileDelete_1", System.currentTimeMillis());
-
-				currentComponent = "tFileDelete_1";
-
-				int tos_count_tFileDelete_1 = 0;
-
-				/**
-				 * [tFileDelete_1 begin ] stop
-				 */
-
-				/**
-				 * [tFileDelete_1 main ] start
-				 */
-
-				currentComponent = "tFileDelete_1";
-
-				class DeleteFoldertFileDelete_1 {
-					/**
-					 * delete all the sub-files in 'file'
-					 * 
-					 * @param file
-					 */
-					public boolean delete(java.io.File file) {
-						java.io.File[] files = file.listFiles();
-						for (int i = 0; i < files.length; i++) {
-							if (files[i].isFile()) {
-								files[i].delete();
-							} else if (files[i].isDirectory()) {
-								if (!files[i].delete()) {
-									delete(files[i]);
-								}
-							}
-						}
-						deleteDirectory(file);
-						return file.delete();
-					}
-
-					/**
-					 * delete all the sub-folders in 'file'
-					 * 
-					 * @param file
-					 */
-					private void deleteDirectory(java.io.File file) {
-						java.io.File[] filed = file.listFiles();
-						for (int i = 0; i < filed.length; i++) {
-							if (filed[i].isDirectory()) {
-								deleteDirectory(filed[i]);
-							}
-							filed[i].delete();
-						}
-					}
-
-				}
-				java.io.File path_tFileDelete_1 = new java.io.File(
-						System.getProperty("java.io.tmpdir")
-								+ "/natura2000import/xml/");
-				if (path_tFileDelete_1.exists()) {
-					if (path_tFileDelete_1.isFile()) {
-						if (path_tFileDelete_1.delete()) {
-							globalMap.put("tFileDelete_1_CURRENT_STATUS",
-									"File deleted.");
-						} else {
-							globalMap.put("tFileDelete_1_CURRENT_STATUS",
-									"No file deleted.");
-						}
-					} else if (path_tFileDelete_1.isDirectory()) {
-						DeleteFoldertFileDelete_1 dftFileDelete_1 = new DeleteFoldertFileDelete_1();
-						if (dftFileDelete_1.delete(path_tFileDelete_1)) {
-							globalMap.put("tFileDelete_1_CURRENT_STATUS",
-									"Path deleted.");
-						} else {
-							globalMap.put("tFileDelete_1_CURRENT_STATUS",
-									"No path deleted.");
-						}
-					}
-				} else {
-					globalMap.put("tFileDelete_1_CURRENT_STATUS",
-							"File or path does not exist or is invalid.");
-				}
-				globalMap.put("tFileDelete_1_DELETE_PATH",
-						System.getProperty("java.io.tmpdir")
-								+ "/natura2000import/xml/");
-
-				tos_count_tFileDelete_1++;
-
-				/**
-				 * [tFileDelete_1 main ] stop
-				 */
-
-				/**
-				 * [tFileDelete_1 end ] start
-				 */
-
-				currentComponent = "tFileDelete_1";
-
-				ok_Hash.put("tFileDelete_1", true);
-				end_Hash.put("tFileDelete_1", System.currentTimeMillis());
-
-				if (context.skipService == 0) {
-
-					tRunJob_1Process(globalMap);
-				}
-
-				/**
-				 * [tFileDelete_1 end ] stop
-				 */
-			}// end the resume
-
-		} catch (java.lang.Exception e) {
-
-			TalendException te = new TalendException(e, currentComponent,
-					globalMap);
-
-			throw te;
-		} catch (java.lang.Error error) {
-
-			throw error;
-		} finally {
-
-			try {
-
-				/**
-				 * [tFileDelete_1 finally ] start
-				 */
-
-				currentComponent = "tFileDelete_1";
-
-				/**
-				 * [tFileDelete_1 finally ] stop
-				 */
-			} catch (java.lang.Exception e) {
-				// ignore
-			} catch (java.lang.Error error) {
-				// ignore
-			}
-			resourceMap = null;
-		}
-
-		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 1);
-	}
-
-	public void tRunJob_1Process(final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-		globalMap.put("tRunJob_1_SUBPROCESS_STATE", 0);
-
-		final boolean execStat = this.execStat;
-
-		String iterateId = "";
-
-		String currentComponent = "";
-		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-		try {
-
-			String currentMethodName = new java.lang.Exception()
-					.getStackTrace()[0].getMethodName();
-			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
-			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
-																					// the
-																					// resume
-				globalResumeTicket = true;
-
-				/**
-				 * [tRunJob_1 begin ] start
-				 */
-
-				ok_Hash.put("tRunJob_1", false);
-				start_Hash.put("tRunJob_1", System.currentTimeMillis());
-
-				currentComponent = "tRunJob_1";
-
-				int tos_count_tRunJob_1 = 0;
-
-				/**
-				 * [tRunJob_1 begin ] stop
-				 */
-
-				/**
-				 * [tRunJob_1 main ] start
-				 */
-
-				currentComponent = "tRunJob_1";
-
-				java.util.List<String> paraList_tRunJob_1 = new java.util.ArrayList<String>();
-
-				paraList_tRunJob_1.add("--father_pid=" + pid);
-
-				paraList_tRunJob_1.add("--root_pid=" + rootPid);
-
-				paraList_tRunJob_1.add("--father_node=tRunJob_1");
-
-				paraList_tRunJob_1.add("--context=Default");
-
-				// for feature:10589
-
-				paraList_tRunJob_1.add("--stat_port=" + portStats);
-
-				if (resuming_logs_dir_path != null) {
-					paraList_tRunJob_1.add("--resuming_logs_dir_path="
-							+ resuming_logs_dir_path);
-				}
-				String childResumePath_tRunJob_1 = ResumeUtil
-						.getChildJobCheckPointPath(resuming_checkpoint_path);
-				String tRunJobName_tRunJob_1 = ResumeUtil
-						.getRighttRunJob(resuming_checkpoint_path);
-				if ("tRunJob_1".equals(tRunJobName_tRunJob_1)
-						&& childResumePath_tRunJob_1 != null) {
-					paraList_tRunJob_1
-							.add("--resuming_checkpoint_path="
-									+ ResumeUtil
-											.getChildJobCheckPointPath(resuming_checkpoint_path));
-				}
-				paraList_tRunJob_1.add("--parent_part_launcher=JOB:" + jobName
-						+ "/NODE:tRunJob_1");
-
-				java.util.Map<String, Object> parentContextMap_tRunJob_1 = new java.util.HashMap<String, Object>();
-
-				Object obj_tRunJob_1 = null;
-
-				local_project.rdfnatura2000andsdfxml_0_1.rdfNatura2000andSdfxml childJob_tRunJob_1 = new local_project.rdfnatura2000andsdfxml_0_1.rdfNatura2000andSdfxml();
-				// pass DataSources
-				java.util.Map<String, routines.system.TalendDataSource> talendDataSources_tRunJob_1 = (java.util.Map<String, routines.system.TalendDataSource>) globalMap
-						.get(KEY_DB_DATASOURCES);
-				if (null != talendDataSources_tRunJob_1) {
-					java.util.Map<String, javax.sql.DataSource> dataSources_tRunJob_1 = new java.util.HashMap<String, javax.sql.DataSource>();
-					for (java.util.Map.Entry<String, routines.system.TalendDataSource> talendDataSourceEntry_tRunJob_1 : talendDataSources_tRunJob_1
-							.entrySet()) {
-						dataSources_tRunJob_1.put(
-								talendDataSourceEntry_tRunJob_1.getKey(),
-								talendDataSourceEntry_tRunJob_1.getValue()
-										.getRawDataSource());
-					}
-					childJob_tRunJob_1.setDataSources(dataSources_tRunJob_1);
-				}
-
-				childJob_tRunJob_1.parentContextMap = parentContextMap_tRunJob_1;
-
-				String[][] childReturn_tRunJob_1 = childJob_tRunJob_1
-						.runJob((String[]) paraList_tRunJob_1
-								.toArray(new String[paraList_tRunJob_1.size()]));
-
-				errorCode = childJob_tRunJob_1.getErrorCode();
-
-				if (childJob_tRunJob_1.getErrorCode() == null) {
-					globalMap.put(
-							"tRunJob_1_CHILD_RETURN_CODE",
-							childJob_tRunJob_1.getStatus() != null
-									&& ("failure").equals(childJob_tRunJob_1
-											.getStatus()) ? 1 : 0);
-				} else {
-					globalMap.put("tRunJob_1_CHILD_RETURN_CODE",
-							childJob_tRunJob_1.getErrorCode());
-				}
-				if (childJob_tRunJob_1.getExceptionStackTrace() != null) {
-					globalMap.put("tRunJob_1_CHILD_EXCEPTION_STACKTRACE",
-							childJob_tRunJob_1.getExceptionStackTrace());
-				}
-
-				if (childJob_tRunJob_1.getErrorCode() != null
-						|| ("failure").equals(childJob_tRunJob_1.getStatus())) {
-					throw new RuntimeException("Child job running failed");
-				}
-
-				tos_count_tRunJob_1++;
-
-				/**
-				 * [tRunJob_1 main ] stop
-				 */
-
-				/**
-				 * [tRunJob_1 end ] start
-				 */
-
-				currentComponent = "tRunJob_1";
-
-				ok_Hash.put("tRunJob_1", true);
-				end_Hash.put("tRunJob_1", System.currentTimeMillis());
-
-				/**
-				 * [tRunJob_1 end ] stop
-				 */
-			}// end the resume
-
-			if (resumeEntryMethodName == null || globalResumeTicket) {
-				resumeUtil.addLog("CHECKPOINT",
-						"CONNECTION:SUBJOB_OK:tRunJob_1:OnSubjobOk", "", Thread
-								.currentThread().getId() + "", "", "", "", "",
-						"");
-			}
-
-			tFileList_1Process(globalMap);
-
-		} catch (java.lang.Exception e) {
-
-			TalendException te = new TalendException(e, currentComponent,
-					globalMap);
-
-			throw te;
-		} catch (java.lang.Error error) {
-
-			throw error;
-		} finally {
-
-			try {
-
-				/**
-				 * [tRunJob_1 finally ] start
-				 */
-
-				currentComponent = "tRunJob_1";
-
-				/**
-				 * [tRunJob_1 finally ] stop
-				 */
-			} catch (java.lang.Exception e) {
-				// ignore
-			} catch (java.lang.Error error) {
-				// ignore
-			}
-			resourceMap = null;
-		}
-
-		globalMap.put("tRunJob_1_SUBPROCESS_STATE", 1);
-	}
-
-	public void tFileList_1Process(final java.util.Map<String, Object> globalMap)
-			throws TalendException {
-		globalMap.put("tFileList_1_SUBPROCESS_STATE", 0);
-
-		final boolean execStat = this.execStat;
-
-		String iterateId = "";
-
-		String currentComponent = "";
-		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-
-		try {
-
-			String currentMethodName = new java.lang.Exception()
-					.getStackTrace()[0].getMethodName();
-			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
-			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
-																					// the
-																					// resume
-				globalResumeTicket = true;
-
-				/**
-				 * [tFileList_1 begin ] start
-				 */
-
-				int NB_ITERATE_tSystem_1 = 0; // for statistics
-
-				ok_Hash.put("tFileList_1", false);
-				start_Hash.put("tFileList_1", System.currentTimeMillis());
-
-				currentComponent = "tFileList_1";
-
-				int tos_count_tFileList_1 = 0;
-
-				String directory_tFileList_1 = System
-						.getProperty("java.io.tmpdir")
-						+ "/natura2000import/xml";
-				final java.util.List<String> maskList_tFileList_1 = new java.util.ArrayList<String>();
-				final java.util.List<java.util.regex.Pattern> patternList_tFileList_1 = new java.util.ArrayList<java.util.regex.Pattern>();
-				maskList_tFileList_1.add("*");
-				for (final String filemask_tFileList_1 : maskList_tFileList_1) {
-					String filemask_compile_tFileList_1 = filemask_tFileList_1;
-
-					filemask_compile_tFileList_1 = org.apache.oro.text.GlobCompiler
-							.globToPerl5(
-									filemask_tFileList_1.toCharArray(),
-									org.apache.oro.text.GlobCompiler.DEFAULT_MASK);
-
-					java.util.regex.Pattern fileNamePattern_tFileList_1 = java.util.regex.Pattern
-							.compile(filemask_compile_tFileList_1);
-					patternList_tFileList_1.add(fileNamePattern_tFileList_1);
-				}
-				int NB_FILEtFileList_1 = 0;
-
-				final boolean case_sensitive_tFileList_1 = true;
-				final java.util.List<java.io.File> list_tFileList_1 = new java.util.ArrayList<java.io.File>();
-				final java.util.Set<String> filePath_tFileList_1 = new java.util.HashSet<String>();
-				java.io.File file_tFileList_1 = new java.io.File(
-						directory_tFileList_1);
-
-				file_tFileList_1.listFiles(new java.io.FilenameFilter() {
-					public boolean accept(java.io.File dir, String name) {
-						java.io.File file = new java.io.File(dir, name);
-						if (file.isDirectory()) {
-
-							String fileName_tFileList_1 = file.getName();
-							for (final java.util.regex.Pattern fileNamePattern_tFileList_1 : patternList_tFileList_1) {
-								if (fileNamePattern_tFileList_1.matcher(
-										fileName_tFileList_1).matches()) {
-									if (!filePath_tFileList_1.contains(file
-											.getAbsolutePath())) {
-										list_tFileList_1.add(file);
-										filePath_tFileList_1.add(file
-												.getAbsolutePath());
-									}
-								}
-							}
-						}
-						return true;
-					}
-				});
-				java.util.Collections.sort(list_tFileList_1);
-
-				for (int i_tFileList_1 = 0; i_tFileList_1 < list_tFileList_1
-						.size(); i_tFileList_1++) {
-					java.io.File files_tFileList_1 = list_tFileList_1
-							.get(i_tFileList_1);
-					String fileName_tFileList_1 = files_tFileList_1.getName();
-
-					String currentFileName_tFileList_1 = files_tFileList_1
-							.getName();
-					String currentFilePath_tFileList_1 = files_tFileList_1
-							.getAbsolutePath();
-					String currentFileDirectory_tFileList_1 = files_tFileList_1
-							.getParent();
-					String currentFileExtension_tFileList_1 = null;
-
-					if (files_tFileList_1.getName().contains(".")
-							&& files_tFileList_1.isFile()) {
-						currentFileExtension_tFileList_1 = files_tFileList_1
-								.getName().substring(
-										files_tFileList_1.getName()
-												.lastIndexOf(".") + 1);
-					} else {
-						currentFileExtension_tFileList_1 = "";
-					}
-
-					NB_FILEtFileList_1++;
-					globalMap.put("tFileList_1_CURRENT_FILE",
-							currentFileName_tFileList_1);
-					globalMap.put("tFileList_1_CURRENT_FILEPATH",
-							currentFilePath_tFileList_1);
-					globalMap.put("tFileList_1_CURRENT_FILEDIRECTORY",
-							currentFileDirectory_tFileList_1);
-					globalMap.put("tFileList_1_CURRENT_FILEEXTENSION",
-							currentFileExtension_tFileList_1);
-					globalMap.put("tFileList_1_NB_FILE", NB_FILEtFileList_1);
-
-					/**
-					 * [tFileList_1 begin ] stop
-					 */
-
-					/**
-					 * [tFileList_1 main ] start
-					 */
-
-					currentComponent = "tFileList_1";
-
-					tos_count_tFileList_1++;
-
-					/**
-					 * [tFileList_1 main ] stop
-					 */
-					NB_ITERATE_tSystem_1++;
-
-					/**
-					 * [tSystem_1 begin ] start
-					 */
-
-					ok_Hash.put("tSystem_1", false);
-					start_Hash.put("tSystem_1", System.currentTimeMillis());
-
-					currentComponent = "tSystem_1";
-
-					int tos_count_tSystem_1 = 0;
-
-					String[] command_tSystem_1 = new String[4];
-
-					command_tSystem_1[0] = "java";
-
-					command_tSystem_1[1] = "-jar";
-
-					command_tSystem_1[2] = context.natura2000importer;
-
-					command_tSystem_1[3] = ((String) globalMap
-							.get("tFileList_1_CURRENT_FILEPATH"));
-
-					Runtime runtime_tSystem_1 = Runtime.getRuntime();
-
-					String[] env_tSystem_1 = null;
-					java.util.Map<String, String> envMap_tSystem_1 = System
-							.getenv();
-					java.util.Map<String, String> envMapClone_tSystem_1 = new java.util.HashMap();
-					envMapClone_tSystem_1.putAll(envMap_tSystem_1);
-
-					final Process ps_tSystem_1 = runtime_tSystem_1.exec(
-							command_tSystem_1, env_tSystem_1);
-
-					globalMap.remove("tSystem_1_OUTPUT");
-					globalMap.remove("tSystem_1_ERROROUTPUT");
-
-					Thread normal_tSystem_1 = new Thread() {
-						public void run() {
-							try {
-								java.io.BufferedReader reader = new java.io.BufferedReader(
-										new java.io.InputStreamReader(
-												ps_tSystem_1.getInputStream()));
-								String line = "";
-								try {
-									while ((line = reader.readLine()) != null) {
-
-										System.out.println(line);
-									}
-								} finally {
-									reader.close();
-								}
-							} catch (java.io.IOException ioe) {
-
-								ioe.printStackTrace();
-							}
-						}
-					};
-					normal_tSystem_1.start();
-
-					Thread error_tSystem_1 = new Thread() {
-						public void run() {
-							try {
-								java.io.BufferedReader reader = new java.io.BufferedReader(
-										new java.io.InputStreamReader(
-												ps_tSystem_1.getErrorStream()));
-								String line = "";
-								try {
-									while ((line = reader.readLine()) != null) {
-
-										System.err.println(line);
-									}
-								} finally {
-									reader.close();
-								}
-							} catch (java.io.IOException ioe) {
-
-								ioe.printStackTrace();
-							}
-						}
-					};
-					error_tSystem_1.start();
-					if (ps_tSystem_1.getOutputStream() != null) {
-						ps_tSystem_1.getOutputStream().close();
-					}
-					ps_tSystem_1.waitFor();
-					normal_tSystem_1.join(10000);
-					error_tSystem_1.join(10000);
-
-					/**
-					 * [tSystem_1 begin ] stop
-					 */
-
-					/**
-					 * [tSystem_1 main ] start
-					 */
-
-					currentComponent = "tSystem_1";
-
-					tos_count_tSystem_1++;
-
-					/**
-					 * [tSystem_1 main ] stop
-					 */
-
-					/**
-					 * [tSystem_1 end ] start
-					 */
-
-					currentComponent = "tSystem_1";
-
-					globalMap.put("tSystem_1_EXIT_VALUE",
-							ps_tSystem_1.exitValue());
-
-					ok_Hash.put("tSystem_1", true);
-					end_Hash.put("tSystem_1", System.currentTimeMillis());
-
-					/**
-					 * [tSystem_1 end ] stop
-					 */
-
-					/**
-					 * [tFileList_1 end ] start
-					 */
-
-					currentComponent = "tFileList_1";
-
-				}
-				globalMap.put("tFileList_1_NB_FILE", NB_FILEtFileList_1);
-
-				ok_Hash.put("tFileList_1", true);
-				end_Hash.put("tFileList_1", System.currentTimeMillis());
-
-				/**
-				 * [tFileList_1 end ] stop
-				 */
-			}// end the resume
-
-		} catch (java.lang.Exception e) {
-
-			TalendException te = new TalendException(e, currentComponent,
-					globalMap);
-
-			throw te;
-		} catch (java.lang.Error error) {
-
-			throw error;
-		} finally {
-
-			try {
-
-				/**
-				 * [tFileList_1 finally ] start
-				 */
-
-				currentComponent = "tFileList_1";
-
-				/**
-				 * [tFileList_1 finally ] stop
-				 */
-
-				/**
-				 * [tSystem_1 finally ] start
-				 */
-
-				currentComponent = "tSystem_1";
-
-				/**
-				 * [tSystem_1 finally ] stop
-				 */
-
-			} catch (java.lang.Exception e) {
-				// ignore
-			} catch (java.lang.Error error) {
-				// ignore
-			}
-			resourceMap = null;
-		}
-
-		globalMap.put("tFileList_1_SUBPROCESS_STATE", 1);
 	}
 
 	public static class row2Struct implements
@@ -4090,6 +2413,129 @@ public class importNatura2000 implements TalendJob {
 		globalMap.put("tFileInputXML_1_SUBPROCESS_STATE", 1);
 	}
 
+	public static class row5Struct implements
+			routines.system.IPersistableRow<row5Struct> {
+		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+		public String ID_SITE;
+
+		public String getID_SITE() {
+			return this.ID_SITE;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+					if (length < 1024
+							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+					} else {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
+						0, length);
+				strReturn = new String(
+						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+				try {
+
+					int length = 0;
+
+					this.ID_SITE = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// String
+
+				writeString(this.ID_SITE, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("ID_SITE=" + ID_SITE);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row5Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
 	public void tMysqlInput_2Process(
 			final java.util.Map<String, Object> globalMap)
 			throws TalendException {
@@ -4112,11 +2558,31 @@ public class importNatura2000 implements TalendJob {
 																					// resume
 				globalResumeTicket = true;
 
+				row5Struct row5 = new row5Struct();
+
 				/**
-				 * [tMysqlInput_2 begin ] start
+				 * [tFlowToIterate_1 begin ] start
 				 */
 
 				int NB_ITERATE_tSystem_2 = 0; // for statistics
+
+				ok_Hash.put("tFlowToIterate_1", false);
+				start_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
+
+				currentComponent = "tFlowToIterate_1";
+
+				int tos_count_tFlowToIterate_1 = 0;
+
+				int nb_line_tFlowToIterate_1 = 0;
+				int counter_tFlowToIterate_1 = 0;
+
+				/**
+				 * [tFlowToIterate_1 begin ] stop
+				 */
+
+				/**
+				 * [tMysqlInput_2 begin ] start
+				 */
 
 				ok_Hash.put("tMysqlInput_2", false);
 				start_Hash.put("tMysqlInput_2", System.currentTimeMillis());
@@ -4169,6 +2635,14 @@ public class importNatura2000 implements TalendJob {
 					while (rs_tMysqlInput_2.next()) {
 						nb_line_tMysqlInput_2++;
 
+						if (colQtyInRs_tMysqlInput_2 < 1) {
+							row5.ID_SITE = null;
+						} else {
+
+							row5.ID_SITE = routines.system.JDBCUtil.getString(
+									rs_tMysqlInput_2, 1, false);
+						}
+
 						/**
 						 * [tMysqlInput_2 begin ] stop
 						 */
@@ -4183,6 +2657,25 @@ public class importNatura2000 implements TalendJob {
 
 						/**
 						 * [tMysqlInput_2 main ] stop
+						 */
+
+						/**
+						 * [tFlowToIterate_1 main ] start
+						 */
+
+						currentComponent = "tFlowToIterate_1";
+
+						globalMap.put("row5.ID_SITE", row5.ID_SITE);
+						nb_line_tFlowToIterate_1++;
+
+						counter_tFlowToIterate_1++;
+						globalMap.put("tFlowToIterate_1_CURRENT_ITERATION",
+								counter_tFlowToIterate_1);
+
+						tos_count_tFlowToIterate_1++;
+
+						/**
+						 * [tFlowToIterate_1 main ] stop
 						 */
 						NB_ITERATE_tSystem_2++;
 
@@ -4207,8 +2700,7 @@ public class importNatura2000 implements TalendJob {
 
 						command_tSystem_2[3] = "deletesites";
 
-						command_tSystem_2[4] = ((String) globalMap
-								.get("ID_SITE"));
+						command_tSystem_2[4] = row5.ID_SITE;
 
 						Runtime runtime_tSystem_2 = Runtime.getRuntime();
 
@@ -4339,6 +2831,23 @@ public class importNatura2000 implements TalendJob {
 				/**
 				 * [tMysqlInput_2 end ] stop
 				 */
+
+				/**
+				 * [tFlowToIterate_1 end ] start
+				 */
+
+				currentComponent = "tFlowToIterate_1";
+
+				globalMap.put("tFlowToIterate_1_NB_LINE",
+						nb_line_tFlowToIterate_1);
+
+				ok_Hash.put("tFlowToIterate_1", true);
+				end_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
+
+				/**
+				 * [tFlowToIterate_1 end ] stop
+				 */
+
 			}// end the resume
 
 		} catch (java.lang.Exception e) {
@@ -4365,6 +2874,16 @@ public class importNatura2000 implements TalendJob {
 				 */
 
 				/**
+				 * [tFlowToIterate_1 finally ] start
+				 */
+
+				currentComponent = "tFlowToIterate_1";
+
+				/**
+				 * [tFlowToIterate_1 finally ] stop
+				 */
+
+				/**
 				 * [tSystem_2 finally ] start
 				 */
 
@@ -4383,6 +2902,1723 @@ public class importNatura2000 implements TalendJob {
 		}
 
 		globalMap.put("tMysqlInput_2_SUBPROCESS_STATE", 1);
+	}
+
+	public static class row3Struct implements
+			routines.system.IPersistableRow<row3Struct> {
+		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+		public String key;
+
+		public String getKey() {
+			return this.key;
+		}
+
+		public String value;
+
+		public String getValue() {
+			return this.value;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+					if (length < 1024
+							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+					} else {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
+						0, length);
+				strReturn = new String(
+						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+				try {
+
+					int length = 0;
+
+					this.key = readString(dis);
+
+					this.value = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// String
+
+				writeString(this.key, dos);
+
+				// String
+
+				writeString(this.value, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("key=" + key);
+			sb.append(",value=" + value);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row3Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
+	public static class row8Struct implements
+			routines.system.IPersistableRow<row8Struct> {
+		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+		public String key;
+
+		public String getKey() {
+			return this.key;
+		}
+
+		public String value;
+
+		public String getValue() {
+			return this.value;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+					if (length < 1024
+							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+					} else {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
+						0, length);
+				strReturn = new String(
+						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+				try {
+
+					int length = 0;
+
+					this.key = readString(dis);
+
+					this.value = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// String
+
+				writeString(this.key, dos);
+
+				// String
+
+				writeString(this.value, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("key=" + key);
+			sb.append(",value=" + value);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row8Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
+	public static class row7Struct implements
+			routines.system.IPersistableRow<row7Struct> {
+		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+		public String key;
+
+		public String getKey() {
+			return this.key;
+		}
+
+		public String value;
+
+		public String getValue() {
+			return this.value;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+					if (length < 1024
+							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+					} else {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
+						0, length);
+				strReturn = new String(
+						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+				try {
+
+					int length = 0;
+
+					this.key = readString(dis);
+
+					this.value = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// String
+
+				writeString(this.key, dos);
+
+				// String
+
+				writeString(this.value, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("key=" + key);
+			sb.append(",value=" + value);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row7Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
+	public void tFileInputDelimited_2Process(
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+		globalMap.put("tFileInputDelimited_2_SUBPROCESS_STATE", 0);
+
+		final boolean execStat = this.execStat;
+
+		String iterateId = "";
+
+		String currentComponent = "";
+		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+		try {
+
+			String currentMethodName = new java.lang.Exception()
+					.getStackTrace()[0].getMethodName();
+			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
+			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
+																					// the
+																					// resume
+				globalResumeTicket = true;
+
+				row7Struct row7 = new row7Struct();
+				row8Struct row8 = new row8Struct();
+				row3Struct row3 = new row3Struct();
+
+				/**
+				 * [tContextLoad_2 begin ] start
+				 */
+
+				ok_Hash.put("tContextLoad_2", false);
+				start_Hash.put("tContextLoad_2", System.currentTimeMillis());
+
+				currentComponent = "tContextLoad_2";
+
+				int tos_count_tContextLoad_2 = 0;
+
+				java.util.List<String> assignList_tContextLoad_2 = new java.util.ArrayList<String>();
+				java.util.List<String> newPropertyList_tContextLoad_2 = new java.util.ArrayList<String>();
+				java.util.List<String> noAssignList_tContextLoad_2 = new java.util.ArrayList<String>();
+				int nb_line_tContextLoad_2 = 0;
+
+				/**
+				 * [tContextLoad_2 begin ] stop
+				 */
+
+				/**
+				 * [tReplace_2 begin ] start
+				 */
+
+				ok_Hash.put("tReplace_2", false);
+				start_Hash.put("tReplace_2", System.currentTimeMillis());
+
+				currentComponent = "tReplace_2";
+
+				int tos_count_tReplace_2 = 0;
+
+				int nb_line_tReplace_2 = 0;
+
+				/**
+				 * [tReplace_2 begin ] stop
+				 */
+
+				/**
+				 * [tFilterRow_2 begin ] start
+				 */
+
+				ok_Hash.put("tFilterRow_2", false);
+				start_Hash.put("tFilterRow_2", System.currentTimeMillis());
+
+				currentComponent = "tFilterRow_2";
+
+				int tos_count_tFilterRow_2 = 0;
+
+				int nb_line_tFilterRow_2 = 0;
+				int nb_line_ok_tFilterRow_2 = 0;
+				int nb_line_reject_tFilterRow_2 = 0;
+
+				class Operator_tFilterRow_2 {
+					private String sErrorMsg = "";
+					private boolean bMatchFlag = true;
+					private String sUnionFlag = "&&";
+
+					public Operator_tFilterRow_2(String unionFlag) {
+						sUnionFlag = unionFlag;
+						bMatchFlag = "||".equals(unionFlag) ? false : true;
+					}
+
+					public String getErrorMsg() {
+						if (sErrorMsg != null && sErrorMsg.length() > 1)
+							return sErrorMsg.substring(1);
+						else
+							return null;
+					}
+
+					public boolean getMatchFlag() {
+						return bMatchFlag;
+					}
+
+					public void matches(boolean partMatched, String reason) {
+						// no need to care about the next judgement
+						if ("||".equals(sUnionFlag) && bMatchFlag) {
+							return;
+						}
+
+						if (!partMatched) {
+							sErrorMsg += "|" + reason;
+						}
+
+						if ("||".equals(sUnionFlag))
+							bMatchFlag = bMatchFlag || partMatched;
+						else
+							bMatchFlag = bMatchFlag && partMatched;
+					}
+				}
+
+				/**
+				 * [tFilterRow_2 begin ] stop
+				 */
+
+				/**
+				 * [tFileInputDelimited_2 begin ] start
+				 */
+
+				ok_Hash.put("tFileInputDelimited_2", false);
+				start_Hash.put("tFileInputDelimited_2",
+						System.currentTimeMillis());
+
+				currentComponent = "tFileInputDelimited_2";
+
+				int tos_count_tFileInputDelimited_2 = 0;
+
+				final routines.system.RowState rowstate_tFileInputDelimited_2 = new routines.system.RowState();
+
+				int nb_line_tFileInputDelimited_2 = 0;
+				org.talend.fileprocess.FileInputDelimited fid_tFileInputDelimited_2 = null;
+				try {
+
+					Object filename_tFileInputDelimited_2 = context.localProperties;
+					if (filename_tFileInputDelimited_2 instanceof java.io.InputStream) {
+
+						int footer_value_tFileInputDelimited_2 = 0, random_value_tFileInputDelimited_2 = -1;
+						if (footer_value_tFileInputDelimited_2 > 0
+								|| random_value_tFileInputDelimited_2 > 0) {
+							throw new java.lang.Exception(
+									"When the input source is a stream,footer and random shouldn't be bigger than 0.");
+						}
+
+					}
+					try {
+						fid_tFileInputDelimited_2 = new org.talend.fileprocess.FileInputDelimited(
+								context.localProperties, "ISO-8859-15", "=",
+								"\n", true, 0, 0, -1, -1, false);
+					} catch (java.lang.Exception e) {
+
+						throw e;
+
+					}
+
+					while (fid_tFileInputDelimited_2 != null
+							&& fid_tFileInputDelimited_2.nextRecord()) {
+						rowstate_tFileInputDelimited_2.reset();
+
+						row7 = null;
+
+						boolean whetherReject_tFileInputDelimited_2 = false;
+						row7 = new row7Struct();
+						try {
+
+							int columnIndexWithD_tFileInputDelimited_2 = 0;
+
+							columnIndexWithD_tFileInputDelimited_2 = 0;
+
+							row7.key = fid_tFileInputDelimited_2
+									.get(columnIndexWithD_tFileInputDelimited_2);
+
+							columnIndexWithD_tFileInputDelimited_2 = 1;
+
+							row7.value = fid_tFileInputDelimited_2
+									.get(columnIndexWithD_tFileInputDelimited_2);
+
+							if (rowstate_tFileInputDelimited_2.getException() != null) {
+								throw rowstate_tFileInputDelimited_2
+										.getException();
+							}
+
+						} catch (java.lang.Exception e) {
+							whetherReject_tFileInputDelimited_2 = true;
+
+							throw (e);
+
+						}
+
+						/**
+						 * [tFileInputDelimited_2 begin ] stop
+						 */
+
+						/**
+						 * [tFileInputDelimited_2 main ] start
+						 */
+
+						currentComponent = "tFileInputDelimited_2";
+
+						tos_count_tFileInputDelimited_2++;
+
+						/**
+						 * [tFileInputDelimited_2 main ] stop
+						 */
+						// Start of branch "row7"
+						if (row7 != null) {
+
+							/**
+							 * [tFilterRow_2 main ] start
+							 */
+
+							currentComponent = "tFilterRow_2";
+
+							row8 = null;
+							Operator_tFilterRow_2 ope_tFilterRow_2 = new Operator_tFilterRow_2(
+									"&&");
+							ope_tFilterRow_2
+									.matches(
+											(// code sample : use row7 to define
+												// the condition.
+											// row7.columnName1.equals("foo")
+											// ||!(row7.columnName2.equals("bar"))
+											// replace the following expression
+											// by your own filter condition
+
+											row7.key.contains("mysql.dbname")
+													|| row7.key
+															.contains("mysql.url")
+													|| row7.key
+															.contains("mysql.user") || row7.key
+													.contains("mysql.password")),
+											"advanced condition failed");
+
+							if (ope_tFilterRow_2.getMatchFlag()) {
+								if (row8 == null) {
+									row8 = new row8Struct();
+								}
+								row8.key = row7.key;
+								row8.value = row7.value;
+								nb_line_ok_tFilterRow_2++;
+							} else {
+								nb_line_reject_tFilterRow_2++;
+							}
+
+							nb_line_tFilterRow_2++;
+
+							tos_count_tFilterRow_2++;
+
+							/**
+							 * [tFilterRow_2 main ] stop
+							 */
+							// Start of branch "row8"
+							if (row8 != null) {
+
+								/**
+								 * [tReplace_2 main ] start
+								 */
+
+								currentComponent = "tReplace_2";
+
+								String searchStr_tReplace_2_1 = "mysql.dbname"
+										+ "";
+								row8.key = StringUtils.replaceAllStrictly(
+										row8.key, searchStr_tReplace_2_1,
+										"dbDatabase" + "", false, false);
+								String searchStr_tReplace_2_2 = "jdbc:mysql://"
+										+ "";
+								row8.value = StringUtils.replaceAllStrictly(
+										row8.value, searchStr_tReplace_2_2, ""
+												+ "", false, false);
+								String searchStr_tReplace_2_3 = ":3306/eunis2014"
+										+ "";
+								row8.value = StringUtils.replaceAllStrictly(
+										row8.value, searchStr_tReplace_2_3, ""
+												+ "", false, false);
+								String searchStr_tReplace_2_4 = ":3306/eunis2016"
+										+ "";
+								row8.value = StringUtils.replaceAllStrictly(
+										row8.value, searchStr_tReplace_2_4, ""
+												+ "", false, false);
+								String searchStr_tReplace_2_5 = "mysql.user"
+										+ "";
+								row8.key = StringUtils.replaceAllStrictly(
+										row8.key, searchStr_tReplace_2_5,
+										"dbUsername" + "", false, false);
+								String searchStr_tReplace_2_6 = "mysql.password"
+										+ "";
+								row8.key = StringUtils.replaceAllStrictly(
+										row8.key, searchStr_tReplace_2_6,
+										"dbPassword" + "", false, false);
+								String searchStr_tReplace_2_7 = "mysql.url"
+										+ "";
+								row8.key = StringUtils.replaceAllStrictly(
+										row8.key, searchStr_tReplace_2_7,
+										"dbHost" + "", false, false);
+								row3.key = row8.key;
+
+								row3.value = row8.value;
+
+								nb_line_tReplace_2++;
+
+								tos_count_tReplace_2++;
+
+								/**
+								 * [tReplace_2 main ] stop
+								 */
+
+								/**
+								 * [tContextLoad_2 main ] start
+								 */
+
+								currentComponent = "tContextLoad_2";
+
+								// ////////////////////////
+								String tmp_key_tContextLoad_2 = null;
+								String key_tContextLoad_2 = null;
+								if (row3.key != null) {
+									tmp_key_tContextLoad_2 = row3.key.trim();
+									if ((tmp_key_tContextLoad_2.startsWith("#") || tmp_key_tContextLoad_2
+											.startsWith("!"))) {
+										tmp_key_tContextLoad_2 = null;
+									} else {
+										row3.key = tmp_key_tContextLoad_2;
+									}
+								}
+								if (row3.key != null) {
+									key_tContextLoad_2 = row3.key;
+								}
+								String value_tContextLoad_2 = null;
+								if (row3.value != null) {
+									value_tContextLoad_2 = row3.value;
+								}
+
+								System.out.println("tContextLoad_2 set key \""
+										+ key_tContextLoad_2
+										+ "\" with value \""
+										+ value_tContextLoad_2 + "\"");
+								if (tmp_key_tContextLoad_2 != null) {
+									try {
+										if (key_tContextLoad_2 != null
+												&& "dbHost"
+														.equals(key_tContextLoad_2)) {
+											context.dbHost = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "dbDatabase"
+														.equals(key_tContextLoad_2)) {
+											context.dbDatabase = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "dbUsername"
+														.equals(key_tContextLoad_2)) {
+											context.dbUsername = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "dbPassword"
+														.equals(key_tContextLoad_2)) {
+											context.dbPassword = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "localProperties"
+														.equals(key_tContextLoad_2)) {
+											context.localProperties = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "eunisctl"
+														.equals(key_tContextLoad_2)) {
+											context.eunisctl = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "natura2000importer"
+														.equals(key_tContextLoad_2)) {
+											context.natura2000importer = value_tContextLoad_2;
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "skipService"
+														.equals(key_tContextLoad_2)) {
+
+											context.skipService = Integer
+													.parseInt(value_tContextLoad_2);
+
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "delete"
+														.equals(key_tContextLoad_2)) {
+
+											context.delete = Integer
+													.parseInt(value_tContextLoad_2);
+
+										}
+
+										if (context
+												.getProperty(key_tContextLoad_2) != null) {
+											assignList_tContextLoad_2
+													.add(key_tContextLoad_2);
+										} else {
+											newPropertyList_tContextLoad_2
+													.add(key_tContextLoad_2);
+										}
+										if (value_tContextLoad_2 == null) {
+											context.setProperty(
+													key_tContextLoad_2, "");
+										} else {
+											context.setProperty(
+													key_tContextLoad_2,
+													value_tContextLoad_2);
+										}
+									} catch (java.lang.Exception e) {
+										System.err
+												.println("Setting a value for the key \""
+														+ key_tContextLoad_2
+														+ "\" has failed. Error message: "
+														+ e.getMessage());
+									}
+									nb_line_tContextLoad_2++;
+								}
+								// ////////////////////////
+
+								tos_count_tContextLoad_2++;
+
+								/**
+								 * [tContextLoad_2 main ] stop
+								 */
+
+							} // End of branch "row8"
+
+						} // End of branch "row7"
+
+						/**
+						 * [tFileInputDelimited_2 end ] start
+						 */
+
+						currentComponent = "tFileInputDelimited_2";
+
+					}
+				} finally {
+					if (!((Object) (context.localProperties) instanceof java.io.InputStream)) {
+						if (fid_tFileInputDelimited_2 != null) {
+							fid_tFileInputDelimited_2.close();
+						}
+					}
+					if (fid_tFileInputDelimited_2 != null) {
+						globalMap.put("tFileInputDelimited_2_NB_LINE",
+								fid_tFileInputDelimited_2.getRowNumber());
+
+					}
+				}
+
+				ok_Hash.put("tFileInputDelimited_2", true);
+				end_Hash.put("tFileInputDelimited_2",
+						System.currentTimeMillis());
+
+				/**
+				 * [tFileInputDelimited_2 end ] stop
+				 */
+
+				/**
+				 * [tFilterRow_2 end ] start
+				 */
+
+				currentComponent = "tFilterRow_2";
+
+				globalMap.put("tFilterRow_2_NB_LINE", nb_line_tFilterRow_2);
+				globalMap.put("tFilterRow_2_NB_LINE_OK",
+						nb_line_ok_tFilterRow_2);
+				globalMap.put("tFilterRow_2_NB_LINE_REJECT",
+						nb_line_reject_tFilterRow_2);
+
+				ok_Hash.put("tFilterRow_2", true);
+				end_Hash.put("tFilterRow_2", System.currentTimeMillis());
+
+				/**
+				 * [tFilterRow_2 end ] stop
+				 */
+
+				/**
+				 * [tReplace_2 end ] start
+				 */
+
+				currentComponent = "tReplace_2";
+
+				globalMap.put("tReplace_2_NB_LINE", nb_line_tReplace_2);
+
+				ok_Hash.put("tReplace_2", true);
+				end_Hash.put("tReplace_2", System.currentTimeMillis());
+
+				/**
+				 * [tReplace_2 end ] stop
+				 */
+
+				/**
+				 * [tContextLoad_2 end ] start
+				 */
+
+				currentComponent = "tContextLoad_2";
+
+				java.util.Enumeration<?> enu_tContextLoad_2 = context
+						.propertyNames();
+				while (enu_tContextLoad_2.hasMoreElements()) {
+					String key_tContextLoad_2 = (String) enu_tContextLoad_2
+							.nextElement();
+					if (!assignList_tContextLoad_2.contains(key_tContextLoad_2)
+							&& !newPropertyList_tContextLoad_2
+									.contains(key_tContextLoad_2)) {
+						noAssignList_tContextLoad_2.add(key_tContextLoad_2);
+					}
+				}
+				for (Object obj_tContextLoad_2 : newPropertyList_tContextLoad_2) {
+
+					System.out.println("Warning: Parameter \""
+							+ obj_tContextLoad_2
+							+ "\" is a new parameter of tContextLoad_2");
+				}
+				for (Object obj_tContextLoad_2 : noAssignList_tContextLoad_2) {
+
+					System.out.println("Warning: Parameter \""
+							+ obj_tContextLoad_2
+							+ "\" has not been set by tContextLoad_2");
+
+				}
+
+				String newPropertyStr_tContextLoad_2 = newPropertyList_tContextLoad_2
+						.toString();
+				String newProperty_tContextLoad_2 = newPropertyStr_tContextLoad_2
+						.substring(1,
+								newPropertyStr_tContextLoad_2.length() - 1);
+
+				String noAssignStr_tContextLoad_2 = noAssignList_tContextLoad_2
+						.toString();
+				String noAssign_tContextLoad_2 = noAssignStr_tContextLoad_2
+						.substring(1, noAssignStr_tContextLoad_2.length() - 1);
+
+				globalMap.put("tContextLoad_2_KEY_NOT_INCONTEXT",
+						newProperty_tContextLoad_2);
+				globalMap.put("tContextLoad_2_KEY_NOT_LOADED",
+						noAssign_tContextLoad_2);
+
+				globalMap.put("tContextLoad_2_NB_LINE", nb_line_tContextLoad_2);
+
+				List<String> parametersToEncrypt_tContextLoad_2 = new java.util.ArrayList<String>();
+
+				resumeUtil.addLog("NODE", "NODE:tContextLoad_2", "", Thread
+						.currentThread().getId() + "", "", "", "", "",
+						resumeUtil.convertToJsonText(context,
+								parametersToEncrypt_tContextLoad_2));
+
+				ok_Hash.put("tContextLoad_2", true);
+				end_Hash.put("tContextLoad_2", System.currentTimeMillis());
+
+				if (context.skipService == 0) {
+
+					tFileDelete_1Process(globalMap);
+				}
+
+				if (context.skipService == 1) {
+
+					tFileList_1Process(globalMap);
+				}
+
+				/**
+				 * [tContextLoad_2 end ] stop
+				 */
+
+			}// end the resume
+
+		} catch (java.lang.Exception e) {
+
+			TalendException te = new TalendException(e, currentComponent,
+					globalMap);
+
+			throw te;
+		} catch (java.lang.Error error) {
+
+			throw error;
+		} finally {
+
+			try {
+
+				/**
+				 * [tFileInputDelimited_2 finally ] start
+				 */
+
+				currentComponent = "tFileInputDelimited_2";
+
+				/**
+				 * [tFileInputDelimited_2 finally ] stop
+				 */
+
+				/**
+				 * [tFilterRow_2 finally ] start
+				 */
+
+				currentComponent = "tFilterRow_2";
+
+				/**
+				 * [tFilterRow_2 finally ] stop
+				 */
+
+				/**
+				 * [tReplace_2 finally ] start
+				 */
+
+				currentComponent = "tReplace_2";
+
+				/**
+				 * [tReplace_2 finally ] stop
+				 */
+
+				/**
+				 * [tContextLoad_2 finally ] start
+				 */
+
+				currentComponent = "tContextLoad_2";
+
+				/**
+				 * [tContextLoad_2 finally ] stop
+				 */
+
+			} catch (java.lang.Exception e) {
+				// ignore
+			} catch (java.lang.Error error) {
+				// ignore
+			}
+			resourceMap = null;
+		}
+
+		globalMap.put("tFileInputDelimited_2_SUBPROCESS_STATE", 1);
+	}
+
+	public void tFileDelete_1Process(
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 0);
+
+		final boolean execStat = this.execStat;
+
+		String iterateId = "";
+
+		String currentComponent = "";
+		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+		try {
+
+			String currentMethodName = new java.lang.Exception()
+					.getStackTrace()[0].getMethodName();
+			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
+			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
+																					// the
+																					// resume
+				globalResumeTicket = true;
+
+				/**
+				 * [tFileDelete_1 begin ] start
+				 */
+
+				ok_Hash.put("tFileDelete_1", false);
+				start_Hash.put("tFileDelete_1", System.currentTimeMillis());
+
+				currentComponent = "tFileDelete_1";
+
+				int tos_count_tFileDelete_1 = 0;
+
+				/**
+				 * [tFileDelete_1 begin ] stop
+				 */
+
+				/**
+				 * [tFileDelete_1 main ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				class DeleteFoldertFileDelete_1 {
+					/**
+					 * delete all the sub-files in 'file'
+					 * 
+					 * @param file
+					 */
+					public boolean delete(java.io.File file) {
+						java.io.File[] files = file.listFiles();
+						for (int i = 0; i < files.length; i++) {
+							if (files[i].isFile()) {
+								files[i].delete();
+							} else if (files[i].isDirectory()) {
+								if (!files[i].delete()) {
+									delete(files[i]);
+								}
+							}
+						}
+						deleteDirectory(file);
+						return file.delete();
+					}
+
+					/**
+					 * delete all the sub-folders in 'file'
+					 * 
+					 * @param file
+					 */
+					private void deleteDirectory(java.io.File file) {
+						java.io.File[] filed = file.listFiles();
+						for (int i = 0; i < filed.length; i++) {
+							if (filed[i].isDirectory()) {
+								deleteDirectory(filed[i]);
+							}
+							filed[i].delete();
+						}
+					}
+
+				}
+				java.io.File path_tFileDelete_1 = new java.io.File(
+						System.getProperty("java.io.tmpdir")
+								+ "/natura2000import/xml/");
+				if (path_tFileDelete_1.exists()) {
+					if (path_tFileDelete_1.isFile()) {
+						if (path_tFileDelete_1.delete()) {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"File deleted.");
+						} else {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"No file deleted.");
+						}
+					} else if (path_tFileDelete_1.isDirectory()) {
+						DeleteFoldertFileDelete_1 dftFileDelete_1 = new DeleteFoldertFileDelete_1();
+						if (dftFileDelete_1.delete(path_tFileDelete_1)) {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"Path deleted.");
+						} else {
+							globalMap.put("tFileDelete_1_CURRENT_STATUS",
+									"No path deleted.");
+						}
+					}
+				} else {
+					globalMap.put("tFileDelete_1_CURRENT_STATUS",
+							"File or path does not exist or is invalid.");
+				}
+				globalMap.put("tFileDelete_1_DELETE_PATH",
+						System.getProperty("java.io.tmpdir")
+								+ "/natura2000import/xml/");
+
+				tos_count_tFileDelete_1++;
+
+				/**
+				 * [tFileDelete_1 main ] stop
+				 */
+
+				/**
+				 * [tFileDelete_1 end ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				ok_Hash.put("tFileDelete_1", true);
+				end_Hash.put("tFileDelete_1", System.currentTimeMillis());
+
+				if (context.skipService == 0) {
+
+					tRunJob_1Process(globalMap);
+				}
+
+				/**
+				 * [tFileDelete_1 end ] stop
+				 */
+			}// end the resume
+
+		} catch (java.lang.Exception e) {
+
+			TalendException te = new TalendException(e, currentComponent,
+					globalMap);
+
+			throw te;
+		} catch (java.lang.Error error) {
+
+			throw error;
+		} finally {
+
+			try {
+
+				/**
+				 * [tFileDelete_1 finally ] start
+				 */
+
+				currentComponent = "tFileDelete_1";
+
+				/**
+				 * [tFileDelete_1 finally ] stop
+				 */
+			} catch (java.lang.Exception e) {
+				// ignore
+			} catch (java.lang.Error error) {
+				// ignore
+			}
+			resourceMap = null;
+		}
+
+		globalMap.put("tFileDelete_1_SUBPROCESS_STATE", 1);
+	}
+
+	public void tRunJob_1Process(final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+		globalMap.put("tRunJob_1_SUBPROCESS_STATE", 0);
+
+		final boolean execStat = this.execStat;
+
+		String iterateId = "";
+
+		String currentComponent = "";
+		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+		try {
+
+			String currentMethodName = new java.lang.Exception()
+					.getStackTrace()[0].getMethodName();
+			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
+			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
+																					// the
+																					// resume
+				globalResumeTicket = true;
+
+				/**
+				 * [tRunJob_1 begin ] start
+				 */
+
+				ok_Hash.put("tRunJob_1", false);
+				start_Hash.put("tRunJob_1", System.currentTimeMillis());
+
+				currentComponent = "tRunJob_1";
+
+				int tos_count_tRunJob_1 = 0;
+
+				/**
+				 * [tRunJob_1 begin ] stop
+				 */
+
+				/**
+				 * [tRunJob_1 main ] start
+				 */
+
+				currentComponent = "tRunJob_1";
+
+				java.util.List<String> paraList_tRunJob_1 = new java.util.ArrayList<String>();
+
+				paraList_tRunJob_1.add("--father_pid=" + pid);
+
+				paraList_tRunJob_1.add("--root_pid=" + rootPid);
+
+				paraList_tRunJob_1.add("--father_node=tRunJob_1");
+
+				paraList_tRunJob_1.add("--context=Default");
+
+				// for feature:10589
+
+				paraList_tRunJob_1.add("--stat_port=" + portStats);
+
+				if (resuming_logs_dir_path != null) {
+					paraList_tRunJob_1.add("--resuming_logs_dir_path="
+							+ resuming_logs_dir_path);
+				}
+				String childResumePath_tRunJob_1 = ResumeUtil
+						.getChildJobCheckPointPath(resuming_checkpoint_path);
+				String tRunJobName_tRunJob_1 = ResumeUtil
+						.getRighttRunJob(resuming_checkpoint_path);
+				if ("tRunJob_1".equals(tRunJobName_tRunJob_1)
+						&& childResumePath_tRunJob_1 != null) {
+					paraList_tRunJob_1
+							.add("--resuming_checkpoint_path="
+									+ ResumeUtil
+											.getChildJobCheckPointPath(resuming_checkpoint_path));
+				}
+				paraList_tRunJob_1.add("--parent_part_launcher=JOB:" + jobName
+						+ "/NODE:tRunJob_1");
+
+				java.util.Map<String, Object> parentContextMap_tRunJob_1 = new java.util.HashMap<String, Object>();
+
+				Object obj_tRunJob_1 = null;
+
+				local_project.rdfnatura2000andsdfxml_0_1.rdfNatura2000andSdfxml childJob_tRunJob_1 = new local_project.rdfnatura2000andsdfxml_0_1.rdfNatura2000andSdfxml();
+				// pass DataSources
+				java.util.Map<String, routines.system.TalendDataSource> talendDataSources_tRunJob_1 = (java.util.Map<String, routines.system.TalendDataSource>) globalMap
+						.get(KEY_DB_DATASOURCES);
+				if (null != talendDataSources_tRunJob_1) {
+					java.util.Map<String, javax.sql.DataSource> dataSources_tRunJob_1 = new java.util.HashMap<String, javax.sql.DataSource>();
+					for (java.util.Map.Entry<String, routines.system.TalendDataSource> talendDataSourceEntry_tRunJob_1 : talendDataSources_tRunJob_1
+							.entrySet()) {
+						dataSources_tRunJob_1.put(
+								talendDataSourceEntry_tRunJob_1.getKey(),
+								talendDataSourceEntry_tRunJob_1.getValue()
+										.getRawDataSource());
+					}
+					childJob_tRunJob_1.setDataSources(dataSources_tRunJob_1);
+				}
+
+				childJob_tRunJob_1.parentContextMap = parentContextMap_tRunJob_1;
+
+				String[][] childReturn_tRunJob_1 = childJob_tRunJob_1
+						.runJob((String[]) paraList_tRunJob_1
+								.toArray(new String[paraList_tRunJob_1.size()]));
+
+				errorCode = childJob_tRunJob_1.getErrorCode();
+
+				if (childJob_tRunJob_1.getErrorCode() == null) {
+					globalMap.put(
+							"tRunJob_1_CHILD_RETURN_CODE",
+							childJob_tRunJob_1.getStatus() != null
+									&& ("failure").equals(childJob_tRunJob_1
+											.getStatus()) ? 1 : 0);
+				} else {
+					globalMap.put("tRunJob_1_CHILD_RETURN_CODE",
+							childJob_tRunJob_1.getErrorCode());
+				}
+				if (childJob_tRunJob_1.getExceptionStackTrace() != null) {
+					globalMap.put("tRunJob_1_CHILD_EXCEPTION_STACKTRACE",
+							childJob_tRunJob_1.getExceptionStackTrace());
+				}
+
+				if (childJob_tRunJob_1.getErrorCode() != null
+						|| ("failure").equals(childJob_tRunJob_1.getStatus())) {
+					throw new RuntimeException("Child job running failed");
+				}
+
+				tos_count_tRunJob_1++;
+
+				/**
+				 * [tRunJob_1 main ] stop
+				 */
+
+				/**
+				 * [tRunJob_1 end ] start
+				 */
+
+				currentComponent = "tRunJob_1";
+
+				ok_Hash.put("tRunJob_1", true);
+				end_Hash.put("tRunJob_1", System.currentTimeMillis());
+
+				/**
+				 * [tRunJob_1 end ] stop
+				 */
+			}// end the resume
+
+			if (resumeEntryMethodName == null || globalResumeTicket) {
+				resumeUtil.addLog("CHECKPOINT",
+						"CONNECTION:SUBJOB_OK:tRunJob_1:OnSubjobOk", "", Thread
+								.currentThread().getId() + "", "", "", "", "",
+						"");
+			}
+
+			tFileList_1Process(globalMap);
+
+		} catch (java.lang.Exception e) {
+
+			TalendException te = new TalendException(e, currentComponent,
+					globalMap);
+
+			throw te;
+		} catch (java.lang.Error error) {
+
+			throw error;
+		} finally {
+
+			try {
+
+				/**
+				 * [tRunJob_1 finally ] start
+				 */
+
+				currentComponent = "tRunJob_1";
+
+				/**
+				 * [tRunJob_1 finally ] stop
+				 */
+			} catch (java.lang.Exception e) {
+				// ignore
+			} catch (java.lang.Error error) {
+				// ignore
+			}
+			resourceMap = null;
+		}
+
+		globalMap.put("tRunJob_1_SUBPROCESS_STATE", 1);
+	}
+
+	public void tFileList_1Process(final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+		globalMap.put("tFileList_1_SUBPROCESS_STATE", 0);
+
+		final boolean execStat = this.execStat;
+
+		String iterateId = "";
+
+		String currentComponent = "";
+		java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
+
+		try {
+
+			String currentMethodName = new java.lang.Exception()
+					.getStackTrace()[0].getMethodName();
+			boolean resumeIt = currentMethodName.equals(resumeEntryMethodName);
+			if (resumeEntryMethodName == null || resumeIt || globalResumeTicket) {// start
+																					// the
+																					// resume
+				globalResumeTicket = true;
+
+				/**
+				 * [tFileList_1 begin ] start
+				 */
+
+				int NB_ITERATE_tSystem_1 = 0; // for statistics
+
+				ok_Hash.put("tFileList_1", false);
+				start_Hash.put("tFileList_1", System.currentTimeMillis());
+
+				currentComponent = "tFileList_1";
+
+				int tos_count_tFileList_1 = 0;
+
+				String directory_tFileList_1 = System
+						.getProperty("java.io.tmpdir")
+						+ "/natura2000import/xml";
+				final java.util.List<String> maskList_tFileList_1 = new java.util.ArrayList<String>();
+				final java.util.List<java.util.regex.Pattern> patternList_tFileList_1 = new java.util.ArrayList<java.util.regex.Pattern>();
+				maskList_tFileList_1.add("*");
+				for (final String filemask_tFileList_1 : maskList_tFileList_1) {
+					String filemask_compile_tFileList_1 = filemask_tFileList_1;
+
+					filemask_compile_tFileList_1 = org.apache.oro.text.GlobCompiler
+							.globToPerl5(
+									filemask_tFileList_1.toCharArray(),
+									org.apache.oro.text.GlobCompiler.DEFAULT_MASK);
+
+					java.util.regex.Pattern fileNamePattern_tFileList_1 = java.util.regex.Pattern
+							.compile(filemask_compile_tFileList_1);
+					patternList_tFileList_1.add(fileNamePattern_tFileList_1);
+				}
+				int NB_FILEtFileList_1 = 0;
+
+				final boolean case_sensitive_tFileList_1 = true;
+				final java.util.List<java.io.File> list_tFileList_1 = new java.util.ArrayList<java.io.File>();
+				final java.util.Set<String> filePath_tFileList_1 = new java.util.HashSet<String>();
+				java.io.File file_tFileList_1 = new java.io.File(
+						directory_tFileList_1);
+
+				file_tFileList_1.listFiles(new java.io.FilenameFilter() {
+					public boolean accept(java.io.File dir, String name) {
+						java.io.File file = new java.io.File(dir, name);
+						if (file.isDirectory()) {
+
+							String fileName_tFileList_1 = file.getName();
+							for (final java.util.regex.Pattern fileNamePattern_tFileList_1 : patternList_tFileList_1) {
+								if (fileNamePattern_tFileList_1.matcher(
+										fileName_tFileList_1).matches()) {
+									if (!filePath_tFileList_1.contains(file
+											.getAbsolutePath())) {
+										list_tFileList_1.add(file);
+										filePath_tFileList_1.add(file
+												.getAbsolutePath());
+									}
+								}
+							}
+						}
+						return true;
+					}
+				});
+				java.util.Collections.sort(list_tFileList_1);
+
+				for (int i_tFileList_1 = 0; i_tFileList_1 < list_tFileList_1
+						.size(); i_tFileList_1++) {
+					java.io.File files_tFileList_1 = list_tFileList_1
+							.get(i_tFileList_1);
+					String fileName_tFileList_1 = files_tFileList_1.getName();
+
+					String currentFileName_tFileList_1 = files_tFileList_1
+							.getName();
+					String currentFilePath_tFileList_1 = files_tFileList_1
+							.getAbsolutePath();
+					String currentFileDirectory_tFileList_1 = files_tFileList_1
+							.getParent();
+					String currentFileExtension_tFileList_1 = null;
+
+					if (files_tFileList_1.getName().contains(".")
+							&& files_tFileList_1.isFile()) {
+						currentFileExtension_tFileList_1 = files_tFileList_1
+								.getName().substring(
+										files_tFileList_1.getName()
+												.lastIndexOf(".") + 1);
+					} else {
+						currentFileExtension_tFileList_1 = "";
+					}
+
+					NB_FILEtFileList_1++;
+					globalMap.put("tFileList_1_CURRENT_FILE",
+							currentFileName_tFileList_1);
+					globalMap.put("tFileList_1_CURRENT_FILEPATH",
+							currentFilePath_tFileList_1);
+					globalMap.put("tFileList_1_CURRENT_FILEDIRECTORY",
+							currentFileDirectory_tFileList_1);
+					globalMap.put("tFileList_1_CURRENT_FILEEXTENSION",
+							currentFileExtension_tFileList_1);
+					globalMap.put("tFileList_1_NB_FILE", NB_FILEtFileList_1);
+
+					/**
+					 * [tFileList_1 begin ] stop
+					 */
+
+					/**
+					 * [tFileList_1 main ] start
+					 */
+
+					currentComponent = "tFileList_1";
+
+					tos_count_tFileList_1++;
+
+					/**
+					 * [tFileList_1 main ] stop
+					 */
+					NB_ITERATE_tSystem_1++;
+
+					/**
+					 * [tSystem_1 begin ] start
+					 */
+
+					ok_Hash.put("tSystem_1", false);
+					start_Hash.put("tSystem_1", System.currentTimeMillis());
+
+					currentComponent = "tSystem_1";
+
+					int tos_count_tSystem_1 = 0;
+
+					String[] command_tSystem_1 = new String[4];
+
+					command_tSystem_1[0] = "java";
+
+					command_tSystem_1[1] = "-jar";
+
+					command_tSystem_1[2] = context.natura2000importer;
+
+					command_tSystem_1[3] = ((String) globalMap
+							.get("tFileList_1_CURRENT_FILEPATH"));
+
+					Runtime runtime_tSystem_1 = Runtime.getRuntime();
+
+					String[] env_tSystem_1 = null;
+					java.util.Map<String, String> envMap_tSystem_1 = System
+							.getenv();
+					java.util.Map<String, String> envMapClone_tSystem_1 = new java.util.HashMap();
+					envMapClone_tSystem_1.putAll(envMap_tSystem_1);
+
+					final Process ps_tSystem_1 = runtime_tSystem_1.exec(
+							command_tSystem_1, env_tSystem_1);
+
+					globalMap.remove("tSystem_1_OUTPUT");
+					globalMap.remove("tSystem_1_ERROROUTPUT");
+
+					Thread normal_tSystem_1 = new Thread() {
+						public void run() {
+							try {
+								java.io.BufferedReader reader = new java.io.BufferedReader(
+										new java.io.InputStreamReader(
+												ps_tSystem_1.getInputStream()));
+								String line = "";
+								try {
+									while ((line = reader.readLine()) != null) {
+
+										System.out.println(line);
+									}
+								} finally {
+									reader.close();
+								}
+							} catch (java.io.IOException ioe) {
+
+								ioe.printStackTrace();
+							}
+						}
+					};
+					normal_tSystem_1.start();
+
+					Thread error_tSystem_1 = new Thread() {
+						public void run() {
+							try {
+								java.io.BufferedReader reader = new java.io.BufferedReader(
+										new java.io.InputStreamReader(
+												ps_tSystem_1.getErrorStream()));
+								String line = "";
+								try {
+									while ((line = reader.readLine()) != null) {
+
+										System.err.println(line);
+									}
+								} finally {
+									reader.close();
+								}
+							} catch (java.io.IOException ioe) {
+
+								ioe.printStackTrace();
+							}
+						}
+					};
+					error_tSystem_1.start();
+					if (ps_tSystem_1.getOutputStream() != null) {
+						ps_tSystem_1.getOutputStream().close();
+					}
+					ps_tSystem_1.waitFor();
+					normal_tSystem_1.join(10000);
+					error_tSystem_1.join(10000);
+
+					/**
+					 * [tSystem_1 begin ] stop
+					 */
+
+					/**
+					 * [tSystem_1 main ] start
+					 */
+
+					currentComponent = "tSystem_1";
+
+					tos_count_tSystem_1++;
+
+					/**
+					 * [tSystem_1 main ] stop
+					 */
+
+					/**
+					 * [tSystem_1 end ] start
+					 */
+
+					currentComponent = "tSystem_1";
+
+					globalMap.put("tSystem_1_EXIT_VALUE",
+							ps_tSystem_1.exitValue());
+
+					ok_Hash.put("tSystem_1", true);
+					end_Hash.put("tSystem_1", System.currentTimeMillis());
+
+					/**
+					 * [tSystem_1 end ] stop
+					 */
+
+					/**
+					 * [tFileList_1 end ] start
+					 */
+
+					currentComponent = "tFileList_1";
+
+				}
+				globalMap.put("tFileList_1_NB_FILE", NB_FILEtFileList_1);
+
+				ok_Hash.put("tFileList_1", true);
+				end_Hash.put("tFileList_1", System.currentTimeMillis());
+
+				/**
+				 * [tFileList_1 end ] stop
+				 */
+			}// end the resume
+
+		} catch (java.lang.Exception e) {
+
+			TalendException te = new TalendException(e, currentComponent,
+					globalMap);
+
+			throw te;
+		} catch (java.lang.Error error) {
+
+			throw error;
+		} finally {
+
+			try {
+
+				/**
+				 * [tFileList_1 finally ] start
+				 */
+
+				currentComponent = "tFileList_1";
+
+				/**
+				 * [tFileList_1 finally ] stop
+				 */
+
+				/**
+				 * [tSystem_1 finally ] start
+				 */
+
+				currentComponent = "tSystem_1";
+
+				/**
+				 * [tSystem_1 finally ] stop
+				 */
+
+			} catch (java.lang.Exception e) {
+				// ignore
+			} catch (java.lang.Error error) {
+				// ignore
+			}
+			resourceMap = null;
+		}
+
+		globalMap.put("tFileList_1_SUBPROCESS_STATE", 1);
 	}
 
 	public String resuming_logs_dir_path = null;
@@ -4521,6 +4757,12 @@ public class importNatura2000 implements TalendJob {
 			} catch (NumberFormatException e) {
 				context.skipService = null;
 			}
+			try {
+				context.delete = routines.system.ParserUtils
+						.parseTo_Integer(context.getProperty("delete"));
+			} catch (NumberFormatException e) {
+				context.delete = null;
+			}
 		} catch (java.io.IOException ie) {
 			System.err.println("Could not load context " + contextStr);
 			ie.printStackTrace();
@@ -4557,6 +4799,9 @@ public class importNatura2000 implements TalendJob {
 			if (parentContextMap.containsKey("skipService")) {
 				context.skipService = (Integer) parentContextMap
 						.get("skipService");
+			}
+			if (parentContextMap.containsKey("delete")) {
+				context.delete = (Integer) parentContextMap.get("delete");
 			}
 		}
 
@@ -4736,6 +4981,6 @@ public class importNatura2000 implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 126042 characters generated by Talend Open Studio for Big Data on the
- * September 27, 2016 9:58:45 AM CEST
+ * 131809 characters generated by Talend Open Studio for Big Data on the
+ * September 29, 2016 6:24:36 PM CEST
  ************************************************************************************************/
