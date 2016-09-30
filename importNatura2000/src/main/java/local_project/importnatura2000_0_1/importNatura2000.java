@@ -144,6 +144,12 @@ public class importNatura2000 implements TalendJob {
 
 			}
 
+			if (new1 != null) {
+
+				this.setProperty("new1", new1.toString());
+
+			}
+
 		}
 
 		public String dbHost;
@@ -198,6 +204,12 @@ public class importNatura2000 implements TalendJob {
 
 		public Integer getDelete() {
 			return this.delete;
+		}
+
+		public String new1;
+
+		public String getNew1() {
+			return this.new1;
 		}
 	}
 
@@ -461,6 +473,17 @@ public class importNatura2000 implements TalendJob {
 	}
 
 	public void tSystem_2_error(Exception exception, String errorComponent,
+			final java.util.Map<String, Object> globalMap)
+			throws TalendException {
+
+		end_Hash.put(errorComponent, System.currentTimeMillis());
+
+		status = "failure";
+
+		tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
+	}
+
+	public void tLogRow_2_error(Exception exception, String errorComponent,
 			final java.util.Map<String, Object> globalMap)
 			throws TalendException {
 
@@ -1795,6 +1818,12 @@ public class importNatura2000 implements TalendJob {
 											context.delete = Integer
 													.parseInt(value_tContextLoad_2);
 
+										}
+
+										if (key_tContextLoad_2 != null
+												&& "new1"
+														.equals(key_tContextLoad_2)) {
+											context.new1 = value_tContextLoad_2;
 										}
 
 										if (context
@@ -3476,6 +3505,142 @@ public class importNatura2000 implements TalendJob {
 		globalMap.put("tFileInputXML_1_SUBPROCESS_STATE", 1);
 	}
 
+	public static class row6Struct implements
+			routines.system.IPersistableRow<row6Struct> {
+		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+		static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+		public String site_code;
+
+		public String getSite_code() {
+			return this.site_code;
+		}
+
+		public String ResponseContent;
+
+		public String getResponseContent() {
+			return this.ResponseContent;
+		}
+
+		private String readString(ObjectInputStream dis) throws IOException {
+			String strReturn = null;
+			int length = 0;
+			length = dis.readInt();
+			if (length == -1) {
+				strReturn = null;
+			} else {
+				if (length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+					if (length < 1024
+							&& commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+					} else {
+						commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+					}
+				}
+				dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000,
+						0, length);
+				strReturn = new String(
+						commonByteArray_LOCAL_PROJECT_importNatura2000, 0,
+						length, utf8Charset);
+			}
+			return strReturn;
+		}
+
+		private void writeString(String str, ObjectOutputStream dos)
+				throws IOException {
+			if (str == null) {
+				dos.writeInt(-1);
+			} else {
+				byte[] byteArray = str.getBytes(utf8Charset);
+				dos.writeInt(byteArray.length);
+				dos.write(byteArray);
+			}
+		}
+
+		public void readData(ObjectInputStream dis) {
+
+			synchronized (commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+				try {
+
+					int length = 0;
+
+					this.site_code = readString(dis);
+
+					this.ResponseContent = readString(dis);
+
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+
+				}
+
+			}
+
+		}
+
+		public void writeData(ObjectOutputStream dos) {
+			try {
+
+				// String
+
+				writeString(this.site_code, dos);
+
+				// String
+
+				writeString(this.ResponseContent, dos);
+
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+		}
+
+		public String toString() {
+
+			StringBuilder sb = new StringBuilder();
+			sb.append(super.toString());
+			sb.append("[");
+			sb.append("site_code=" + site_code);
+			sb.append(",ResponseContent=" + ResponseContent);
+			sb.append("]");
+
+			return sb.toString();
+		}
+
+		/**
+		 * Compare keys
+		 */
+		public int compareTo(row6Struct other) {
+
+			int returnValue = -1;
+
+			return returnValue;
+		}
+
+		private int checkNullsAndCompare(Object object1, Object object2) {
+			int returnValue = 0;
+			if (object1 instanceof Comparable && object2 instanceof Comparable) {
+				returnValue = ((Comparable) object1).compareTo(object2);
+			} else if (object1 != null && object2 != null) {
+				returnValue = compareStrings(object1.toString(),
+						object2.toString());
+			} else if (object1 == null && object2 != null) {
+				returnValue = 1;
+			} else if (object1 != null && object2 == null) {
+				returnValue = -1;
+			} else {
+				returnValue = 0;
+			}
+
+			return returnValue;
+		}
+
+		private int compareStrings(String string1, String string2) {
+			return string1.compareTo(string2);
+		}
+
+	}
+
 	public static class row5Struct implements
 			routines.system.IPersistableRow<row5Struct> {
 		final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
@@ -3622,6 +3787,7 @@ public class importNatura2000 implements TalendJob {
 				globalResumeTicket = true;
 
 				row5Struct row5 = new row5Struct();
+				row6Struct row6 = new row6Struct();
 
 				/**
 				 * [tFlowToIterate_1 begin ] start
@@ -3743,6 +3909,145 @@ public class importNatura2000 implements TalendJob {
 						NB_ITERATE_tSystem_2++;
 
 						/**
+						 * [tLogRow_2 begin ] start
+						 */
+
+						ok_Hash.put("tLogRow_2", false);
+						start_Hash.put("tLogRow_2", System.currentTimeMillis());
+
+						currentComponent = "tLogRow_2";
+
+						int tos_count_tLogRow_2 = 0;
+
+						// /////////////////////
+
+						class Util_tLogRow_2 {
+
+							String[] des_top = { ".", ".", "-", "+" };
+
+							String[] des_head = { "|=", "=|", "-", "+" };
+
+							String[] des_bottom = { "'", "'", "-", "+" };
+
+							String name = "";
+
+							java.util.List<String[]> list = new java.util.ArrayList<String[]>();
+
+							int[] colLengths = new int[2];
+
+							public void addRow(String[] row) {
+
+								for (int i = 0; i < 2; i++) {
+									if (row[i] != null) {
+										colLengths[i] = Math.max(colLengths[i],
+												row[i].length());
+									}
+								}
+								list.add(row);
+							}
+
+							public void setTableName(String name) {
+
+								this.name = name;
+							}
+
+							public StringBuilder format() {
+
+								StringBuilder sb = new StringBuilder();
+
+								sb.append(print(des_top));
+
+								int totals = 0;
+								for (int i = 0; i < colLengths.length; i++) {
+									totals = totals + colLengths[i];
+								}
+
+								// name
+								sb.append("|");
+								int k = 0;
+								for (k = 0; k < (totals + 1 - name.length()) / 2; k++) {
+									sb.append(' ');
+								}
+								sb.append(name);
+								for (int i = 0; i < totals + 1 - name.length()
+										- k; i++) {
+									sb.append(' ');
+								}
+								sb.append("|\n");
+
+								// head and rows
+								sb.append(print(des_head));
+								for (int i = 0; i < list.size(); i++) {
+
+									String[] row = list.get(i);
+
+									java.util.Formatter formatter = new java.util.Formatter(
+											new StringBuilder());
+
+									StringBuilder sbformat = new StringBuilder();
+									sbformat.append("|%1$-");
+									sbformat.append(colLengths[0]);
+									sbformat.append("s");
+
+									sbformat.append("|%2$-");
+									sbformat.append(colLengths[1]);
+									sbformat.append("s");
+
+									sbformat.append("|\n");
+
+									formatter.format(sbformat.toString(),
+											(Object[]) row);
+
+									sb.append(formatter.toString());
+									if (i == 0)
+										sb.append(print(des_head)); // print the
+																	// head
+								}
+
+								// end
+								sb.append(print(des_bottom));
+								return sb;
+							}
+
+							private StringBuilder print(String[] fillChars) {
+								StringBuilder sb = new StringBuilder();
+								// first column
+								sb.append(fillChars[0]);
+								for (int i = 0; i < colLengths[0]
+										- fillChars[0].length() + 1; i++) {
+									sb.append(fillChars[2]);
+								}
+								sb.append(fillChars[3]);
+
+								// last column
+								for (int i = 0; i < colLengths[1]
+										- fillChars[1].length() + 1; i++) {
+									sb.append(fillChars[2]);
+								}
+								sb.append(fillChars[1]);
+								sb.append("\n");
+								return sb;
+							}
+
+							public boolean isTableEmpty() {
+								if (list.size() > 1)
+									return false;
+								return true;
+							}
+						}
+						Util_tLogRow_2 util_tLogRow_2 = new Util_tLogRow_2();
+						util_tLogRow_2.setTableName("tLogRow_2");
+						util_tLogRow_2.addRow(new String[] { "site_code",
+								"ResponseContent", });
+						StringBuilder strBuffer_tLogRow_2 = null;
+						int nb_line_tLogRow_2 = 0;
+						// /////////////////////
+
+						/**
+						 * [tLogRow_2 begin ] stop
+						 */
+
+						/**
 						 * [tSystem_2 begin ] start
 						 */
 
@@ -3850,6 +4155,41 @@ public class importNatura2000 implements TalendJob {
 						 */
 
 						/**
+						 * [tLogRow_2 main ] start
+						 */
+
+						currentComponent = "tLogRow_2";
+
+						// /////////////////////
+
+						String[] row_tLogRow_2 = new String[2];
+
+						if (row6.site_code != null) { //
+							row_tLogRow_2[0] = String.valueOf(row6.site_code);
+
+						} //
+
+						if (row6.ResponseContent != null) { //
+							row_tLogRow_2[1] = String
+									.valueOf(row6.ResponseContent);
+
+						} //
+
+						util_tLogRow_2.addRow(row_tLogRow_2);
+						nb_line_tLogRow_2++;
+						// ////
+
+						// ////
+
+						// /////////////////////
+
+						tos_count_tLogRow_2++;
+
+						/**
+						 * [tLogRow_2 main ] stop
+						 */
+
+						/**
 						 * [tSystem_2 end ] start
 						 */
 
@@ -3863,6 +4203,40 @@ public class importNatura2000 implements TalendJob {
 
 						/**
 						 * [tSystem_2 end ] stop
+						 */
+
+						/**
+						 * [tLogRow_2 end ] start
+						 */
+
+						currentComponent = "tLogRow_2";
+
+						// ////
+
+						java.io.PrintStream consoleOut_tLogRow_2 = null;
+						if (globalMap.get("tLogRow_CONSOLE") != null) {
+							consoleOut_tLogRow_2 = (java.io.PrintStream) globalMap
+									.get("tLogRow_CONSOLE");
+						} else {
+							consoleOut_tLogRow_2 = new java.io.PrintStream(
+									new java.io.BufferedOutputStream(System.out));
+							globalMap.put("tLogRow_CONSOLE",
+									consoleOut_tLogRow_2);
+						}
+
+						consoleOut_tLogRow_2.println(util_tLogRow_2.format()
+								.toString());
+						consoleOut_tLogRow_2.flush();
+						// ////
+						globalMap.put("tLogRow_2_NB_LINE", nb_line_tLogRow_2);
+
+						// /////////////////////
+
+						ok_Hash.put("tLogRow_2", true);
+						end_Hash.put("tLogRow_2", System.currentTimeMillis());
+
+						/**
+						 * [tLogRow_2 end ] stop
 						 */
 
 						/**
@@ -3954,6 +4328,16 @@ public class importNatura2000 implements TalendJob {
 
 				/**
 				 * [tSystem_2 finally ] stop
+				 */
+
+				/**
+				 * [tLogRow_2 finally ] start
+				 */
+
+				currentComponent = "tLogRow_2";
+
+				/**
+				 * [tLogRow_2 finally ] stop
 				 */
 
 			} catch (java.lang.Exception e) {
@@ -4884,6 +5268,7 @@ public class importNatura2000 implements TalendJob {
 			} catch (NumberFormatException e) {
 				context.delete = null;
 			}
+			context.new1 = (String) context.getProperty("new1");
 		} catch (java.io.IOException ie) {
 			System.err.println("Could not load context " + contextStr);
 			ie.printStackTrace();
@@ -4923,6 +5308,9 @@ public class importNatura2000 implements TalendJob {
 			}
 			if (parentContextMap.containsKey("delete")) {
 				context.delete = (Integer) parentContextMap.get("delete");
+			}
+			if (parentContextMap.containsKey("new1")) {
+				context.new1 = (String) parentContextMap.get("new1");
 			}
 		}
 
@@ -5102,6 +5490,6 @@ public class importNatura2000 implements TalendJob {
 	ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- * 134346 characters generated by Talend Open Studio for Big Data on the
- * September 29, 2016 7:53:44 PM CEST
+ * 144934 characters generated by Talend Open Studio for Big Data on the
+ * September 30, 2016 10:48:09 AM CEST
  ************************************************************************************************/
