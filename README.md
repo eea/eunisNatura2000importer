@@ -1,6 +1,6 @@
 # eunisNatura2000importer
 
-The project is a Talend Open Studio Job 6.1.1 which replicates and streamline the import procedure published here:
+The project is a Talend Open Studio Job 7.0.1 which replicates and streamline the import procedure published here:
 https://taskman.eionet.europa.eu/projects/biodiversity/wiki/How_to_update_the_Natura2000_sites
 
 usage:
