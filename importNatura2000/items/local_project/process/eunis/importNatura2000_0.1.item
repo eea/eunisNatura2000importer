@@ -10,7 +10,7 @@
     <contextParameter comment="" name="natura2000importer" prompt="natura2000importer?" promptNeeded="false" type="id_String" value="&quot;/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar&quot;"/>
     <contextParameter comment="" name="skipService" prompt="skipService?" promptNeeded="false" type="id_Integer" value="0"/>
     <contextParameter comment="" name="delete" prompt="delete?" promptNeeded="false" type="id_Integer" value="0"/>
-    <contextParameter comment="" name="release_id" prompt="release_id?" promptNeeded="false" type="id_String" value=""/>
+    <contextParameter comment="" name="release_id" prompt="release_id?" promptNeeded="false" type="id_Integer" value=""/>
     <contextParameter comment="" name="rdfUrl" prompt="rdfUrl?" promptNeeded="false" type="id_String" value="&quot;http://natura2000.eea.europa.eu/rdf/Natura2000_sites.rdf&quot;"/>
   </context>
   <parameters>
