@@ -665,13 +665,8 @@
     <elementParameter field="CHECK" name="MONITOR_CONNECTION" value="false"/>
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="row3" show="false"/>
   </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" outputId="1" source="tContextLoad_2" target="tFileInputXML_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.delete == 1"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If5" show="false"/>
-  </connection>
-  <connection connectorName="RUN_IF" label="If" lineStyle="6" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" outputId="2" source="tContextLoad_2" target="tSleep_1">
-    <elementParameter field="MEMO_JAVA" name="CONDITION" value="context.delete == 0&#xA;"/>
-    <elementParameter field="TEXT" name="UNIQUE_NAME" value="If6" show="false"/>
+  <connection connectorName="COMPONENT_OK" label="OnComponentOk" lineStyle="3" metaname="tContextLoad_2" offsetLabelX="0" offsetLabelY="0" source="tContextLoad_2" target="tSleep_1">
+    <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnComponentOk5" show="false"/>
   </connection>
   <connection connectorName="SUBJOB_OK" label="OnSubjobOk" lineStyle="1" metaname="tRunJob_1" offsetLabelX="0" offsetLabelY="0" source="tRunJob_1" target="tFileList_1">
     <elementParameter field="TEXT" name="UNIQUE_NAME" value="OnSubjobOk3" show="false"/>
