@@ -46,6 +46,12 @@ import java.util.Comparator;
 
 
 
+	//the import part of tJava_2
+	//import java.util.List;
+
+	//the import part of tJava_1
+	//import java.util.List;
+
 
 @SuppressWarnings("unused")
 
@@ -175,18 +181,6 @@ protected static void logIgnoredError(String message, Throwable cause) {
 				
 			}
 			
-			if(release_id != null){
-				
-					this.setProperty("release_id", release_id.toString());
-				
-			}
-			
-			if(rdfUrl != null){
-				
-					this.setProperty("rdfUrl", rdfUrl.toString());
-				
-			}
-			
 		}
 
 public String dbHost;
@@ -224,14 +218,6 @@ public Integer getSkipService(){
 public Integer delete;
 public Integer getDelete(){
 	return this.delete;
-}
-public Integer release_id;
-public Integer getRelease_id(){
-	return this.release_id;
-}
-public String rdfUrl;
-public String getRdfUrl(){
-	return this.rdfUrl;
 }
 	}
 	private ContextProperties context = new ContextProperties();
@@ -462,6 +448,15 @@ private class TalendException extends Exception {
 					tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
 			}
 			
+			public void tJava_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tMysqlInput_2_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
 			public void tSystem_2_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
@@ -490,6 +485,15 @@ private class TalendException extends Exception {
 			}
 			
 			public void tFileList_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
+				
+				end_Hash.put(errorComponent, System.currentTimeMillis());
+				
+				status = "failure";
+				
+					tFileList_1_onSubJobError(exception, errorComponent, globalMap);
+			}
+			
+			public void tJava_1_error(Exception exception, String errorComponent, final java.util.Map<String, Object> globalMap) throws TalendException {
 				
 				end_Hash.put(errorComponent, System.currentTimeMillis());
 				
@@ -857,8 +861,6 @@ public void tContextDump_1Process(final java.util.Map<String, Object> globalMap)
 						else 
 							
 						row4.value = value_tContextDump_1.toString();
-					
-					
 					
 					
 					
@@ -2266,18 +2268,6 @@ if(row8 != null) {
 
         }
 
-        if(key_tContextLoad_2!=null && "release_id".equals(key_tContextLoad_2))
-        {
-
-                context.release_id=Integer.parseInt(value_tContextLoad_2);
-
-        }
-
-        if(key_tContextLoad_2!=null && "rdfUrl".equals(key_tContextLoad_2))
-        {
-           context.rdfUrl=value_tContextLoad_2;
-        }
-
 
         if (context.getProperty(key_tContextLoad_2)!=null)
         {
@@ -2553,11 +2543,11 @@ end_Hash.put("tReplace_2", System.currentTimeMillis());
     }
 	for(Object obj_tContextLoad_2 :newPropertyList_tContextLoad_2){
 		
-		System.out.println("Warning: Parameter \"" + obj_tContextLoad_2 + "\" is a new parameter of tContextLoad_2");        
+		System.out.println("Info: Parameter \"" + obj_tContextLoad_2 + "\" is a new parameter of tContextLoad_2");        
 	}
 	for(Object obj_tContextLoad_2 :noAssignList_tContextLoad_2){
 		
-		System.out.println("Warning: Parameter \"" + obj_tContextLoad_2 + "\" has not been set by tContextLoad_2");
+		System.out.println("Info: Parameter \"" + obj_tContextLoad_2 + "\" has not been set by tContextLoad_2");
 		
 	} 
 
@@ -4728,6 +4718,149 @@ public static class row6Struct implements routines.system.IPersistableRow<row6St
 
 }
 
+public static class row10Struct implements routines.system.IPersistableRow<row10Struct> {
+    final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+    static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+	
+			    public String site_code;
+
+				public String getSite_code () {
+					return this.site_code;
+				}
+				
+			    public String ResponseContent;
+
+				public String getResponseContent () {
+					return this.ResponseContent;
+				}
+				
+
+
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+				if(length < 1024 && commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+   					commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+				} else {
+   					commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000, 0, length);
+			strReturn = new String(commonByteArray_LOCAL_PROJECT_importNatura2000, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.site_code = readString(dis);
+					
+					this.ResponseContent = readString(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.site_code,dos);
+					
+					// String
+				
+						writeString(this.ResponseContent,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("site_code="+site_code);
+		sb.append(",ResponseContent="+ResponseContent);
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(row10Struct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
+
 public static class row5Struct implements routines.system.IPersistableRow<row5Struct> {
     final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
     static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
@@ -4881,6 +5014,7 @@ public void tMysqlInput_2Process(final java.util.Map<String, Object> globalMap) 
 
 
 		row5Struct row5 = new row5Struct();
+row10Struct row10 = new row10Struct();
 row6Struct row6 = new row6Struct();
 
 
@@ -4892,7 +5026,7 @@ row6Struct row6 = new row6Struct();
 	 */
 
 				
-			int NB_ITERATE_tSystem_2 = 0; //for statistics
+			int NB_ITERATE_tJava_2 = 0; //for statistics
 			
 
 	
@@ -5123,18 +5257,23 @@ int counter_tFlowToIterate_1 = 0;
 /**
  * [tFlowToIterate_1 process_data_begin ] stop
  */
-	NB_ITERATE_tSystem_2++;
+	NB_ITERATE_tJava_2++;
 	
 	
+					if(execStat){				
+	       				runStat.updateStatOnConnection("row10", 3, 0);
+					}           			
+				
 					if(execStat){				
 	       				runStat.updateStatOnConnection("row6", 3, 0);
 					}           			
 				
 				if(execStat){
-					runStat.updateStatOnConnection("iterate2", 1, "exec" + NB_ITERATE_tSystem_2);
+					runStat.updateStatOnConnection("iterate2", 1, "exec" + NB_ITERATE_tJava_2);
 					//Thread.sleep(1000);
 				}				
 			
+
 
 
 	
@@ -5319,6 +5458,15 @@ int counter_tFlowToIterate_1 = 0;
 	currentComponent="tSystem_2";
 
 	
+			if (execStat) {
+				if(resourceMap.get("inIterateVComp") == null){
+					
+						runStat.updateStatOnConnection("row10" + iterateId, 0, 0);
+					
+				}
+			} 
+
+		
 		int tos_count_tSystem_2 = 0;
 		
     	class BytesLimit65535_tSystem_2{
@@ -5410,6 +5558,86 @@ error_tSystem_2.join(10000);
 /**
  * [tSystem_2 begin ] stop
  */
+
+
+
+	
+	/**
+	 * [tJava_2 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tJava_2", false);
+		start_Hash.put("tJava_2", System.currentTimeMillis());
+		
+	
+	currentComponent="tJava_2";
+
+	
+		int tos_count_tJava_2 = 0;
+		
+    	class BytesLimit65535_tJava_2{
+    		public void limitLog4jByte() throws Exception{
+    			
+    		}
+    	}
+    	
+        new BytesLimit65535_tJava_2().limitLog4jByte();
+
+
+System.out.println("Deleting site: ***" +  row5.ID_SITE  + "***");
+ 
+
+
+
+/**
+ * [tJava_2 begin ] stop
+ */
+	
+	/**
+	 * [tJava_2 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+
+	tos_count_tJava_2++;
+
+/**
+ * [tJava_2 main ] stop
+ */
+	
+	/**
+	 * [tJava_2 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_2 process_data_begin ] stop
+ */
+
 	
 	/**
 	 * [tSystem_2 main ] start
@@ -5423,6 +5651,20 @@ error_tSystem_2.join(10000);
 
 	
 
+			//row10
+			//row10
+
+
+			
+				if(execStat){
+					runStat.updateStatOnConnection("row10"+iterateId,1, 1);
+				} 
+			
+
+		
+	
+								row6.site_code = row10.site_code;	
+								row6.ResponseContent = row10.ResponseContent;
 
  
 
@@ -5577,6 +5819,54 @@ error_tSystem_2.join(10000);
 /**
  * [tSystem_2 process_data_end ] stop
  */
+
+
+
+	
+	/**
+	 * [tJava_2 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_2 process_data_end ] stop
+ */
+	
+	/**
+	 * [tJava_2 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+ok_Hash.put("tJava_2", true);
+end_Hash.put("tJava_2", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tJava_2 end ] stop
+ */
+
 	
 	/**
 	 * [tSystem_2 end ] start
@@ -5592,6 +5882,12 @@ error_tSystem_2.join(10000);
 
 globalMap.put("tSystem_2_EXIT_VALUE", ps_tSystem_2.exitValue());
 
+			if(execStat){
+				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
+			 		runStat.updateStatOnConnection("row10"+iterateId,2, 0); 
+			 	}
+			}
+		
  
 
 ok_Hash.put("tSystem_2", true);
@@ -5659,8 +5955,11 @@ end_Hash.put("tLogRow_2", System.currentTimeMillis());
 
 
 
+
+
+
 						if(execStat){
-							runStat.updateStatOnConnection("iterate2", 2, "exec" + NB_ITERATE_tSystem_2);
+							runStat.updateStatOnConnection("iterate2", 2, "exec" + NB_ITERATE_tJava_2);
 						}				
 					
 
@@ -5852,6 +6151,27 @@ end_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
 
 	
 	/**
+	 * [tJava_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_2 finally ] stop
+ */
+
+	
+	/**
 	 * [tSystem_2 finally ] start
 	 */
 
@@ -5891,6 +6211,9 @@ end_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
 /**
  * [tLogRow_2 finally ] stop
  */
+
+
+
 
 
 
@@ -6144,6 +6467,149 @@ end_Hash.put("tSleep_1", System.currentTimeMillis());
 	}
 	
 
+
+public static class row9Struct implements routines.system.IPersistableRow<row9Struct> {
+    final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
+    static byte[] commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[0];
+
+	
+			    public String site_code;
+
+				public String getSite_code () {
+					return this.site_code;
+				}
+				
+			    public String ResponseContent;
+
+				public String getResponseContent () {
+					return this.ResponseContent;
+				}
+				
+
+
+
+	private String readString(ObjectInputStream dis) throws IOException{
+		String strReturn = null;
+		int length = 0;
+        length = dis.readInt();
+		if (length == -1) {
+			strReturn = null;
+		} else {
+			if(length > commonByteArray_LOCAL_PROJECT_importNatura2000.length) {
+				if(length < 1024 && commonByteArray_LOCAL_PROJECT_importNatura2000.length == 0) {
+   					commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[1024];
+				} else {
+   					commonByteArray_LOCAL_PROJECT_importNatura2000 = new byte[2 * length];
+   				}
+			}
+			dis.readFully(commonByteArray_LOCAL_PROJECT_importNatura2000, 0, length);
+			strReturn = new String(commonByteArray_LOCAL_PROJECT_importNatura2000, 0, length, utf8Charset);
+		}
+		return strReturn;
+	}
+
+    private void writeString(String str, ObjectOutputStream dos) throws IOException{
+		if(str == null) {
+            dos.writeInt(-1);
+		} else {
+            byte[] byteArray = str.getBytes(utf8Charset);
+	    	dos.writeInt(byteArray.length);
+			dos.write(byteArray);
+    	}
+    }
+
+    public void readData(ObjectInputStream dis) {
+
+		synchronized(commonByteArrayLock_LOCAL_PROJECT_importNatura2000) {
+
+        	try {
+
+        		int length = 0;
+		
+					this.site_code = readString(dis);
+					
+					this.ResponseContent = readString(dis);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+
+		
+
+        }
+
+		
+
+      }
+
+
+    }
+
+    public void writeData(ObjectOutputStream dos) {
+        try {
+
+		
+					// String
+				
+						writeString(this.site_code,dos);
+					
+					// String
+				
+						writeString(this.ResponseContent,dos);
+					
+        	} catch (IOException e) {
+	            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(super.toString());
+		sb.append("[");
+		sb.append("site_code="+site_code);
+		sb.append(",ResponseContent="+ResponseContent);
+	    sb.append("]");
+
+	    return sb.toString();
+    }
+
+    /**
+     * Compare keys
+     */
+    public int compareTo(row9Struct other) {
+
+		int returnValue = -1;
+		
+	    return returnValue;
+    }
+
+
+    private int checkNullsAndCompare(Object object1, Object object2) {
+        int returnValue = 0;
+		if (object1 instanceof Comparable && object2 instanceof Comparable) {
+            returnValue = ((Comparable) object1).compareTo(object2);
+        } else if (object1 != null && object2 != null) {
+            returnValue = compareStrings(object1.toString(), object2.toString());
+        } else if (object1 == null && object2 != null) {
+            returnValue = 1;
+        } else if (object1 != null && object2 == null) {
+            returnValue = -1;
+        } else {
+            returnValue = 0;
+        }
+
+        return returnValue;
+    }
+
+    private int compareStrings(String string1, String string2) {
+        return string1.compareTo(string2);
+    }
+
+
+}
 public void tFileList_1Process(final java.util.Map<String, Object> globalMap) throws TalendException {
 	globalMap.put("tFileList_1_SUBPROCESS_STATE", 0);
 
@@ -6167,7 +6633,8 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 
 
 
-		
+		row9Struct row9 = new row9Struct();
+
 
 
 	
@@ -6176,7 +6643,7 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 	 */
 
 				
-			int NB_ITERATE_tSystem_1 = 0; //for statistics
+			int NB_ITERATE_tJava_1 = 0; //for statistics
 			
 
 	
@@ -6311,46 +6778,19 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 /**
  * [tFileList_1 process_data_begin ] stop
  */
-	NB_ITERATE_tSystem_1++;
+	NB_ITERATE_tJava_1++;
 	
 	
 					if(execStat){				
-	       				runStat.updateStatOnConnection("OnComponentOk3", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("iterate2", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("OnSubjobOk1", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("row6", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("row5", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("row1", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("row2", 3, 0);
-					}           			
-				
-					if(execStat){				
-	       				runStat.updateStatOnConnection("OnRowsEnd", 3, 0);
+	       				runStat.updateStatOnConnection("row9", 3, 0);
 					}           			
 				
 				if(execStat){
-					runStat.updateStatOnConnection("iterate3", 1, "exec" + NB_ITERATE_tSystem_1);
+					runStat.updateStatOnConnection("iterate3", 1, "exec" + NB_ITERATE_tJava_1);
 					//Thread.sleep(1000);
 				}				
 			
+
 
 	
 	/**
@@ -6368,6 +6808,15 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 	currentComponent="tSystem_1";
 
 	
+			if (execStat) {
+				if(resourceMap.get("inIterateVComp") == null){
+					
+						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
+					
+				}
+			} 
+
+		
 		int tos_count_tSystem_1 = 0;
 		
     	class BytesLimit65535_tSystem_1{
@@ -6457,6 +6906,86 @@ error_tSystem_1.join(10000);
 /**
  * [tSystem_1 begin ] stop
  */
+
+
+
+	
+	/**
+	 * [tJava_1 begin ] start
+	 */
+
+	
+
+	
+		
+		ok_Hash.put("tJava_1", false);
+		start_Hash.put("tJava_1", System.currentTimeMillis());
+		
+	
+	currentComponent="tJava_1";
+
+	
+		int tos_count_tJava_1 = 0;
+		
+    	class BytesLimit65535_tJava_1{
+    		public void limitLog4jByte() throws Exception{
+    			
+    		}
+    	}
+    	
+        new BytesLimit65535_tJava_1().limitLog4jByte();
+
+
+System.out.println("Importing data for: ***" +  ((String)globalMap.get("tFileList_1_CURRENT_FILEPATH"))  + "***");
+ 
+
+
+
+/**
+ * [tJava_1 begin ] stop
+ */
+	
+	/**
+	 * [tJava_1 main ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+
+	tos_count_tJava_1++;
+
+/**
+ * [tJava_1 main ] stop
+ */
+	
+	/**
+	 * [tJava_1 process_data_begin ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_1 process_data_begin ] stop
+ */
+
 	
 	/**
 	 * [tSystem_1 main ] start
@@ -6469,6 +6998,18 @@ error_tSystem_1.join(10000);
 	currentComponent="tSystem_1";
 
 	
+
+			//row9
+			//row9
+
+
+			
+				if(execStat){
+					runStat.updateStatOnConnection("row9"+iterateId,1, 1);
+				} 
+			
+
+		
 
 
  
@@ -6519,6 +7060,54 @@ error_tSystem_1.join(10000);
 /**
  * [tSystem_1 process_data_end ] stop
  */
+
+
+
+	
+	/**
+	 * [tJava_1 process_data_end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_1 process_data_end ] stop
+ */
+	
+	/**
+	 * [tJava_1 end ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+ok_Hash.put("tJava_1", true);
+end_Hash.put("tJava_1", System.currentTimeMillis());
+
+
+
+
+/**
+ * [tJava_1 end ] stop
+ */
+
 	
 	/**
 	 * [tSystem_1 end ] start
@@ -6534,6 +7123,12 @@ error_tSystem_1.join(10000);
 
 globalMap.put("tSystem_1_EXIT_VALUE", ps_tSystem_1.exitValue());
 
+			if(execStat){
+				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
+			 		runStat.updateStatOnConnection("row9"+iterateId,2, 0); 
+			 	}
+			}
+		
  
 
 ok_Hash.put("tSystem_1", true);
@@ -6545,8 +7140,11 @@ end_Hash.put("tSystem_1", System.currentTimeMillis());
 /**
  * [tSystem_1 end ] stop
  */
+
+
+
 						if(execStat){
-							runStat.updateStatOnConnection("iterate3", 2, "exec" + NB_ITERATE_tSystem_1);
+							runStat.updateStatOnConnection("iterate3", 2, "exec" + NB_ITERATE_tJava_1);
 						}				
 					
 
@@ -6599,6 +7197,10 @@ end_Hash.put("tSystem_1", System.currentTimeMillis());
 ok_Hash.put("tFileList_1", true);
 end_Hash.put("tFileList_1", System.currentTimeMillis());
 
+				if(execStat){   
+   	 				runStat.updateStatOnConnection("OnComponentOk4", 0, "ok");
+				}
+				tFileInputXML_1Process(globalMap);
 
 
 
@@ -6649,6 +7251,27 @@ end_Hash.put("tFileList_1", System.currentTimeMillis());
 
 	
 	/**
+	 * [tJava_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_1 finally ] stop
+ */
+
+	
+	/**
 	 * [tSystem_1 finally ] start
 	 */
 
@@ -6667,6 +7290,9 @@ end_Hash.put("tFileList_1", System.currentTimeMillis());
 /**
  * [tSystem_1 finally ] stop
  */
+
+
+
 
 
 
@@ -7059,54 +7685,6 @@ public void tRunJob_1Process(final java.util.Map<String, Object> globalMap) thro
 	java.util.Map<String, Object> parentContextMap_tRunJob_1 = new java.util.HashMap<String, Object>();
 
 	
-		
-		context.synchronizeContext();
-		
-			parentContextMap_tRunJob_1.put("dbHost", context.dbHost);
-			paraList_tRunJob_1.add("--context_type " + "dbHost" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("dbDatabase", context.dbDatabase);
-			paraList_tRunJob_1.add("--context_type " + "dbDatabase" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("dbUsername", context.dbUsername);
-			paraList_tRunJob_1.add("--context_type " + "dbUsername" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("dbPassword", context.dbPassword);
-			paraList_tRunJob_1.add("--context_type " + "dbPassword" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("localProperties", context.localProperties);
-			paraList_tRunJob_1.add("--context_type " + "localProperties" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("eunisctl", context.eunisctl);
-			paraList_tRunJob_1.add("--context_type " + "eunisctl" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("natura2000importer", context.natura2000importer);
-			paraList_tRunJob_1.add("--context_type " + "natura2000importer" + "=" + "id_String");
-		
-			parentContextMap_tRunJob_1.put("skipService", context.skipService);
-			paraList_tRunJob_1.add("--context_type " + "skipService" + "=" + "id_Integer");
-		
-			parentContextMap_tRunJob_1.put("delete", context.delete);
-			paraList_tRunJob_1.add("--context_type " + "delete" + "=" + "id_Integer");
-		
-			parentContextMap_tRunJob_1.put("release_id", context.release_id);
-			paraList_tRunJob_1.add("--context_type " + "release_id" + "=" + "id_Integer");
-		
-			parentContextMap_tRunJob_1.put("rdfUrl", context.rdfUrl);
-			paraList_tRunJob_1.add("--context_type " + "rdfUrl" + "=" + "id_String");
-		 
-		java.util.Enumeration<?> propertyNames_tRunJob_1 = context.propertyNames();
-		while (propertyNames_tRunJob_1.hasMoreElements()) {
-			String key_tRunJob_1 = (String) propertyNames_tRunJob_1.nextElement();
-			Object value_tRunJob_1 = (Object) context.get(key_tRunJob_1);
-			if(value_tRunJob_1!=null) {  
-				paraList_tRunJob_1.add("--context_param " + key_tRunJob_1 + "=" + value_tRunJob_1);
-			} else {
-				paraList_tRunJob_1.add("--context_param " + key_tRunJob_1 + "=" + NULL_VALUE_EXPRESSION_IN_COMMAND_STRING_FOR_CHILD_JOB_ONLY);
-			}
-			
-		}
-		
 
 	Object obj_tRunJob_1 = null;
 
@@ -7455,16 +8033,6 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
              }catch(NumberFormatException e){
                  context.delete=null;
               }
-				    context.setContextType("release_id", "id_Integer");
-				
-             try{
-                 context.release_id=routines.system.ParserUtils.parseTo_Integer (context.getProperty("release_id"));
-             }catch(NumberFormatException e){
-                 context.release_id=null;
-              }
-				    context.setContextType("rdfUrl", "id_String");
-				
-                context.rdfUrl=(String) context.getProperty("rdfUrl");
         } catch (java.io.IOException ie) {
             System.err.println("Could not load context "+contextStr);
             ie.printStackTrace();
@@ -7490,10 +8058,6 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
                 context.skipService = (Integer) parentContextMap.get("skipService");
             }if (parentContextMap.containsKey("delete")) {
                 context.delete = (Integer) parentContextMap.get("delete");
-            }if (parentContextMap.containsKey("release_id")) {
-                context.release_id = (Integer) parentContextMap.get("release_id");
-            }if (parentContextMap.containsKey("rdfUrl")) {
-                context.rdfUrl = (String) parentContextMap.get("rdfUrl");
             }
         }
 
@@ -7720,6 +8284,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     170255 characters generated by Talend Open Studio for Big Data 
- *     on the August 16, 2018 7:59:44 AM CEST
+ *     177210 characters generated by Talend Open Studio for Big Data 
+ *     on the September 4, 2018 11:13:06 AM CEST
  ************************************************************************************************/
