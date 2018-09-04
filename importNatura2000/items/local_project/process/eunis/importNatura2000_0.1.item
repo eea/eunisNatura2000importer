@@ -361,6 +361,7 @@
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;Deleting site: ***&quot; +  row5.ID_SITE  + &quot;***&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <elementParameter field="CHECK" name="INFORMATION" value="true"/>
     <metadata connector="FLOW" label="metadata" name="tJava_2">
       <column comment="" key="false" length="9" name="site_code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="0" name="ResponseContent" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
@@ -602,6 +603,7 @@
     <elementParameter field="MEMO_JAVA" name="CODE" value="System.out.println(&quot;Importing data for: ***&quot; +  ((String)globalMap.get(&quot;tFileList_1_CURRENT_FILEPATH&quot;))  + &quot;***&quot;);"/>
     <elementParameter field="MEMO_IMPORT" name="IMPORT" value="//import java.util.List;"/>
     <elementParameter field="TEXT" name="CONNECTION_FORMAT" value="row"/>
+    <elementParameter field="CHECK" name="INFORMATION" value="true"/>
     <metadata connector="FLOW" label="metadata" name="tJava_1">
       <column comment="" key="false" length="9" name="site_code" nullable="true" pattern="&quot;dd-MM-yyyy&quot;" precision="0" type="id_String" usefulColumn="true"/>
       <column defaultValue="" key="false" length="0" name="ResponseContent" nullable="true" precision="0" sourceType="" type="id_String" usefulColumn="true"/>
