@@ -9,7 +9,7 @@ sh ./importNatura2000_run.sh
 
 you can override the default values by passing the parameters:
 
-sh ./importNatura2000_run.sh --context_param localProperties=/build/local.properties --context_param eunisctl=/build/tools/eunisctl/target/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar --context_param natura2000importer=/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar --context_param skipService=0 --context_param delete=1 --context_param version_id=8
+sh ./importNatura2000_run.sh --context_param localProperties=/build/local.properties --context_param eunisctl=/usr/local/bin/eunisctl-1.0-SNAPSHOT-jar-with-dependencies.jar --context_param natura2000importer=/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar --context_param skipService=0 --context_param delete=1
 
 If not set, default is:
 -localProperties /var/local/build/eea.eunis/local.properties
