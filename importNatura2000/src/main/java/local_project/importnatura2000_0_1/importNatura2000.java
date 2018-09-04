@@ -3129,12 +3129,7 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 	 * [tFileList_1 begin ] start
 	 */
 
-	
-				TalendThreadPool mtp_tJava_1 = new TalendThreadPool(6);
-
-				globalMap.put("lockWrite_tJava_1", new Object[0]);
-				int threadIdCounter_tJava_1 =0;
-						
+				
 			int NB_ITERATE_tJava_1 = 0; //for statistics
 			
 
@@ -3272,77 +3267,16 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
  */
 	NB_ITERATE_tJava_1++;
 	
-				
-			class tJava_1Thread extends TalendThread {//implements routines.system.TalendThreadPool.PropertySettable
-				class ThreadedMap extends java.util.HashMap<String, Object> {
-			
-					private static final long serialVersionUID = 0L;
-		
-					public ThreadedMap(java.util.Map<String, Object> globalMap) {
-						super(globalMap);
-					}
-		
-					@Override
-					public Object put(String key, Object value) {
-						
-						synchronized (importNatura2000.this.obj) {
-						
-							super.put(key, value);
-							return importNatura2000.this.globalMap.put(key, value);
-						
-						}
-						
-					}
-				}	
-				
-				private java.util.Map<String, Object> globalMap = null;
-				boolean isRunning = false;
-				String iterateId = "";
-				
-				
-						row9Struct row9 = new row9Struct();
-
-					
 	
-				public tJava_1Thread(java.util.Map<String, Object> globalMap,row9Struct row9, int threadID) {
-					super();
-					
-		        		if(row9 != null){
-		            		
-		    					this.row9.site_code = row9.site_code;
-		    	            
-		    					this.row9.ResponseContent = row9.ResponseContent;
-		    	            
-		        		}
-		        		
-					
-						synchronized (importNatura2000.this.obj) {
-							this.globalMap = new ThreadedMap(globalMap);
-					
-						}
-					iterateId = "." + threadID;
-					
-					
-				}
-
-
-				public void run() {		
-		
-					java.util.Map threadRunResultMap = new java.util.HashMap();
-					threadRunResultMap.put("errorCode", null);
-					threadRunResultMap.put("status", "");
-					threadLocal.set(threadRunResultMap);
-					
-					this.isRunning = true;
-					String currentComponent = "";
-					java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-					
-					try {			
-						
-							if(execStat){
-								runStat.updateStatOnConnection("iterate3",0,"exec"+iterateId);
-							}				
-						
+					if(execStat){				
+	       				runStat.updateStatOnConnection("row9", 3, 0);
+					}           			
+				
+				if(execStat){
+					runStat.updateStatOnConnection("iterate3", 1, "exec" + NB_ITERATE_tJava_1);
+					//Thread.sleep(1000);
+				}				
+			
 
 
 	
@@ -3696,112 +3630,10 @@ end_Hash.put("tSystem_1", System.currentTimeMillis());
 
 
 
-					if(execStat){
-						runStat.updateStatOnConnection("iterate3",2,"exec"+iterateId);
-					}				
-				
-						} catch (java.lang.Exception e) {
-							this.status = "failure";
-							Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-							if (localErrorCode != null) {
-								if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-									this.errorCode = localErrorCode;
-								}
-							}					
-				            		            
-		                    TalendException te = new TalendException(e, currentComponent, globalMap);
-							
-							this.exception = te;
-							talendThreadPool.setErrorThread(this);
-				            talendThreadPool.stopAllWorkers();
-	
-						} catch (java.lang.Error error){
-							this.status = "failure";
-							Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-							if (localErrorCode != null) {
-								if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-									this.errorCode = localErrorCode;
-								}
-							}					
-							this.error = error;				            		            
-							talendThreadPool.setErrorThread(this);
-				            talendThreadPool.stopAllWorkers();
-						} finally {
-							try{
-								
-	
-	/**
-	 * [tJava_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tJava_1";
-
-	
-
- 
-
-
-
-/**
- * [tJava_1 finally ] stop
- */
-
-	
-	/**
-	 * [tSystem_1 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSystem_1";
-
-	
-
- 
-
-
-
-/**
- * [tSystem_1 finally ] stop
- */
-
-
-
-							}catch(java.lang.Exception e){	
-								//ignore
-							}catch(java.lang.Error error){
-								//ignore
-							}
-							resourceMap = null;
-						}
-						this.isRunning = false;
-				
-						Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-						String localStatus = (String) (((java.util.Map) threadLocal.get()).get("status"));
-						if (localErrorCode != null) {
-							if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-								this.errorCode = localErrorCode;
-							}
-						} 
-						if (!this.status.equals("failure")) {
-							this.status = localStatus;
-						}
-						
-						talendThreadPool.getTalendThreadResult().setErrorCode(this.errorCode);
-						talendThreadPool.getTalendThreadResult().setStatus(this.status);						
-					}
-				}
-
-				tJava_1Thread bt_tJava_1 = new tJava_1Thread(globalMap,row9,threadIdCounter_tJava_1++);
-				mtp_tJava_1.execute(bt_tJava_1);
-
-				
+						if(execStat){
+							runStat.updateStatOnConnection("iterate3", 2, "exec" + NB_ITERATE_tJava_1);
+						}				
+					
 
 
 
@@ -3857,42 +3689,6 @@ end_Hash.put("tFileList_1", System.currentTimeMillis());
 				}
 				tFileInputXML_1Process(globalMap);
 
-			mtp_tJava_1.waitForEndOfQueue();
-			
-			TalendThread errorThread_tJava_1 = mtp_tJava_1.getErrorThread();
-
-	if(errorThread_tJava_1 != null) {
-		if (errorThread_tJava_1.errorCode != null) {
-			if (errorCode == null
-					|| errorThread_tJava_1.errorCode.compareTo(errorCode) > 0) {
-				errorCode = errorThread_tJava_1.errorCode;
-			}
-		} 
-		if (!status.equals("failure")) {
-			status = errorThread_tJava_1.status;
-		}
-		if(errorThread_tJava_1.exception!=null){
-			throw errorThread_tJava_1.exception;
-		}
-		if(errorThread_tJava_1.error!=null){
-			throw errorThread_tJava_1.error;
-		}
-	}else{				
-		Integer threadErrorCode = mtp_tJava_1.getTalendThreadResult().getErrorCode();
-		String threadStatus = mtp_tJava_1.getTalendThreadResult().getStatus();
-		
-		if (threadErrorCode != null) {
-			if (errorCode == null
-					|| threadErrorCode.compareTo(errorCode) > 0) {
-				errorCode = threadErrorCode;
-			}
-		} 
-		if (!status.equals("failure")) {
-			status = threadStatus;
-		}
-	 }			
-			
-			
 
 
 /**
@@ -3939,6 +3735,54 @@ end_Hash.put("tFileList_1", System.currentTimeMillis());
 /**
  * [tFileList_1 finally ] stop
  */
+
+	
+	/**
+	 * [tJava_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_1 finally ] stop
+ */
+
+	
+	/**
+	 * [tSystem_1 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSystem_1";
+
+	
+
+ 
+
+
+
+/**
+ * [tSystem_1 finally ] stop
+ */
+
+
+
+
+
+
 				}catch(java.lang.Exception e){	
 					//ignore
 				}catch(java.lang.Error error){
@@ -6227,12 +6071,7 @@ row6Struct row6 = new row6Struct();
 	 * [tFlowToIterate_1 begin ] start
 	 */
 
-	
-				TalendThreadPool mtp_tJava_2 = new TalendThreadPool(6);
-
-				globalMap.put("lockWrite_tJava_2", new Object[0]);
-				int threadIdCounter_tJava_2 =0;
-						
+				
 			int NB_ITERATE_tJava_2 = 0; //for statistics
 			
 
@@ -6466,93 +6305,20 @@ int counter_tFlowToIterate_1 = 0;
  */
 	NB_ITERATE_tJava_2++;
 	
-				
-			class tJava_2Thread extends TalendThread {//implements routines.system.TalendThreadPool.PropertySettable
-				class ThreadedMap extends java.util.HashMap<String, Object> {
-			
-					private static final long serialVersionUID = 0L;
-		
-					public ThreadedMap(java.util.Map<String, Object> globalMap) {
-						super(globalMap);
-					}
-		
-					@Override
-					public Object put(String key, Object value) {
-						
-						synchronized (importNatura2000.this.obj) {
-						
-							super.put(key, value);
-							return importNatura2000.this.globalMap.put(key, value);
-						
-						}
-						
-					}
-				}	
-				
-				private java.util.Map<String, Object> globalMap = null;
-				boolean isRunning = false;
-				String iterateId = "";
-				
-				
-						row5Struct row5 = new row5Struct();
-row10Struct row10 = new row10Struct();
-row6Struct row6 = new row6Struct();
-
-					
 	
-				public tJava_2Thread(java.util.Map<String, Object> globalMap,row5Struct row5,row10Struct row10,row6Struct row6, int threadID) {
-					super();
-					
-		        		if(row5 != null){
-		            		
-		    					this.row5.ID_SITE = row5.ID_SITE;
-		    	            
-		        		}
-		        		
-		        		if(row10 != null){
-		            		
-		    					this.row10.site_code = row10.site_code;
-		    	            
-		    					this.row10.ResponseContent = row10.ResponseContent;
-		    	            
-		        		}
-		        		
-		        		if(row6 != null){
-		            		
-		    					this.row6.site_code = row6.site_code;
-		    	            
-		    					this.row6.ResponseContent = row6.ResponseContent;
-		    	            
-		        		}
-		        		
-					
-						synchronized (importNatura2000.this.obj) {
-							this.globalMap = new ThreadedMap(globalMap);
-					
-						}
-					iterateId = "." + threadID;
-					
-					
-				}
-
-
-				public void run() {		
-		
-					java.util.Map threadRunResultMap = new java.util.HashMap();
-					threadRunResultMap.put("errorCode", null);
-					threadRunResultMap.put("status", "");
-					threadLocal.set(threadRunResultMap);
-					
-					this.isRunning = true;
-					String currentComponent = "";
-					java.util.Map<String, Object> resourceMap = new java.util.HashMap<String, Object>();
-					
-					try {			
-						
-							if(execStat){
-								runStat.updateStatOnConnection("iterate2",0,"exec"+iterateId);
-							}				
-						
+					if(execStat){				
+	       				runStat.updateStatOnConnection("row10", 3, 0);
+					}           			
+				
+					if(execStat){				
+	       				runStat.updateStatOnConnection("row6", 3, 0);
+					}           			
+				
+				if(execStat){
+					runStat.updateStatOnConnection("iterate2", 1, "exec" + NB_ITERATE_tJava_2);
+					//Thread.sleep(1000);
+				}				
+			
 
 
 
@@ -7238,136 +7004,10 @@ end_Hash.put("tLogRow_2", System.currentTimeMillis());
 
 
 
-					if(execStat){
-						runStat.updateStatOnConnection("iterate2",2,"exec"+iterateId);
-					}				
-				
-						} catch (java.lang.Exception e) {
-							this.status = "failure";
-							Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-							if (localErrorCode != null) {
-								if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-									this.errorCode = localErrorCode;
-								}
-							}					
-				            		            
-		                    TalendException te = new TalendException(e, currentComponent, globalMap);
-							
-							this.exception = te;
-							talendThreadPool.setErrorThread(this);
-				            talendThreadPool.stopAllWorkers();
-	
-						} catch (java.lang.Error error){
-							this.status = "failure";
-							Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-							if (localErrorCode != null) {
-								if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-									this.errorCode = localErrorCode;
-								}
-							}					
-							this.error = error;				            		            
-							talendThreadPool.setErrorThread(this);
-				            talendThreadPool.stopAllWorkers();
-						} finally {
-							try{
-								
-	
-	/**
-	 * [tJava_2 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tJava_2";
-
-	
-
- 
-
-
-
-/**
- * [tJava_2 finally ] stop
- */
-
-	
-	/**
-	 * [tSystem_2 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tSystem_2";
-
-	
-
- 
-
-
-
-/**
- * [tSystem_2 finally ] stop
- */
-
-	
-	/**
-	 * [tLogRow_2 finally ] start
-	 */
-
-	
-
-	
-	
-	currentComponent="tLogRow_2";
-
-	
-
- 
-
-
-
-/**
- * [tLogRow_2 finally ] stop
- */
-
-
-
-
-
-
-							}catch(java.lang.Exception e){	
-								//ignore
-							}catch(java.lang.Error error){
-								//ignore
-							}
-							resourceMap = null;
-						}
-						this.isRunning = false;
-				
-						Integer localErrorCode = (Integer) (((java.util.Map) threadLocal.get()).get("errorCode"));
-						String localStatus = (String) (((java.util.Map) threadLocal.get()).get("status"));
-						if (localErrorCode != null) {
-							if (this.errorCode == null || localErrorCode.compareTo(this.errorCode) > 0) {
-								this.errorCode = localErrorCode;
-							}
-						} 
-						if (!this.status.equals("failure")) {
-							this.status = localStatus;
-						}
-						
-						talendThreadPool.getTalendThreadResult().setErrorCode(this.errorCode);
-						talendThreadPool.getTalendThreadResult().setStatus(this.status);						
-					}
-				}
-
-				tJava_2Thread bt_tJava_2 = new tJava_2Thread(globalMap,row5,row10,row6,threadIdCounter_tJava_2++);
-				mtp_tJava_2.execute(bt_tJava_2);
-
-				
+						if(execStat){
+							runStat.updateStatOnConnection("iterate2", 2, "exec" + NB_ITERATE_tJava_2);
+						}				
+					
 
 
 
@@ -7484,42 +7124,6 @@ ok_Hash.put("tFlowToIterate_1", true);
 end_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
 
 
-			mtp_tJava_2.waitForEndOfQueue();
-			
-			TalendThread errorThread_tJava_2 = mtp_tJava_2.getErrorThread();
-
-	if(errorThread_tJava_2 != null) {
-		if (errorThread_tJava_2.errorCode != null) {
-			if (errorCode == null
-					|| errorThread_tJava_2.errorCode.compareTo(errorCode) > 0) {
-				errorCode = errorThread_tJava_2.errorCode;
-			}
-		} 
-		if (!status.equals("failure")) {
-			status = errorThread_tJava_2.status;
-		}
-		if(errorThread_tJava_2.exception!=null){
-			throw errorThread_tJava_2.exception;
-		}
-		if(errorThread_tJava_2.error!=null){
-			throw errorThread_tJava_2.error;
-		}
-	}else{				
-		Integer threadErrorCode = mtp_tJava_2.getTalendThreadResult().getErrorCode();
-		String threadStatus = mtp_tJava_2.getTalendThreadResult().getStatus();
-		
-		if (threadErrorCode != null) {
-			if (errorCode == null
-					|| threadErrorCode.compareTo(errorCode) > 0) {
-				errorCode = threadErrorCode;
-			}
-		} 
-		if (!status.equals("failure")) {
-			status = threadStatus;
-		}
-	 }			
-			
-			
 
 
 /**
@@ -7590,6 +7194,78 @@ end_Hash.put("tFlowToIterate_1", System.currentTimeMillis());
 /**
  * [tFlowToIterate_1 finally ] stop
  */
+
+	
+	/**
+	 * [tJava_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tJava_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tJava_2 finally ] stop
+ */
+
+	
+	/**
+	 * [tSystem_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tSystem_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tSystem_2 finally ] stop
+ */
+
+	
+	/**
+	 * [tLogRow_2 finally ] start
+	 */
+
+	
+
+	
+	
+	currentComponent="tLogRow_2";
+
+	
+
+ 
+
+
+
+/**
+ * [tLogRow_2 finally ] stop
+ */
+
+
+
+
+
+
+
+
+
 
 
 
@@ -8581,6 +8257,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     186741 characters generated by Talend Open Studio for Big Data 
- *     on the September 4, 2018 7:46:49 PM CEST
+ *     176723 characters generated by Talend Open Studio for Big Data 
+ *     on the September 4, 2018 8:17:05 PM CEST
  ************************************************************************************************/
