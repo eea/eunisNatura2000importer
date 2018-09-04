@@ -17,7 +17,6 @@ If not set, default is:
 -natura2000importer "/usr/local/bin/natura2000importer-1.0-SNAPSHOT-jar-with-dependencies.jar"
 -skipService 0
 -delete 0 (*delete = 1 will automatically enable skipService)
--version_id null
 
 Temporary files are written in System.getProperty("java.io.tmpdir")/natura2000import directory (/tmp/natura2000import in linux)
 
