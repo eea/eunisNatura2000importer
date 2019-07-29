@@ -58,8 +58,8 @@ import java.util.Comparator;
 /**
  * Job: importNatura2000 Purpose: <br>
  * Description:  <br>
- * @author user@talend.com
- * @version 7.0.1.20180411_1414
+ * @author 
+ * @version 7.2.1.20181218_1206-M1
  * @status 
  */
 public class importNatura2000 implements TalendJob {
@@ -220,7 +220,7 @@ public Integer getDelete(){
 	return this.delete;
 }
 	}
-	private ContextProperties context = new ContextProperties();
+	protected ContextProperties context = new ContextProperties(); // will be instanciated by MS.
 	public ContextProperties getContext() {
 		return this.context;
 	}
@@ -584,12 +584,12 @@ resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThrea
 resumeUtil.addLog("SYSTEM_LOG", "NODE:"+ errorComponent, "", Thread.currentThread().getId()+ "", "FATAL", "", exception.getMessage(), ResumeUtil.getExceptionStackTrace(exception),"");
 
 			}
+	
 
 
 
 
 
-		
 
 public static class row4Struct implements routines.system.IPersistableRow<row4Struct> {
     final static byte[] commonByteArrayLock_LOCAL_PROJECT_importNatura2000 = new byte[0];
@@ -788,13 +788,6 @@ public void tContextDump_1Process(final java.util.Map<String, Object> globalMap)
 		
 		int tos_count_tLogRow_1 = 0;
 		
-    	class BytesLimit65535_tLogRow_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tLogRow_1().limitLog4jByte();
 
 	///////////////////////
 	
@@ -835,13 +828,6 @@ public void tContextDump_1Process(final java.util.Map<String, Object> globalMap)
 	
 		int tos_count_tContextDump_1 = 0;
 		
-    	class BytesLimit65535_tContextDump_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tContextDump_1().limitLog4jByte();
         int nb_line_tContextDump_1 = 0;
         java.util.List<String> assignList_tContextDump_1 = new java.util.ArrayList<String>();
 		
@@ -1708,13 +1694,6 @@ row3Struct row3 = new row3Struct();
 		
 		int tos_count_tContextLoad_2 = 0;
 		
-    	class BytesLimit65535_tContextLoad_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tContextLoad_2().limitLog4jByte();
 	java.util.List<String> assignList_tContextLoad_2 = new java.util.ArrayList<String>();
 	java.util.List<String> newPropertyList_tContextLoad_2 = new java.util.ArrayList<String>();
 	java.util.List<String> noAssignList_tContextLoad_2 = new java.util.ArrayList<String>();
@@ -1757,13 +1736,6 @@ row3Struct row3 = new row3Struct();
 		
 		int tos_count_tReplace_2 = 0;
 		
-    	class BytesLimit65535_tReplace_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tReplace_2().limitLog4jByte();
 
 
 int nb_line_tReplace_2 = 0;
@@ -1804,13 +1776,6 @@ int nb_line_tReplace_2 = 0;
 		
 		int tos_count_tFilterRow_2 = 0;
 		
-    	class BytesLimit65535_tFilterRow_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFilterRow_2().limitLog4jByte();
     int nb_line_tFilterRow_2 = 0;
     int nb_line_ok_tFilterRow_2 = 0;
     int nb_line_reject_tFilterRow_2 = 0;
@@ -1881,13 +1846,6 @@ int nb_line_tReplace_2 = 0;
 	
 		int tos_count_tFileInputDelimited_2 = 0;
 		
-    	class BytesLimit65535_tFileInputDelimited_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFileInputDelimited_2().limitLog4jByte();
 	
 	
 	
@@ -1899,6 +1857,7 @@ int nb_line_tReplace_2 = 0;
 	
 				int nb_line_tFileInputDelimited_2 = 0;
 				org.talend.fileprocess.FileInputDelimited fid_tFileInputDelimited_2 = null;
+				int limit_tFileInputDelimited_2 = -1;
 				try{
 					
 						Object filename_tFileInputDelimited_2 = context.localProperties;
@@ -1911,7 +1870,9 @@ int nb_line_tReplace_2 = 0;
 		
 						}
 						try {
-							fid_tFileInputDelimited_2 = new org.talend.fileprocess.FileInputDelimited(context.localProperties, "ISO-8859-15","=","\n",true,0,0,-1,-1, false);
+							fid_tFileInputDelimited_2 = new org.talend.fileprocess.FileInputDelimited(context.localProperties, "ISO-8859-15","=","\n",true,0,0,
+									limit_tFileInputDelimited_2
+								,-1, false);
 						} catch(java.lang.Exception e) {
 							
 								throw e;
@@ -2767,13 +2728,6 @@ public void tSleep_1Process(final java.util.Map<String, Object> globalMap) throw
 	
 		int tos_count_tSleep_1 = 0;
 		
-    	class BytesLimit65535_tSleep_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tSleep_1().limitLog4jByte();
 
  
 
@@ -3144,13 +3098,6 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 	
 		int tos_count_tFileList_1 = 0;
 		
-    	class BytesLimit65535_tFileList_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFileList_1().limitLog4jByte();
 	
  
      
@@ -3306,13 +3253,6 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 		
 		int tos_count_tSystem_1 = 0;
 		
-    	class BytesLimit65535_tSystem_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tSystem_1().limitLog4jByte();
 
 		
 		String[] command_tSystem_1 = new String[4];
@@ -3414,13 +3354,6 @@ error_tSystem_1.join(10000);
 	
 		int tos_count_tJava_1 = 0;
 		
-    	class BytesLimit65535_tJava_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tJava_1().limitLog4jByte();
 
 
 System.out.println("Importing data for: ***" +  ((String)globalMap.get("tFileList_1_CURRENT_FILEPATH"))  + "***");
@@ -4344,13 +4277,6 @@ row2Struct row2 = new row2Struct();
 		
 		int tos_count_tAggregateRow_1_AGGOUT = 0;
 		
-    	class BytesLimit65535_tAggregateRow_1_AGGOUT{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tAggregateRow_1_AGGOUT().limitLog4jByte();
 
 // ------------ Seems it is not used
 
@@ -4560,13 +4486,6 @@ java.util.Map hashAggreg_tAggregateRow_1 = new java.util.HashMap();
 	
 		int tos_count_tFileInputXML_1 = 0;
 		
-    	class BytesLimit65535_tFileInputXML_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFileInputXML_1().limitLog4jByte();
 
 	
 
@@ -4968,13 +4887,6 @@ end_Hash.put("tAggregateRow_1_AGGOUT", System.currentTimeMillis());
 		
 		int tos_count_tMysqlOutput_1 = 0;
 		
-    	class BytesLimit65535_tMysqlOutput_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tMysqlOutput_1().limitLog4jByte();
 
 
 
@@ -5016,7 +4928,7 @@ java.sql.Connection conn_tMysqlOutput_1 = null;
 
 			url_tMysqlOutput_1 = "jdbc:mysql://" + context.dbHost + ":" + "3306" + "/" + context.dbDatabase + "?" + properties_tMysqlOutput_1;
 		}
-		String driverClass_tMysqlOutput_1 = "org.gjt.mm.mysql.Driver";
+		String driverClass_tMysqlOutput_1 = "com.mysql.jdbc.Driver";
 		
 		String dbUser_tMysqlOutput_1 = context.dbUsername;
 		
@@ -5038,30 +4950,31 @@ java.sql.Connection conn_tMysqlOutput_1 = null;
 int count_tMysqlOutput_1=0;
     	
                                 java.sql.DatabaseMetaData dbMetaData_tMysqlOutput_1 = conn_tMysqlOutput_1.getMetaData();
-                                java.sql.ResultSet rsTable_tMysqlOutput_1 = dbMetaData_tMysqlOutput_1.getTables(null, null, null, new String[]{"TABLE"});
                                 boolean whetherExist_tMysqlOutput_1 = false;
-                                while(rsTable_tMysqlOutput_1.next()) {
-                                    String table_tMysqlOutput_1 = rsTable_tMysqlOutput_1.getString("TABLE_NAME");
-                                    if(table_tMysqlOutput_1.equalsIgnoreCase("importSitesTmp")) {
-                                        whetherExist_tMysqlOutput_1 = true;
-                                        break;
+                                try (java.sql.ResultSet rsTable_tMysqlOutput_1 = dbMetaData_tMysqlOutput_1.getTables(context.dbDatabase, null, null, new String[]{"TABLE"})) {
+                                    while(rsTable_tMysqlOutput_1.next()) {
+                                        String table_tMysqlOutput_1 = rsTable_tMysqlOutput_1.getString("TABLE_NAME");
+                                        if(table_tMysqlOutput_1.equalsIgnoreCase("importSitesTmp")) {
+                                            whetherExist_tMysqlOutput_1 = true;
+                                            break;
+                                        }
                                     }
                                 }
-                                rsTable_tMysqlOutput_1.close();
                                 if(whetherExist_tMysqlOutput_1) {
-                                    java.sql.Statement stmtDrop_tMysqlOutput_1 = conn_tMysqlOutput_1.createStatement();
-                                    stmtDrop_tMysqlOutput_1.execute("DROP TABLE `" + tableName_tMysqlOutput_1 + "`" );
-                                    stmtDrop_tMysqlOutput_1.close();
+                                    try (java.sql.Statement stmtDrop_tMysqlOutput_1 = conn_tMysqlOutput_1.createStatement()) {
+                                        stmtDrop_tMysqlOutput_1.execute("DROP TABLE `" + tableName_tMysqlOutput_1 + "`" );
+                                    }
                                 }
-                                java.sql.Statement stmtCreate_tMysqlOutput_1 = conn_tMysqlOutput_1.createStatement();
+                                try(java.sql.Statement stmtCreate_tMysqlOutput_1 = conn_tMysqlOutput_1.createStatement()) {
                                     stmtCreate_tMysqlOutput_1.execute("CREATE TABLE `" + tableName_tMysqlOutput_1 + "`(`site_code` VARCHAR(9)  ,`release_id` INT(1)  )");
-                                stmtCreate_tMysqlOutput_1.close();
+                                }
 
 				String insert_tMysqlOutput_1 = "INSERT INTO `" + "importSitesTmp" + "` (`site_code`,`release_id`) VALUES (?,?)";
 		        int batchSize_tMysqlOutput_1 = 100;
 	   			int batchSizeCounter_tMysqlOutput_1=0;
 		            
 		        java.sql.PreparedStatement pstmt_tMysqlOutput_1 = conn_tMysqlOutput_1.prepareStatement(insert_tMysqlOutput_1);
+		        resourceMap.put("pstmt_tMysqlOutput_1", pstmt_tMysqlOutput_1);
 
 
  
@@ -5094,13 +5007,6 @@ int count_tMysqlOutput_1=0;
 	
 		int tos_count_tAggregateRow_1_AGGIN = 0;
 		
-    	class BytesLimit65535_tAggregateRow_1_AGGIN{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tAggregateRow_1_AGGIN().limitLog4jByte();
 
 java.util.Collection<AggOperationStruct_tAggregateRow_1> values_tAggregateRow_1 = hash_tAggregateRow_1.values();
 
@@ -5215,7 +5121,7 @@ pstmt_tMysqlOutput_1.setNull(2, java.sql.Types.INTEGER);
                 try {
                         int countSum_tMysqlOutput_1 = 0;
                         for(int countEach_tMysqlOutput_1: pstmt_tMysqlOutput_1.executeBatch()) {
-                            countSum_tMysqlOutput_1 += (countEach_tMysqlOutput_1 < 0 ? 0 : 1);
+                            countSum_tMysqlOutput_1 += (countEach_tMysqlOutput_1 == java.sql.Statement.EXECUTE_FAILED ? 0 : 1);
                         }
                         insertedCount_tMysqlOutput_1 += countSum_tMysqlOutput_1;
                 }catch (java.sql.BatchUpdateException e){
@@ -5376,7 +5282,7 @@ end_Hash.put("tAggregateRow_1_AGGIN", System.currentTimeMillis());
 							int countSum_tMysqlOutput_1 = 0;
 							
 							for(int countEach_tMysqlOutput_1: pstmt_tMysqlOutput_1.executeBatch()) {
-								countSum_tMysqlOutput_1 += (countEach_tMysqlOutput_1 < 0 ? 0 : 1);
+								countSum_tMysqlOutput_1 += (countEach_tMysqlOutput_1 == java.sql.Statement.EXECUTE_FAILED ? 0 : 1);
 							}
 							
 	            	    	
@@ -5404,9 +5310,10 @@ end_Hash.put("tAggregateRow_1_AGGIN", System.currentTimeMillis());
         if(pstmt_tMysqlOutput_1 != null) {
 			
 				pstmt_tMysqlOutput_1.close();
+				resourceMap.remove("pstmt_tMysqlOutput_1");
 			
         }
-
+    resourceMap.put("statementClosed_tMysqlOutput_1", true);
     	if (commitCounter_tMysqlOutput_1 > 0) {
     		
     		conn_tMysqlOutput_1.commit();
@@ -5570,27 +5477,26 @@ end_Hash.put("tMysqlOutput_1", System.currentTimeMillis());
 
 
 
-	
-		if(resourceMap.get("finish_tMysqlOutput_1")==null){
-			if(resourceMap.get("conn_tMysqlOutput_1")!=null){
-				try {
-					
-					
-					java.sql.Connection ctn_tMysqlOutput_1 = (java.sql.Connection)resourceMap.get("conn_tMysqlOutput_1");
-					
-					
-            		
-					ctn_tMysqlOutput_1.close();
-					
-				} catch (java.sql.SQLException sqlEx_tMysqlOutput_1) {
-					String errorMessage_tMysqlOutput_1 = "failed to close the connection in tMysqlOutput_1 :" + sqlEx_tMysqlOutput_1.getMessage();
-					
-					System.err.println(errorMessage_tMysqlOutput_1);
-				}
-			}
-		}
-	
-
+    try {
+    if (resourceMap.get("statementClosed_tMysqlOutput_1") == null) {
+                java.sql.PreparedStatement pstmtToClose_tMysqlOutput_1 = null;
+                if ((pstmtToClose_tMysqlOutput_1 = (java.sql.PreparedStatement) resourceMap.remove("pstmt_tMysqlOutput_1")) != null) {
+                    pstmtToClose_tMysqlOutput_1.close();
+                }
+    }
+    } finally {
+        if(resourceMap.get("finish_tMysqlOutput_1") == null){
+            java.sql.Connection ctn_tMysqlOutput_1 = null;
+            if((ctn_tMysqlOutput_1 = (java.sql.Connection)resourceMap.get("conn_tMysqlOutput_1")) != null){
+                try {
+                    ctn_tMysqlOutput_1.close();
+                } catch (java.sql.SQLException sqlEx_tMysqlOutput_1) {
+                    String errorMessage_tMysqlOutput_1 = "failed to close the connection in tMysqlOutput_1 :" + sqlEx_tMysqlOutput_1.getMessage();
+                    System.err.println(errorMessage_tMysqlOutput_1);
+                }
+            }
+        }
+    }
  
 
 
@@ -6095,13 +6001,6 @@ row6Struct row6 = new row6Struct();
 		
 		int tos_count_tFlowToIterate_1 = 0;
 		
-    	class BytesLimit65535_tFlowToIterate_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFlowToIterate_1().limitLog4jByte();
 
 int nb_line_tFlowToIterate_1 = 0;
 int counter_tFlowToIterate_1 = 0;
@@ -6134,13 +6033,6 @@ int counter_tFlowToIterate_1 = 0;
 	
 		int tos_count_tMysqlInput_2 = 0;
 		
-    	class BytesLimit65535_tMysqlInput_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tMysqlInput_2().limitLog4jByte();
 	
 	
 		    java.util.Calendar calendar_tMysqlInput_2 = java.util.Calendar.getInstance();
@@ -6148,17 +6040,15 @@ int counter_tFlowToIterate_1 = 0;
 		    java.util.Date year0_tMysqlInput_2 = calendar_tMysqlInput_2.getTime();
 		    int nb_line_tMysqlInput_2 = 0;
 		    java.sql.Connection conn_tMysqlInput_2 = null;
-				String driverClass_tMysqlInput_2 = "org.gjt.mm.mysql.Driver";
+				String driverClass_tMysqlInput_2 = "com.mysql.jdbc.Driver";
 			    java.lang.Class.forName(driverClass_tMysqlInput_2);
-			   	String dbUser_tMysqlInput_2 = context.dbUsername;
-			   	
-        		
-        		
-        		
+					String dbUser_tMysqlInput_2 = context.dbUsername;
+					
+					
+					
 	final String decryptedPassword_tMysqlInput_2 = context.dbPassword; 
-			   	
-		        String dbPwd_tMysqlInput_2 = decryptedPassword_tMysqlInput_2;
-		        
+					
+					String dbPwd_tMysqlInput_2 = decryptedPassword_tMysqlInput_2;
 				
 				String url_tMysqlInput_2 = "jdbc:mysql://" + context.dbHost + ":" + "3306" + "/" + context.dbDatabase + "?" + "noDatetimeStringSync=true";
 				
@@ -6307,11 +6197,11 @@ int counter_tFlowToIterate_1 = 0;
 	
 	
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row6", 3, 0);
+	       				runStat.updateStatOnConnection("row10", 3, 0);
 					}           			
 				
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row10", 3, 0);
+	       				runStat.updateStatOnConnection("row6", 3, 0);
 					}           			
 				
 				if(execStat){
@@ -6349,13 +6239,6 @@ int counter_tFlowToIterate_1 = 0;
 		
 		int tos_count_tLogRow_2 = 0;
 		
-    	class BytesLimit65535_tLogRow_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tLogRow_2().limitLog4jByte();
 
 	///////////////////////
 	
@@ -6515,13 +6398,6 @@ int counter_tFlowToIterate_1 = 0;
 		
 		int tos_count_tSystem_2 = 0;
 		
-    	class BytesLimit65535_tSystem_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tSystem_2().limitLog4jByte();
 
 		
 		String[] command_tSystem_2 = new String[5];
@@ -6625,13 +6501,6 @@ error_tSystem_2.join(10000);
 	
 		int tos_count_tJava_2 = 0;
 		
-    	class BytesLimit65535_tJava_2{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tJava_2().limitLog4jByte();
 
 
 System.out.println("Deleting site: ***" +  row5.ID_SITE  + "***");
@@ -7070,10 +6939,12 @@ end_Hash.put("tLogRow_2", System.currentTimeMillis());
 
 	}
 }finally{
-	if(rs_tMysqlInput_2 !=null){
+	if (rs_tMysqlInput_2 != null) {
 		rs_tMysqlInput_2.close();
 	}
-	stmt_tMysqlInput_2.close();
+	if (stmt_tMysqlInput_2 != null) {
+		stmt_tMysqlInput_2.close();
+	}
 		if(conn_tMysqlInput_2 != null && !conn_tMysqlInput_2.isClosed()) {
 			
 			conn_tMysqlInput_2.close();
@@ -7326,13 +7197,6 @@ public void tFileDelete_1Process(final java.util.Map<String, Object> globalMap) 
 	
 		int tos_count_tFileDelete_1 = 0;
 		
-    	class BytesLimit65535_tFileDelete_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tFileDelete_1().limitLog4jByte();
 
  
 
@@ -7602,13 +7466,6 @@ public void tRunJob_1Process(final java.util.Map<String, Object> globalMap) thro
 	
 		int tos_count_tRunJob_1 = 0;
 		
-    	class BytesLimit65535_tRunJob_1{
-    		public void limitLog4jByte() throws Exception{
-    			
-    		}
-    	}
-    	
-        new BytesLimit65535_tRunJob_1().limitLog4jByte();
 
 
  
@@ -7951,7 +7808,7 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
             if (inContext == null) {
                 inContext = importNatura2000.class.getClassLoader().getResourceAsStream("config/contexts/" + contextStr + ".properties");
             }
-            if (inContext != null) {
+            if (inContext != null && context != null && context.isEmpty()) {
                 //defaultProps is in order to keep the original context value
                 defaultProps.load(inContext);
                 inContext.close();
@@ -7997,6 +7854,7 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
              try{
                  context.skipService=routines.system.ParserUtils.parseTo_Integer (context.getProperty("skipService"));
              }catch(NumberFormatException e){
+                    System.err.println(String.format("Null value will be used for context parameter %s: %s", "skipService", e.getMessage()));
                  context.skipService=null;
               }
 				    context.setContextType("delete", "id_Integer");
@@ -8004,6 +7862,7 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
              try{
                  context.delete=routines.system.ParserUtils.parseTo_Integer (context.getProperty("delete"));
              }catch(NumberFormatException e){
+                    System.err.println(String.format("Null value will be used for context parameter %s: %s", "delete", e.getMessage()));
                  context.delete=null;
               }
         } catch (java.io.IOException ie) {
@@ -8257,6 +8116,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     176723 characters generated by Talend Open Studio for Big Data 
- *     on the September 18, 2018 5:09:04 PM CEST
+ *     173927 characters generated by Talend Open Studio for Big Data 
+ *     on the July 29, 2019 10:09:38 AM CEST
  ************************************************************************************************/
