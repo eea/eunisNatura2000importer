@@ -17,15 +17,15 @@
 
 package local_project.importnatura2000_0_1;
 
+import routines.Numeric;
 import routines.DataOperation;
 import routines.TalendDataGenerator;
-import routines.Relational;
-import routines.Mathematical;
-import routines.Numeric;
 import routines.TalendStringUtil;
 import routines.TalendString;
 import routines.StringHandling;
+import routines.Relational;
 import routines.TalendDate;
+import routines.Mathematical;
 import routines.system.*;
 import routines.system.api.*;
 import java.text.ParseException;
@@ -58,8 +58,8 @@ import java.util.Comparator;
 /**
  * Job: importNatura2000 Purpose: <br>
  * Description:  <br>
- * @author 
- * @version 7.2.1.20181218_1206-M1
+ * @author user@talend.com
+ * @version 7.3.1.20200219_1130
  * @status 
  */
 public class importNatura2000 implements TalendJob {
@@ -777,15 +777,10 @@ public void tContextDump_1Process(final java.util.Map<String, Object> globalMap)
 	currentComponent="tLogRow_1";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row4" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row4");
+					}
+				
 		int tos_count_tLogRow_1 = 0;
 		
 
@@ -917,18 +912,10 @@ public void tContextDump_1Process(final java.util.Map<String, Object> globalMap)
 	currentComponent="tLogRow_1";
 
 	
-
-			//row4
-			//row4
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row4"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row4");
+					}
+					
 ///////////////////////		
 						
 
@@ -1104,12 +1091,10 @@ globalMap.put("tLogRow_1_NB_LINE",nb_line_tLogRow_1);
 
 ///////////////////////    			
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row4"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row4");
+			  	}
+			  	
  
 
 ok_Hash.put("tLogRow_1", true);
@@ -1683,15 +1668,10 @@ row3Struct row3 = new row3Struct();
 	currentComponent="tContextLoad_2";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row3" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row3");
+					}
+				
 		int tos_count_tContextLoad_2 = 0;
 		
 	java.util.List<String> assignList_tContextLoad_2 = new java.util.ArrayList<String>();
@@ -1725,15 +1705,10 @@ row3Struct row3 = new row3Struct();
 	currentComponent="tReplace_2";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row8" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row8");
+					}
+				
 		int tos_count_tReplace_2 = 0;
 		
 
@@ -1765,15 +1740,10 @@ int nb_line_tReplace_2 = 0;
 	currentComponent="tFilterRow_2";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row7" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row7");
+					}
+				
 		int tos_count_tFilterRow_2 = 0;
 		
     int nb_line_tFilterRow_2 = 0;
@@ -1982,18 +1952,10 @@ if(row7 != null) {
 	currentComponent="tFilterRow_2";
 
 	
-
-			//row7
-			//row7
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row7"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row7");
+					}
+					
 
           row8 = null;
     Operator_tFilterRow_2 ope_tFilterRow_2 = new Operator_tFilterRow_2("&&");
@@ -2065,18 +2027,10 @@ if(row8 != null) {
 	currentComponent="tReplace_2";
 
 	
-
-			//row8
-			//row8
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row8"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row8");
+					}
+					
 
 						String searchStr_tReplace_2_1 = "mysql.dbname" + "";
 							row8.key = StringUtils.replaceAllStrictly(row8.key, searchStr_tReplace_2_1, "dbDatabase" + "", false, false);
@@ -2141,18 +2095,10 @@ if(row8 != null) {
 	currentComponent="tContextLoad_2";
 
 	
-
-			//row3
-			//row3
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row3"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row3");
+					}
+					
         //////////////////////////
         String tmp_key_tContextLoad_2 = null;
                     String key_tContextLoad_2 = null;
@@ -2429,12 +2375,10 @@ end_Hash.put("tFileInputDelimited_2", System.currentTimeMillis());
     globalMap.put("tFilterRow_2_NB_LINE_REJECT", nb_line_reject_tFilterRow_2);
     
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row7"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row7");
+			  	}
+			  	
  
 
 ok_Hash.put("tFilterRow_2", true);
@@ -2462,12 +2406,10 @@ end_Hash.put("tFilterRow_2", System.currentTimeMillis());
 
 
 globalMap.put("tReplace_2_NB_LINE",nb_line_tReplace_2);
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row8"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row8");
+			  	}
+			  	
  
 
 ok_Hash.put("tReplace_2", true);
@@ -2528,12 +2470,10 @@ end_Hash.put("tReplace_2", System.currentTimeMillis());
 	
 	resumeUtil.addLog("NODE", "NODE:tContextLoad_2", "", Thread.currentThread().getId() + "", "","","","",resumeUtil.convertToJsonText(context,parametersToEncrypt_tContextLoad_2));    
     
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row3"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row3");
+			  	}
+			  	
  
 
 ok_Hash.put("tContextLoad_2", true);
@@ -2820,12 +2760,11 @@ end_Hash.put("tSleep_1", System.currentTimeMillis());
    			if (context.skipService == 1
 ) {
    				
-					if(execStat){   
+					if(execStat){
    	 					runStat.updateStatOnConnection("If3", 0, "true");
 					}
-				
-    			tFileList_1Process(globalMap);
-   			}
+				tFileList_1Process(globalMap);
+			}
 
 			   
    				else{
@@ -2835,12 +2774,11 @@ end_Hash.put("tSleep_1", System.currentTimeMillis());
    				}
    			if (context.skipService == 0) {
    				
-					if(execStat){   
+					if(execStat){
    	 					runStat.updateStatOnConnection("If2", 0, "true");
 					}
-				
-    			tFileDelete_1Process(globalMap);
-   			}
+				tFileDelete_1Process(globalMap);
+			}
 
 			   
    				else{
@@ -3242,15 +3180,10 @@ public void tFileList_1Process(final java.util.Map<String, Object> globalMap) th
 	currentComponent="tSystem_1";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row9" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row9");
+					}
+				
 		int tos_count_tSystem_1 = 0;
 		
 
@@ -3418,18 +3351,10 @@ System.out.println("Importing data for: ***" +  ((String)globalMap.get("tFileLis
 	currentComponent="tSystem_1";
 
 	
-
-			//row9
-			//row9
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row9"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row9");
+					}
+					
 
 
  
@@ -3543,12 +3468,10 @@ end_Hash.put("tJava_1", System.currentTimeMillis());
 
 globalMap.put("tSystem_1_EXIT_VALUE", ps_tSystem_1.exitValue());
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row9"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row9");
+			  	}
+			  	
  
 
 ok_Hash.put("tSystem_1", true);
@@ -4266,15 +4189,10 @@ row2Struct row2 = new row2Struct();
 	currentComponent="tAggregateRow_1_AGGOUT";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row1" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row1");
+					}
+				
 		int tos_count_tAggregateRow_1_AGGOUT = 0;
 		
 
@@ -4658,18 +4576,10 @@ if(row1 != null) {
 	currentComponent="tAggregateRow_1_AGGOUT";
 
 	
-
-			//row1
-			//row1
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row1"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row1");
+					}
+					
 	
 operation_finder_tAggregateRow_1.site_code = row1.site_code;
 			
@@ -4841,12 +4751,10 @@ end_Hash.put("tFileInputXML_1", System.currentTimeMillis());
 
 	
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row1"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row1");
+			  	}
+			  	
  
 
 ok_Hash.put("tAggregateRow_1_AGGOUT", true);
@@ -4876,15 +4784,10 @@ end_Hash.put("tAggregateRow_1_AGGOUT", System.currentTimeMillis());
 	currentComponent="tMysqlOutput_1";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row2" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row2");
+					}
+				
 		int tos_count_tMysqlOutput_1 = 0;
 		
 
@@ -5085,18 +4988,10 @@ for(AggOperationStruct_tAggregateRow_1 aggregated_row_tAggregateRow_1 : values_t
 	currentComponent="tMysqlOutput_1";
 
 	
-
-			//row2
-			//row2
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row2"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row2");
+					}
+					
 
 
 
@@ -5114,6 +5009,7 @@ pstmt_tMysqlOutput_1.setNull(2, java.sql.Types.INTEGER);
                     pstmt_tMysqlOutput_1.addBatch();
                     nb_line_tMysqlOutput_1++;
 
+						
                       batchSizeCounter_tMysqlOutput_1++;
             if(!whetherReject_tMysqlOutput_1) {
             }
@@ -5339,12 +5235,10 @@ end_Hash.put("tAggregateRow_1_AGGIN", System.currentTimeMillis());
     
 	
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row2"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row2");
+			  	}
+			  	
  
 
 ok_Hash.put("tMysqlOutput_1", true);
@@ -5990,15 +5884,10 @@ row6Struct row6 = new row6Struct();
 	currentComponent="tFlowToIterate_1";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row5" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row5");
+					}
+				
 		int tos_count_tFlowToIterate_1 = 0;
 		
 
@@ -6041,14 +5930,13 @@ int counter_tFlowToIterate_1 = 0;
 		    int nb_line_tMysqlInput_2 = 0;
 		    java.sql.Connection conn_tMysqlInput_2 = null;
 				String driverClass_tMysqlInput_2 = "com.mysql.jdbc.Driver";
-			    java.lang.Class.forName(driverClass_tMysqlInput_2);
-					String dbUser_tMysqlInput_2 = context.dbUsername;
-					
-					
-					
+			    java.lang.Class jdbcclazz_tMysqlInput_2 = java.lang.Class.forName(driverClass_tMysqlInput_2);
+				String dbUser_tMysqlInput_2 = context.dbUsername;
+				
+				
 	final String decryptedPassword_tMysqlInput_2 = context.dbPassword; 
-					
-					String dbPwd_tMysqlInput_2 = decryptedPassword_tMysqlInput_2;
+				
+				String dbPwd_tMysqlInput_2 = decryptedPassword_tMysqlInput_2;
 				
 				String url_tMysqlInput_2 = "jdbc:mysql://" + context.dbHost + ":" + "3306" + "/" + context.dbDatabase + "?" + "noDatetimeStringSync=true";
 				
@@ -6144,18 +6032,10 @@ int counter_tFlowToIterate_1 = 0;
 	currentComponent="tFlowToIterate_1";
 
 	
-
-			//row5
-			//row5
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row5"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row5");
+					}
+					
 
 
     	            
@@ -6197,11 +6077,11 @@ int counter_tFlowToIterate_1 = 0;
 	
 	
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row6", 3, 0);
+	       				runStat.updateStatOnConnection("row10", 3, 0);
 					}           			
 				
 					if(execStat){				
-	       				runStat.updateStatOnConnection("row10", 3, 0);
+	       				runStat.updateStatOnConnection("row6", 3, 0);
 					}           			
 				
 				if(execStat){
@@ -6228,15 +6108,10 @@ int counter_tFlowToIterate_1 = 0;
 	currentComponent="tLogRow_2";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row6" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row6");
+					}
+				
 		int tos_count_tLogRow_2 = 0;
 		
 
@@ -6387,15 +6262,10 @@ int counter_tFlowToIterate_1 = 0;
 	currentComponent="tSystem_2";
 
 	
-			if (execStat) {
-				if(resourceMap.get("inIterateVComp") == null){
-					
-						runStat.updateStatOnConnection("row10" + iterateId, 0, 0);
-					
-				}
-			} 
-
-		
+					if(execStat) {
+						runStat.updateStatOnConnection(resourceMap,iterateId,0,0,"row10");
+					}
+				
 		int tos_count_tSystem_2 = 0;
 		
 
@@ -6565,18 +6435,10 @@ System.out.println("Deleting site: ***" +  row5.ID_SITE  + "***");
 	currentComponent="tSystem_2";
 
 	
-
-			//row10
-			//row10
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row10"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row10");
+					}
+					
 	
 								row6.site_code = row10.site_code;	
 								row6.ResponseContent = row10.ResponseContent;
@@ -6622,18 +6484,10 @@ System.out.println("Deleting site: ***" +  row5.ID_SITE  + "***");
 	currentComponent="tLogRow_2";
 
 	
-
-			//row6
-			//row6
-
-
-			
-				if(execStat){
-					runStat.updateStatOnConnection("row6"+iterateId,1, 1);
-				} 
-			
-
-		
+					if(execStat){
+						runStat.updateStatOnConnection(iterateId,1,1,"row6");
+					}
+					
 ///////////////////////		
 						
 
@@ -6797,12 +6651,10 @@ end_Hash.put("tJava_2", System.currentTimeMillis());
 
 globalMap.put("tSystem_2_EXIT_VALUE", ps_tSystem_2.exitValue());
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row10"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row10");
+			  	}
+			  	
  
 
 ok_Hash.put("tSystem_2", true);
@@ -6850,12 +6702,10 @@ globalMap.put("tLogRow_2_NB_LINE",nb_line_tLogRow_2);
 
 ///////////////////////    			
 
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row6"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row6");
+			  	}
+			  	
  
 
 ok_Hash.put("tLogRow_2", true);
@@ -6949,6 +6799,12 @@ end_Hash.put("tLogRow_2", System.currentTimeMillis());
 			
 			conn_tMysqlInput_2.close();
 			
+			if("com.mysql.cj.jdbc.Driver".equals((String)globalMap.get("driverClass_"))
+			    && routines.system.BundleUtils.inOSGi()) {
+			        Class.forName("com.mysql.cj.jdbc.AbandonedConnectionCleanupThread").
+			            getMethod("checkedShutdown").invoke(null, (Object[]) null);
+			}
+			
 		}
 		
 }
@@ -6983,12 +6839,10 @@ end_Hash.put("tMysqlInput_2", System.currentTimeMillis());
 	
 
 globalMap.put("tFlowToIterate_1_NB_LINE",nb_line_tFlowToIterate_1);
-			if(execStat){
-				if(resourceMap.get("inIterateVComp") == null || !((Boolean)resourceMap.get("inIterateVComp"))){
-			 		runStat.updateStatOnConnection("row5"+iterateId,2, 0); 
-			 	}
-			}
-		
+				if(execStat){
+			  		runStat.updateStat(resourceMap,iterateId,2,0,"row5");
+			  	}
+			  	
  
 
 ok_Hash.put("tFlowToIterate_1", true);
@@ -7349,12 +7203,11 @@ end_Hash.put("tFileDelete_1", System.currentTimeMillis());
 
    			if (context.skipService == 0) {
    				
-					if(execStat){   
+					if(execStat){
    	 					runStat.updateStatOnConnection("If1", 0, "true");
 					}
-				
-    			tRunJob_1Process(globalMap);
-   			}
+				tRunJob_1Process(globalMap);
+			}
 
 			   
    				else{
@@ -7497,6 +7350,10 @@ public void tRunJob_1Process(final java.util.Map<String, Object> globalMap) thro
 	      			
 	        			paraList_tRunJob_1.add("--context=Default");
 	      			
+		if(enableLogStash){
+			paraList_tRunJob_1.add("--monitoring="+enableLogStash);
+		}
+		
 	//for feature:10589
 	
 		paraList_tRunJob_1.add("--stat_port=" + portStats);
@@ -7539,25 +7396,19 @@ public void tRunJob_1Process(final java.util.Map<String, Object> globalMap) thro
 		
 		String[][] childReturn_tRunJob_1 = childJob_tRunJob_1.runJob((String[]) paraList_tRunJob_1.toArray(new String[paraList_tRunJob_1.size()]));
 		
-	  	
-				errorCode = childJob_tRunJob_1.getErrorCode();
-		    
-	            
-	    	if(childJob_tRunJob_1.getErrorCode() == null){
-				globalMap.put("tRunJob_1_CHILD_RETURN_CODE", childJob_tRunJob_1.getStatus() != null && ("failure").equals(childJob_tRunJob_1.getStatus()) ? 1 : 0);
-	    	}else{
-				globalMap.put("tRunJob_1_CHILD_RETURN_CODE", childJob_tRunJob_1.getErrorCode());
-		    }
-		    if (childJob_tRunJob_1.getExceptionStackTrace() != null) { 
-		    	globalMap.put("tRunJob_1_CHILD_EXCEPTION_STACKTRACE", childJob_tRunJob_1.getExceptionStackTrace());
-		    }
-	  
-			 
-				if (childJob_tRunJob_1.getErrorCode() != null || ("failure").equals(childJob_tRunJob_1.getStatus())) {
-	        		throw new RuntimeException("Child job running failed.\n"+childJob_tRunJob_1.getException().getClass().getName() + ": " + childJob_tRunJob_1.getException().getMessage());
-				}
-			
-	  	
+            if(childJob_tRunJob_1.getErrorCode() == null){
+                globalMap.put("tRunJob_1_CHILD_RETURN_CODE", childJob_tRunJob_1.getStatus() != null && ("failure").equals(childJob_tRunJob_1.getStatus()) ? 1 : 0);
+            }else{
+                globalMap.put("tRunJob_1_CHILD_RETURN_CODE", childJob_tRunJob_1.getErrorCode());
+            }
+            if (childJob_tRunJob_1.getExceptionStackTrace() != null) {
+                globalMap.put("tRunJob_1_CHILD_EXCEPTION_STACKTRACE", childJob_tRunJob_1.getExceptionStackTrace());
+            }
+                    errorCode = childJob_tRunJob_1.getErrorCode();
+                if (childJob_tRunJob_1.getErrorCode() != null || ("failure").equals(childJob_tRunJob_1.getStatus())) {
+                    java.lang.Exception ce_tRunJob_1 = childJob_tRunJob_1.getException();
+                    throw new RuntimeException("Child job running failed.\n" + ((ce_tRunJob_1!=null) ? (ce_tRunJob_1.getClass().getName() + ": " + ce_tRunJob_1.getMessage()) : ""));
+                }
 
  
 
@@ -7715,6 +7566,8 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
     public long startTime = 0;
     public boolean isChildJob = false;
     public String log4jLevel = "";
+    
+    private boolean enableLogStash;
 
     private boolean execStat = true;
 
@@ -7760,7 +7613,7 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
     public int runJobInTOS(String[] args) {
 	   	// reset status
 	   	status = "";
-
+	   	
         String lastStr = "";
         for (String arg : args) {
             if (arg.equalsIgnoreCase("--context_param")) {
@@ -7772,7 +7625,10 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
                 lastStr = "";
             }
         }
+        enableLogStash = "true".equalsIgnoreCase(System.getProperty("monitoring"));
 
+    	
+    	
 
         if(clientHost == null) {
             clientHost = defaultClientHost;
@@ -7808,11 +7664,14 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
             if (inContext == null) {
                 inContext = importNatura2000.class.getClassLoader().getResourceAsStream("config/contexts/" + contextStr + ".properties");
             }
-            if (inContext != null && context != null && context.isEmpty()) {
+            if (inContext != null) {
                 //defaultProps is in order to keep the original context value
-                defaultProps.load(inContext);
+                if(context != null && context.isEmpty()) {
+	                defaultProps.load(inContext);
+	                context = new ContextProperties(defaultProps);
+                }
+                
                 inContext.close();
-                context = new ContextProperties(defaultProps);
             } else if (!isDefaultContext) {
                 //print info and job continue to run, for case: context_param is not empty.
                 System.err.println("Could not find the context " + contextStr);
@@ -7828,48 +7687,47 @@ end_Hash.put("tRunJob_1", System.currentTimeMillis());
 
 				}
             }
-				    context.setContextType("dbHost", "id_String");
-				
-                context.dbHost=(String) context.getProperty("dbHost");
-				    context.setContextType("dbDatabase", "id_String");
-				
-                context.dbDatabase=(String) context.getProperty("dbDatabase");
-				    context.setContextType("dbUsername", "id_String");
-				
-                context.dbUsername=(String) context.getProperty("dbUsername");
-				    context.setContextType("dbPassword", "id_String");
-				
-                context.dbPassword=(String) context.getProperty("dbPassword");
-				    context.setContextType("localProperties", "id_String");
-				
-                context.localProperties=(String) context.getProperty("localProperties");
-				    context.setContextType("eunisctl", "id_String");
-				
-                context.eunisctl=(String) context.getProperty("eunisctl");
-				    context.setContextType("natura2000importer", "id_String");
-				
-                context.natura2000importer=(String) context.getProperty("natura2000importer");
-				    context.setContextType("skipService", "id_Integer");
-				
-             try{
-                 context.skipService=routines.system.ParserUtils.parseTo_Integer (context.getProperty("skipService"));
-             }catch(NumberFormatException e){
-                    System.err.println(String.format("Null value will be used for context parameter %s: %s", "skipService", e.getMessage()));
-                 context.skipService=null;
-              }
-				    context.setContextType("delete", "id_Integer");
-				
-             try{
-                 context.delete=routines.system.ParserUtils.parseTo_Integer (context.getProperty("delete"));
-             }catch(NumberFormatException e){
-                    System.err.println(String.format("Null value will be used for context parameter %s: %s", "delete", e.getMessage()));
-                 context.delete=null;
-              }
+            class ContextProcessing {
+                private void processContext_0() {
+                        context.setContextType("dbHost", "id_String");
+                            context.dbHost=(String) context.getProperty("dbHost");
+                        context.setContextType("dbDatabase", "id_String");
+                            context.dbDatabase=(String) context.getProperty("dbDatabase");
+                        context.setContextType("dbUsername", "id_String");
+                            context.dbUsername=(String) context.getProperty("dbUsername");
+                        context.setContextType("dbPassword", "id_String");
+                            context.dbPassword=(String) context.getProperty("dbPassword");
+                        context.setContextType("localProperties", "id_String");
+                            context.localProperties=(String) context.getProperty("localProperties");
+                        context.setContextType("eunisctl", "id_String");
+                            context.eunisctl=(String) context.getProperty("eunisctl");
+                        context.setContextType("natura2000importer", "id_String");
+                            context.natura2000importer=(String) context.getProperty("natura2000importer");
+                        context.setContextType("skipService", "id_Integer");
+                            try{
+                                context.skipService=routines.system.ParserUtils.parseTo_Integer (context.getProperty("skipService"));
+                            } catch(NumberFormatException e){
+                                System.err.println(String.format("Null value will be used for context parameter %s: %s", "skipService", e.getMessage()));
+                                context.skipService=null;
+                            }
+                        context.setContextType("delete", "id_Integer");
+                            try{
+                                context.delete=routines.system.ParserUtils.parseTo_Integer (context.getProperty("delete"));
+                            } catch(NumberFormatException e){
+                                System.err.println(String.format("Null value will be used for context parameter %s: %s", "delete", e.getMessage()));
+                                context.delete=null;
+                            }
+                } 
+                public void processAllContext() {
+                        processContext_0();
+                }
+            }
+
+            new ContextProcessing().processAllContext();
         } catch (java.io.IOException ie) {
             System.err.println("Could not load context "+contextStr);
             ie.printStackTrace();
         }
-
 
         // get context value from parent directly
         if (parentContextMap != null && !parentContextMap.isEmpty()) {if (parentContextMap.containsKey("dbHost")) {
@@ -8062,10 +7920,13 @@ if (execStat) {
                     context_param.put(keyValue.substring(0, index), keyValue.substring(index + 1) );
                 }
             }
-        }else if (arg.startsWith("--log4jLevel=")) {
+        } else if (arg.startsWith("--log4jLevel=")) {
             log4jLevel = arg.substring(13);
+		} else if (arg.startsWith("--monitoring") && arg.contains("=")) {//for trunjob call
+		    final int equal = arg.indexOf('=');
+			final String key = arg.substring("--".length(), equal);
+			System.setProperty(key, arg.substring(equal + 1));
 		}
-
     }
     
     private static final String NULL_VALUE_EXPRESSION_IN_COMMAND_STRING_FOR_CHILD_JOB_ONLY = "<TALEND_NULL>";
@@ -8116,6 +7977,6 @@ if (execStat) {
     ResumeUtil resumeUtil = null;
 }
 /************************************************************************************************
- *     173927 characters generated by Talend Open Studio for Big Data 
- *     on the August 13, 2019 4:34:50 PM CEST
+ *     173689 characters generated by Talend Open Studio for Big Data 
+ *     on the 01 February 2021 13:09:16 CET
  ************************************************************************************************/
